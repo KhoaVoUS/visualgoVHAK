@@ -42,11 +42,11 @@
     <ClCompile Include="DoublyLinkedListScreen.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="RenderDLL.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TextBox.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderDLL.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

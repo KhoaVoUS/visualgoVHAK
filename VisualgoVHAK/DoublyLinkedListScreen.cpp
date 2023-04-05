@@ -1,7 +1,26 @@
 #include "DoublyLinkedListScreen.h"
 #include "TextBox.h"
 #include <iostream>
-void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, sf::Color bg, bool& darkMode, doublyLinkedList& dLinkedList)
+#include <sstream>
+#include "RenderDLL.h"
+
+void InitDoublyLinkedList(std::string str, doublyLinkedList& list)
+{
+    while (list.pHead != nullptr) list.deleteHead();
+    // Create a stringstream object from the string
+    std::stringstream ss(str);
+
+    int value;
+    // Iterate through each number in the stringstream
+    while (ss >> value) {
+        // Create a new node with the value
+        Node* newNode = create(value);
+        // Add the node to the linked list
+        list.addTail(newNode);
+    }
+    list.loadList();
+}
+void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, sf::Color bg, bool& darkMode, doublyLinkedList& list)
 {
     window.clear(bg);
     sf::Color ButtonBg;
@@ -60,6 +79,9 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
 
             window.display();
         }
+        std::string str = TextBox1->text.getString();
+        InitDoublyLinkedList(str, list);
+        //std::cout << str << "\n";
         delete EnterButton;
         delete TextBox1;
     }
@@ -114,6 +136,16 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
         DLL = false;
     }
 
+    Button* Reset = new Button(50, 740, 200, 50, font, "Reset",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    Reset->update(window);
+    Reset->render(window);
+
+    if (Reset->isClicked(window))
+    {
+        while (list.pHead != nullptr) list.deleteHead();
+    }
+    renderDLL(list, ButtonBg, font, window);
     window.display();
 }
 
