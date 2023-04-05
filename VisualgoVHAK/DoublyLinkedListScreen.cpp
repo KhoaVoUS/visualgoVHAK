@@ -20,6 +20,153 @@ void InitDoublyLinkedList(std::string str, doublyLinkedList& list)
     }
     list.loadList();
 }
+
+void InitProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list)
+{
+    Button* EnterButton = new Button(900, 500, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+
+    while (!finished)
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+                finished = true;
+            }
+            TextBox1->handleEvent(event);
+            if (EnterButton->isClicked(window))
+            {
+                // handle what happens when Enter is clicked here
+                finished = true;
+            }
+        }
+
+        window.clear(bg);
+
+        TextBox1->draw(window);
+        EnterButton->update(window);
+        EnterButton->render(window);
+
+        window.display();
+    }
+    std::string str = TextBox1->text.getString();
+    InitDoublyLinkedList(str, list);
+    //std::cout << str << "\n";
+    delete EnterButton;
+    delete TextBox1;
+}
+
+
+
+void AddHeadProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list)
+{
+    Button* EnterButton = new Button(900, 500, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+
+    while (!finished)
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+                finished = true;
+            }
+            TextBox1->handleEvent(event);
+            if (EnterButton->isClicked(window))
+            {
+                // handle what happens when Enter is clicked here
+                finished = true;
+            }
+        }
+
+        window.clear(bg);
+
+        TextBox1->draw(window);
+        EnterButton->update(window);
+        EnterButton->render(window);
+
+        window.display();
+    }
+    std::string str = TextBox1->text.getString();
+    int value = std::stoi(str);
+    
+    RenderAddHeadDLL(value, list, ButtonBg, font, window);
+    // Add the value to the linked list
+    list.addHead(create(value));
+
+    //std::cout << str << "\n";
+    delete EnterButton;
+    delete TextBox1;
+}
+
+void AddTailProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list)
+{
+    Button* EnterButton = new Button(900, 500, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+
+    while (!finished)
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+                finished = true;
+            }
+            TextBox1->handleEvent(event);
+            if (EnterButton->isClicked(window))
+            {
+                // handle what happens when Enter is clicked here
+                finished = true;
+            }
+        }
+
+        window.clear(bg);
+
+        TextBox1->draw(window);
+        EnterButton->update(window);
+        EnterButton->render(window);
+
+        window.display();
+    }
+    std::string str = TextBox1->text.getString();
+    int value = std::stoi(str);
+
+    RenderAddTailDLL(value, list, ButtonBg, font, window);
+    // Add the value to the linked list
+    list.addTail(create(value));
+
+    //std::cout << str << "\n";
+    delete EnterButton;
+    delete TextBox1;
+}
+
+
+
 void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, sf::Color bg, bool& darkMode, doublyLinkedList& list)
 {
     window.clear(bg);
@@ -44,46 +191,7 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
     InitButton->render(window);
     if (InitButton->isClicked(window))
     {
-        Button* EnterButton = new Button(900, 500, 200, 50, font, "Enter",
-            ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
-
-        sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
-
-        TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
-
-        bool finished = false;
-
-        while (!finished)
-        {
-            sf::Event event;
-            while (window.pollEvent(event))
-            {
-                if (event.type == sf::Event::Closed)
-                {
-                    window.close();
-                    finished = true;
-                }
-                TextBox1->handleEvent(event);
-                if (EnterButton->isClicked(window))
-                {
-                    // handle what happens when Enter is clicked here
-                    finished = true;
-                }
-            }
-
-            window.clear(bg);
-
-            TextBox1->draw(window);
-            EnterButton->update(window);
-            EnterButton->render(window);
-
-            window.display();
-        }
-        std::string str = TextBox1->text.getString();
-        InitDoublyLinkedList(str, list);
-        //std::cout << str << "\n";
-        delete EnterButton;
-        delete TextBox1;
+        InitProgress(window, font, bg, ButtonBg, list);
     }
 
 
@@ -92,12 +200,21 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     AddHeadButton->update(window);
     AddHeadButton->render(window);
+    if (AddHeadButton->isClicked(window))
+    {
+        AddHeadProgress(window, font, bg, ButtonBg, list);
+    }
 
     // Add Tail button
     Button* AddTailButton = new Button(50, 260, 200, 50, font, "Add Tail",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     AddTailButton->update(window);
     AddTailButton->render(window);
+
+    if (AddTailButton->isClicked(window))
+    {
+        AddTailProgress(window, font, bg, ButtonBg, list);
+    }
 
     // Add Position button
     Button* AddPositionButton = new Button(50, 340, 200, 50, font, "Add Position",
