@@ -165,6 +165,93 @@ void AddTailProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf:
     delete TextBox1;
 }
 
+void AddPositionProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list)
+{
+    Button* EnterButton = new Button(900, 500, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+    sf::Text txt("Input index", font, 20);
+    while (!finished)
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+                finished = true;
+            }
+            TextBox1->handleEvent(event);
+            if (EnterButton->isClicked(window))
+            {
+                // handle what happens when Enter is clicked here
+                finished = true;
+            }
+        }
+
+        window.clear(bg);
+
+        
+        txt.setPosition(sf::Vector2f(TextBox1->box.getPosition().x - 100, TextBox1->box.getPosition().y - 40));
+        txt.setFillColor(sf::Color::Black);
+        TextBox1->draw(window);
+        window.draw(txt);
+        EnterButton->update(window);
+        EnterButton->render(window);
+
+        window.display();
+    }
+    std::string str = TextBox1->text.getString();
+    int index = std::stoi(str);
+    TextBox1->text.setString("");
+    finished = false;
+    txt.setString("Input value");
+    while (!finished)
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+                finished = true;
+            }
+            TextBox1->handleEvent(event);
+            if (EnterButton->isClicked(window))
+            {
+                // handle what happens when Enter is clicked here
+                finished = true;
+            }
+        }
+
+        window.clear(bg);
+
+
+        txt.setPosition(sf::Vector2f(TextBox1->box.getPosition().x - 100, TextBox1->box.getPosition().y - 40));
+        txt.setFillColor(sf::Color::Black);
+        TextBox1->draw(window);
+        window.draw(txt);
+        EnterButton->update(window);
+        EnterButton->render(window);
+
+        window.display();
+    }
+
+    str = TextBox1->text.getString();
+    int value = std::stoi(str);
+
+    RenderAddIndexDLL(index, value, list, ButtonBg, font, window, bg);
+    list.insertIndexK(index, value);
+    //std::cout << str << "\n";
+    delete EnterButton;
+    delete TextBox1;
+}
+
 
 
 void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, sf::Color bg, bool& darkMode, doublyLinkedList& list)
@@ -221,6 +308,11 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     AddPositionButton->update(window);
     AddPositionButton->render(window);
+
+    if (AddPositionButton->isClicked(window))
+    {
+        AddPositionProgress(window, font, bg, ButtonBg, list);
+    }
 
     // Delete Head button
     Button* DeleteHeadButton = new Button(50, 420, 200, 50, font, "Delete Head",
