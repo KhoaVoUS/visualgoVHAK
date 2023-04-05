@@ -139,11 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="DoublyLinkedList.cpp" />
+    <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="VisualgoVHAK.cpp" />
+    <ClCompile Include="WelcomeScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="DoublyLinkedList.h" />
+    <ClInclude Include="MenuScreen.h" />
+    <ClInclude Include="WelcomeScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
