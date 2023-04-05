@@ -1,6 +1,6 @@
 #include "MenuScreen.h"
-
-void MenuScreen(sf::RenderWindow& window, sf::Font& font, bool& Welcome, bool& Menu, sf::Color bg)
+#include <iostream>
+void MenuScreen(sf::RenderWindow& window, sf::Font& font, bool& Welcome, bool& Menu, sf::Color bg, bool& DLL, bool& SLL, bool& CLL, bool& SA, bool& DA, bool& S, bool& Q)
 {
     window.clear(bg);
     sf::Color ButtonBg(173, 216, 230);
@@ -60,6 +60,54 @@ void MenuScreen(sf::RenderWindow& window, sf::Font& font, bool& Welcome, bool& M
     QueueButton->update(window);
     QueueButton->render(window);
 
+    if (DLLButton->isClicked(window))
+    {
+        Menu = 0;
+        Welcome = 0;
+        DLL = 1;
+    }
+
+    if (SLLButton->isClicked(window))
+    {
+        Menu = 0;
+        Welcome = 0;
+        SLL = 1;
+    }
+
+    if (CLLButton->isClicked(window))
+    {
+        Menu = 0;
+        Welcome = 0;
+        CLL = 1;
+    }
+
+    if (StaticArrayButton->isClicked(window))
+    {
+        Menu = 0;
+        Welcome = 0;
+        SA = 1;
+    }
+
+    if (DynamicArrayButton->isClicked(window))
+    {
+        Menu = 0;
+        Welcome = 0;
+        DA = 1;
+    }
+
+    if (StackButton->isClicked(window))
+    {
+        Menu = 0;
+        Welcome = 0;
+        S = 1;
+    }
+
+    if (QueueButton->isClicked(window))
+    {
+        Menu = 0;
+        Welcome = 0;
+        Q = 1;
+    }
     window.display();
 
     delete DLLButton, SLLButton, CLLButton, StaticArrayButton, DynamicArrayButton, StackButton, QueueButton;

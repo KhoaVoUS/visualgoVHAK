@@ -141,14 +141,20 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="DoublyLinkedList.cpp" />
+    <ClCompile Include="DoublyLinkedListScreen.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
+    <ClCompile Include="RenderDLL.cpp" />
+    <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="VisualgoVHAK.cpp" />
     <ClCompile Include="WelcomeScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
     <ClInclude Include="DoublyLinkedList.h" />
+    <ClInclude Include="DoublyLinkedListScreen.h" />
     <ClInclude Include="MenuScreen.h" />
+    <ClInclude Include="RenderDLL.h" />
+    <ClInclude Include="TextBox.h" />
     <ClInclude Include="WelcomeScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,2 +1,13 @@
-﻿  MenuScreen.cpp
+﻿  TextBox.cpp
+D:\VisualgoVHAK\VisualgoVHAK\TextBox.cpp(16,45): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\TextBox.cpp(37,69): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\VisualgoVHAK\VisualgoVHAK\TextBox.cpp(37,48): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   VisualgoVHAK.vcxproj -> D:\VisualgoVHAK\x64\Debug\VisualgoVHAK.exe

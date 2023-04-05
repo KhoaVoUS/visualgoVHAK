@@ -1,6 +1,8 @@
 #include  "SFML/Graphics.hpp"
 #include "WelcomeScreen.h"
 #include "MenuScreen.h"
+#include "DoublyLinkedList.h"
+#include "DoublyLinkedListScreen.h"
 
 int main()
 {
@@ -16,6 +18,10 @@ int main()
 
     font.loadFromFile("RobotoMono.ttf");
     bool Welcome = 1, Menu = 0, fast = 0, darkMode = 0;
+
+    bool SLL = 0, DLL = 0, CLL = 0, SA = 0, DA = 0, S = 0, Q = 0;
+
+    doublyLinkedList dLinkedList;
 
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
@@ -35,7 +41,12 @@ int main()
         }
 
         if (Menu) {
-            MenuScreen(window, font, Welcome, Menu, bg);
+            MenuScreen(window, font, Welcome, Menu, bg, DLL, SLL, CLL, SA, DA, S, Q);
+        }
+
+        if (DLL)
+        {
+            DLLScreen(window, font, Menu, DLL, bg, darkMode, dLinkedList);
         }
 
     }
