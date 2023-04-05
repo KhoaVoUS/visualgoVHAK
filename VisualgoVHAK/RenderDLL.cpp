@@ -203,7 +203,7 @@ void RenderAddTailDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
 
 void RenderAddIndexDLL(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
 {
-    sf::Time sleepTime = sf::seconds(0.5f);
+    sf::Time sleepTime = sf::seconds(0.7f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -293,8 +293,10 @@ void RenderAddIndexDLL(int index, int value, doublyLinkedList& list, sf::Color B
     tmp.render(window);
     draw2headArrowVertical(visualizer[index].posX + width / 2, visualizer[index].posY, tmp.posY + height / 2, window);
 
-    drawArrowVertical(visualizer[index - 1].posX + width , visualizer[index - 1].posY, tmp.posY + height / 2, window);
+    draw1headArrowVertical(visualizer[index - 1].posX + width , tmp.posY + height / 2, visualizer[index - 1].posY,  window);
     draw1headArrowHorizontal(visualizer[index - 1].posX + width, tmp.posX, tmp.posY + height / 2, window);
+
+    window.display();
     sf::sleep(sleepTime);
 }
 

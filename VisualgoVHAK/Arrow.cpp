@@ -137,9 +137,11 @@ void draw1headArrowVertical(int x, int y, int y1, sf::RenderWindow& window) {
     head2.setPoint(2, sf::Vector2f(-10, -10));
     head2.setFillColor(sf::Color::White);
     head2.setPosition(x, y1);
-    head2.setRotation(-90);
+    head2.setRotation(90);
 
     // Draw arrow body and heads
+
+    if (y > y1) head2.setRotation(-90);
     window.draw(body);
     window.draw(head2);
 }

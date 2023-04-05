@@ -62,19 +62,19 @@ D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(130,26): warning C4244: 'argument': conve
 D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(130,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(139,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(139,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(150,45): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(152,45): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(151,33): warning C4244: 'argument': conversion from 'const _Ty' to 'float', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(153,33): warning C4244: 'argument': conversion from 'const _Ty' to 'float', possible loss of data
           with
           [
               _Ty=int
           ]
-D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(151,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(160,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(160,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(169,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(169,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(153,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(162,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(162,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(171,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\Arrow.cpp(171,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   VisualgoVHAK.vcxproj -> D:\VisualgoVHAK\x64\Debug\VisualgoVHAK.exe
