@@ -20,6 +20,8 @@ void RenderAddIndexDLLStep(int index, int value, doublyLinkedList& list, sf::Col
 
 void RenderDeleteHeadDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg);
 
+void RenderDeleteHeadDLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg);
+
 void RenderDeleteTailDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg);
 
 void RenderDeletePositionDLL(int index, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg);

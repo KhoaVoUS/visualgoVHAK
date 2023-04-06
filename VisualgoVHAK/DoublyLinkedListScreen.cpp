@@ -164,7 +164,8 @@ void AddPositionProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg,
 
 void DeleteHeadProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
 {
-    RenderDeleteHeadDLL(list, ButtonBg, font, window, bg);
+    if (fast) RenderDeleteHeadDLL(list, ButtonBg, font, window, bg);
+    else RenderDeleteHeadDLLStep(list, ButtonBg, font, window, bg);
     list.deleteHead();
 }
 
