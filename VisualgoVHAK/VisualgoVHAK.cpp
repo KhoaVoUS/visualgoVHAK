@@ -17,7 +17,7 @@ int main()
     sf::Color darkGray(64, 64, 64);
 
     font.loadFromFile("RobotoMono.ttf");
-    bool Welcome = 1, Menu = 0, fast = 0, darkMode = 0;
+    bool Welcome = 1, Menu = 0, fast = 1, darkMode = 0;
 
     bool SLL = 0, DLL = 0, CLL = 0, SA = 0, DA = 0, S = 0, Q = 0;
 
@@ -46,7 +46,7 @@ int main()
 
         if (DLL)
         {
-            DLLScreen(window, font, Menu, DLL, bg, darkMode, dLinkedList);
+            DLLScreen(window, font, Menu, DLL, bg, darkMode, dLinkedList, fast);
         }
 
     }
