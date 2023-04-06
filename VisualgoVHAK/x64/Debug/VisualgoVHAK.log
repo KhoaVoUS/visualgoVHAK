@@ -56,14 +56,19 @@ D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(430,32): warning C4244: 'initializing': c
 D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(445,24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(446,24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(447,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(485,24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(486,24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(487,24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(488,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(520,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(521,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(522,32): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(487,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(518,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(519,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(520,32): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(538,24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(539,24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(540,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(541,69): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(579,24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(580,24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(581,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(621,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(622,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Visualgo\VisualgoVHAK\RenderDLL.cpp(623,32): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   VisualgoVHAK.vcxproj -> D:\Visualgo\x64\Debug\VisualgoVHAK.exe

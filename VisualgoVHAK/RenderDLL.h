@@ -18,3 +18,5 @@ void RenderDeleteTailDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
 
 void RenderDeletePositionDLL(int index, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg);
 
+void RenderSearchDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window);
+

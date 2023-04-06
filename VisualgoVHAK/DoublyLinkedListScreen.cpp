@@ -146,7 +146,7 @@ void AddPositionProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg,
     str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    RenderAddIndexDLL(index, value, list, ButtonBg, font, window, bg);
+    if (index == 0) RenderAddHeadDLL(value, list, ButtonBg, font, window); else RenderAddIndexDLL(index, value, list, ButtonBg, font, window, bg);
     list.insertIndexK(index, value);
     //std::cout << str << "\n";
     delete EnterButton;
@@ -157,6 +157,28 @@ void DeleteHeadProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
 {
     RenderDeleteHeadDLL(list, ButtonBg, font, window, bg);
     list.deleteHead();
+}
+
+void SearchProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list) 
+{
+    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+    std::string tmp = "Input value";
+    InputHandle(finished, TextBox1, EnterButton, window, bg, font, tmp);
+    std::string str = TextBox1->text.getString();
+    int value = std::stoi(str);
+
+    RenderSearchDLL(value, list, ButtonBg, font, window);
+
+    //std::cout << str << "\n";
+    delete EnterButton;
+    delete TextBox1;
 }
 
 void DeleteTailProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list)
@@ -180,7 +202,7 @@ void DeletePositionProgress(sf::RenderWindow& window, sf::Font& font, sf::Color 
     std::string str = TextBox1->text.getString();
     int index = std::stoi(str);
 
-    RenderDeletePositionDLL(index, list, ButtonBg, font, window, bg);;
+    if (index == 0) RenderDeleteHeadDLL(list, ButtonBg, font, window, bg); else  RenderDeletePositionDLL(index, list, ButtonBg, font, window, bg);;
     list.deleteIndexK(index);
     //std::cout << str << "\n";
     delete EnterButton;
@@ -284,6 +306,10 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     SearchButton->update(window);
     SearchButton->render(window);
+    if (SearchButton->isClicked(window))
+    {
+        SearchProgress(window, font, bg, ButtonBg, list);
+    }
 
     // Handle button clicks
     if (BackButton->isClicked(window))
