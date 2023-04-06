@@ -12,3 +12,5 @@ void RenderAddTailDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
 
 void RenderAddIndexDLL(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg);
 
+void RenderDeleteHeadDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg);
+

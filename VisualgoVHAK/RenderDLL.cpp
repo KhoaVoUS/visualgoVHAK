@@ -279,6 +279,7 @@ void RenderAddIndexDLL(int index, int value, doublyLinkedList& list, sf::Color B
     window.clear(bg);
     for (int j = 0; j < visualizer.size(); j++)
         visualizer[j].render(window);
+
     for (int j = 0; j < visualizer.size(); j++)
     {
         if (j == index) continue;
@@ -298,6 +299,69 @@ void RenderAddIndexDLL(int index, int value, doublyLinkedList& list, sf::Color B
 
     window.display();
     sf::sleep(sleepTime);
+}
+
+void RenderDeleteHeadDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
+{
+    sf::Time sleepTime = sf::seconds(0.5f);
+    vector<Button> visualizer;
+    Node* cur = list.pHead;
+    float x = 500.f; // Starting position of the first node
+    float y = 300.f;
+    float nodeWidth = 50.f; // Adjust this as needed
+    float nodeHeight = 50.f;
+
+    int width = (int)nodeWidth;
+    int height = (int)nodeHeight;
+
+    std::string buttonText;
+    while (cur != nullptr)
+    {
+        int value = cur->data;
+        buttonText = std::to_string(value);
+        Button tmp(x, y, nodeWidth, nodeHeight, font, buttonText, ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
+        visualizer.push_back(tmp);
+        x += nodeWidth * 2; // Increment the position for the next node
+        cur = cur->Next;
+    }
+    if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
+    for (int i = 0; i < visualizer.size(); i++)
+    {
+        visualizer[i].render(window);
+        if (i > 0)
+        {
+            int arrowX = visualizer[i].posX;
+            int arrowY = visualizer[i].posY + height / 2;
+            int prevArrowX = visualizer[i - 1].posX + width;
+            draw2headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+        }
+    }
+
+    window.display();
+
+    sf::sleep(sleepTime);
+    if (visualizer.size() > 1) {
+        visualizer[1].shape.setFillColor(sf::Color::Red);
+        visualizer[0].shape.setFillColor(visualizer[0].idleColor);
+    }
+
+    for (int i = 0; i < visualizer.size(); i++)
+    {
+        visualizer[i].render(window);
+        if (i > 0)
+        {
+            int arrowX = visualizer[i].posX;
+            int arrowY = visualizer[i].posY + height / 2;
+            int prevArrowX = visualizer[i - 1].posX + width;
+            draw2headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+        }
+    }
+
+    window.display();
+    sf::sleep(sleepTime);
+
+    
+
 }
 
 
