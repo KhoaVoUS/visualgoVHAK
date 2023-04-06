@@ -148,7 +148,14 @@ void AddPositionProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg,
     str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (index == 0) RenderAddHeadDLL(value, list, ButtonBg, font, window); else RenderAddIndexDLL(index, value, list, ButtonBg, font, window, bg);
+    if (index == 0) {
+        if (fast) RenderAddHeadDLL(value, list, ButtonBg, font, window);
+        else RenderAddHeadDLLStep(value, list, ButtonBg, font, window, bg);
+    }
+    else {
+        if (fast) RenderAddIndexDLL(index, value, list, ButtonBg, font, window, bg);
+        else RenderAddIndexDLLStep(index, value, list, ButtonBg, font, window, bg);
+    }
     list.insertIndexK(index, value);
     //std::cout << str << "\n";
     delete EnterButton;
