@@ -159,6 +159,34 @@ void DeleteHeadProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     list.deleteHead();
 }
 
+void DeleteTailProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list)
+{
+    RenderDeleteTailDLL(list, ButtonBg, font, window, bg);
+    list.deleteTail();
+}
+
+void DeletePositionProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list)
+{
+    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+    std::string tmp = "Input index";
+    InputHandle(finished, TextBox1, EnterButton, window, bg, font, tmp);
+    std::string str = TextBox1->text.getString();
+    int index = std::stoi(str);
+
+    RenderDeletePositionDLL(index, list, ButtonBg, font, window, bg);;
+    list.deleteIndexK(index);
+    //std::cout << str << "\n";
+    delete EnterButton;
+    delete TextBox1;
+}
+
 void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, sf::Color bg, bool& darkMode, doublyLinkedList& list)
 {
     window.clear(bg);
@@ -236,12 +264,21 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
     DeleteTailButton->update(window);
     DeleteTailButton->render(window);
 
+    if (DeleteTailButton->isClicked(window))
+    {
+        DeleteTailProgress(window, font, bg, ButtonBg, list);
+    }
+
     // Delete Position button
     Button* DeletePositionButton = new Button(50, 580, 200, 50, font, "Delete Position",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     DeletePositionButton->update(window);
     DeletePositionButton->render(window);
 
+    if (DeletePositionButton->isClicked(window))
+    {
+        DeletePositionProgress(window, font, bg, ButtonBg, list);;
+    }
     // Search button
     Button* SearchButton = new Button(50, 660, 200, 50, font, "Search",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
