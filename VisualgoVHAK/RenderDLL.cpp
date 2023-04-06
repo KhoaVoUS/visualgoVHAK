@@ -41,7 +41,7 @@ void renderDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::R
     }
 
 }
-
+ 
 void RenderAddHeadDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
@@ -361,6 +361,133 @@ void RenderAddTailDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
     sf::sleep(sleepTime);
 }
 
+void RenderAddTailDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
+{
+    sf::Time sleepTime = sf::seconds(0.5f);
+    vector<Button> visualizer;
+    Node* cur = list.pHead;
+    float x = 500.f; // Starting position of the first node
+    float y = 300.f;
+    float nodeWidth = 50.f; // Adjust this as needed
+    float nodeHeight = 50.f;
+
+    int width = (int)nodeWidth;
+    int height = (int)nodeHeight;
+
+    std::string buttonText;
+    while (cur != nullptr)
+    {
+        int value = cur->data;
+        buttonText = std::to_string(value);
+        Button tmp(x, y, nodeWidth, nodeHeight, font, buttonText, ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
+        visualizer.push_back(tmp);
+        x += nodeWidth * 2; // Increment the position for the next node
+        cur = cur->Next;
+    }
+    if (visualizer.size()) x = visualizer.back().posX, y = visualizer.back().posY - 100;
+    Button tmp(x, y, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
+
+    Button* Previous = new Button(900, 700, 200, 50, font, "Previous",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    Button* Next = new Button(1200, 700, 200, 50, font, "Next",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    int currentStep = 0;
+
+    while (currentStep < visualizer.size() + 2)
+    {
+        window.clear(bg);
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+            }
+            else if (Previous->isClicked(window))
+            {
+                currentStep--;
+                if (currentStep < 0)
+                {
+                    currentStep = 0;
+                }
+            }
+            else if (Next->isClicked(window))
+            {
+                currentStep++;
+            }
+        }
+        if (currentStep < visualizer.size())
+        {
+            window.clear(bg);;
+            Previous->render(window);
+            Next->render(window);
+            Previous->update(window);
+            Next->update(window);
+            for (int i = 0; i < visualizer.size(); i++)
+                visualizer[i].shape.setFillColor(visualizer[i].idleColor);
+            visualizer[currentStep].shape.setFillColor(sf::Color::Yellow);
+
+            for (int i = 0; i < visualizer.size(); i++)
+                visualizer[i].render(window);
+            for (int i = 1; i < visualizer.size(); i++)
+            {
+
+                    int arrowX = visualizer[i].posX;
+                    int arrowY = visualizer[i].posY + height / 2;
+                    int prevArrowX = visualizer[i - 1].posX + width;
+                    draw2headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            }
+
+        }
+
+        if (currentStep == visualizer.size())
+        {
+            window.clear(bg);
+            Previous->render(window);
+            Next->render(window);
+            Previous->update(window);
+            Next->update(window);
+            tmp.render(window);
+            for (int i = 0; i < visualizer.size(); i++)
+                visualizer[i].render(window);
+            for (int i = 1; i < visualizer.size(); i++)
+            {
+
+                int arrowX = visualizer[i].posX;
+                int arrowY = visualizer[i].posY + height / 2;
+                int prevArrowX = visualizer[i - 1].posX + width;
+                draw2headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            }
+        }
+
+        if (currentStep == visualizer.size() + 1)
+        {
+            window.clear(bg);
+            Previous->render(window);
+            Next->render(window);
+            Previous->update(window);
+            Next->update(window);
+            tmp.render(window);
+            if (visualizer.size()) draw2headArrowVertical(visualizer.back().posX + width / 2, visualizer.back().posY, tmp.posY + height / 2, window);
+            for (int i = 0; i < visualizer.size(); i++)
+                visualizer[i].render(window);
+            for (int i = 1; i < visualizer.size(); i++)
+            {
+
+                int arrowX = visualizer[i].posX;
+                int arrowY = visualizer[i].posY + height / 2;
+                int prevArrowX = visualizer[i - 1].posX + width;
+                draw2headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            }
+        }
+
+        window.display();
+    }
+    delete Previous, Next;
+}
+
 void RenderAddIndexDLL(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
 {
     sf::Time sleepTime = sf::seconds(0.7f);
@@ -519,8 +646,6 @@ void RenderDeleteHeadDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
 
     window.display();
     sf::sleep(sleepTime);
-
-    
 
 }
 

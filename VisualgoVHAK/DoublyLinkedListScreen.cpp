@@ -116,7 +116,8 @@ void AddTailProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf:
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    RenderAddTailDLL(value, list, ButtonBg, font, window);
+    if (fast) RenderAddTailDLL(value, list, ButtonBg, font, window);
+    else RenderAddTailDLLStep(value, list, ButtonBg, font, window, bg);
     // Add the value to the linked list
     list.addTail(create(value));
 
