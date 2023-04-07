@@ -145,6 +145,8 @@
     <ClCompile Include="DoublyLinkedListScreen.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="RenderDLL.cpp" />
+    <ClCompile Include="RenderSLL.cpp" />
+    <ClCompile Include="SinglyLinkedListScreen.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="VisualgoVHAK.cpp" />
     <ClCompile Include="WelcomeScreen.cpp" />
@@ -156,6 +158,8 @@
     <ClInclude Include="DoublyLinkedListScreen.h" />
     <ClInclude Include="MenuScreen.h" />
     <ClInclude Include="RenderDLL.h" />
+    <ClInclude Include="RenderSLL.h" />
+    <ClInclude Include="SinglyLinkedListScreen.h" />
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="WelcomeScreen.h" />
   </ItemGroup>

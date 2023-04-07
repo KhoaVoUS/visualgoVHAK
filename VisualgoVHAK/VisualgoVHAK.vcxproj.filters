@@ -48,8 +48,14 @@
     <ClCompile Include="RenderDLL.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="SinglyLinkedListScreen.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Arrow.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSLL.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +81,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Arrow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SinglyLinkedListScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderSLL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

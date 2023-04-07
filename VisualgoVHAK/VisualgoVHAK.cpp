@@ -3,6 +3,7 @@
 #include "MenuScreen.h"
 #include "DoublyLinkedList.h"
 #include "DoublyLinkedListScreen.h"
+#include "SinglyLinkedListScreen.h"
 
 int main()
 {
@@ -21,7 +22,7 @@ int main()
 
     bool SLL = 0, DLL = 0, CLL = 0, SA = 0, DA = 0, S = 0, Q = 0;
 
-    doublyLinkedList dLinkedList;
+    doublyLinkedList dLinkedList, sLinkedList;
 
     window.setFramerateLimit(30);
     while (window.isOpen()) {
@@ -48,6 +49,11 @@ int main()
         if (DLL)
         {
             DLLScreen(window, font, Menu, DLL, bg, darkMode, dLinkedList, fast);
+        }
+
+        if (SLL)
+        {
+            SLLScreen(window, font, Menu, SLL, bg, darkMode, sLinkedList, fast);
         }
 
     }

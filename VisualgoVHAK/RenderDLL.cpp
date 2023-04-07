@@ -1508,7 +1508,7 @@ void RenderSearchDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, 
 
     int currentStep = 0;
 
-    while (currentStep < visualizer.size() + 1)
+    while (currentStep < visualizer.size())
     {
         window.clear(bg);
         sf::Event event;
@@ -1563,36 +1563,7 @@ void RenderSearchDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, 
             }
 
         }
-        else {
-            window.clear(bg);;
-            Previous->render(window);
-            Next->render(window);
-            Previous->update(window);
-            Next->update(window);
-
-            for (int i = 0; i < visualizer.size(); i++)
-                visualizer[i].shape.setFillColor(visualizer[i].idleColor);
-
-
-            for (int j = 0; j <= currentStep; j++)
-            {
-                std::string tmp = visualizer[j].text.getString().toAnsiString();
-
-                int cur = std::stoi(tmp);
-                if (cur == value) visualizer[j].shape.setFillColor(sf::Color::Cyan);
-            }
-
-            for (int i = 0; i < visualizer.size(); i++)
-                visualizer[i].render(window);
-            for (int i = 1; i < visualizer.size(); i++)
-            {
-
-                int arrowX = visualizer[i].posX;
-                int arrowY = visualizer[i].posY + height / 2;
-                int prevArrowX = visualizer[i - 1].posX + width;
-                draw2headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
-            }
-        }
+   
 
         window.display();
     }
