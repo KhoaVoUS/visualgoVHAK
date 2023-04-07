@@ -23,6 +23,7 @@ int main()
 
     doublyLinkedList dLinkedList;
 
+    window.setFramerateLimit(30);
     while (window.isOpen()) {
         while (window.pollEvent(event)) {
 
