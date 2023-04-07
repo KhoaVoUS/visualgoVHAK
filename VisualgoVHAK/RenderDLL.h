@@ -32,3 +32,5 @@ void RenderDeletePositionDLLStep(int index, doublyLinkedList& list, sf::Color Bu
 
 void RenderSearchDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window);
 
+void RenderSearchDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg);
+

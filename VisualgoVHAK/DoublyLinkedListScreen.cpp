@@ -221,7 +221,8 @@ void SearchProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    RenderSearchDLL(value, list, ButtonBg, font, window);
+    if (fast) RenderSearchDLL(value, list, ButtonBg, font, window); else
+        RenderSearchDLLStep(value, list, ButtonBg, font, window, bg);
 
     //std::cout << str << "\n";
     delete EnterButton;

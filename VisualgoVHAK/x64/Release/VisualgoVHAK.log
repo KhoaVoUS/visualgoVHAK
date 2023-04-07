@@ -151,9 +151,15 @@ D:\VisualgoVHAK\VisualgoVHAK\RenderDLL.cpp(1426,28): warning C4244: 'initializin
 D:\VisualgoVHAK\VisualgoVHAK\RenderDLL.cpp(1465,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\VisualgoVHAK\VisualgoVHAK\RenderDLL.cpp(1466,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 D:\VisualgoVHAK\VisualgoVHAK\RenderDLL.cpp(1467,32): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\RenderDLL.cpp(1559,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\RenderDLL.cpp(1560,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\RenderDLL.cpp(1561,32): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\RenderDLL.cpp(1590,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\RenderDLL.cpp(1591,28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\VisualgoVHAK\VisualgoVHAK\RenderDLL.cpp(1592,32): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Generating code
-  2 of 264 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+  2 of 265 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    20 functions had inline decision re-evaluated but remain unchanged
+    4 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   VisualgoVHAK.vcxproj -> D:\VisualgoVHAK\x64\Release\VisualgoVHAK.exe
