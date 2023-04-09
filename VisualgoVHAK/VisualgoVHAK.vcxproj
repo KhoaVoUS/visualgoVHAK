@@ -145,8 +145,10 @@
     <ClCompile Include="DoublyLinkedList.cpp" />
     <ClCompile Include="DoublyLinkedListScreen.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
+    <ClCompile Include="QueueScreen.cpp" />
     <ClCompile Include="RenderCLL.cpp" />
     <ClCompile Include="RenderDLL.cpp" />
+    <ClCompile Include="RenderQueue.cpp" />
     <ClCompile Include="RenderSLL.cpp" />
     <ClCompile Include="RenderStack.cpp" />
     <ClCompile Include="SinglyLinkedListScreen.cpp" />
@@ -162,8 +164,10 @@
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="DoublyLinkedListScreen.h" />
     <ClInclude Include="MenuScreen.h" />
+    <ClInclude Include="QueueScreen.h" />
     <ClInclude Include="RenderCLL.h" />
     <ClInclude Include="RenderDLL.h" />
+    <ClInclude Include="RenderQueue.h" />
     <ClInclude Include="RenderSLL.h" />
     <ClInclude Include="RenderStack.h" />
     <ClInclude Include="SinglyLinkedListScreen.h" />
