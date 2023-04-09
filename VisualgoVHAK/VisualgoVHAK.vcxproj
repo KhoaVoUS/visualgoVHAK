@@ -141,12 +141,16 @@
   <ItemGroup>
     <ClCompile Include="Arrow.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CircularlyLinkedListScreen.cpp" />
     <ClCompile Include="DoublyLinkedList.cpp" />
     <ClCompile Include="DoublyLinkedListScreen.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
+    <ClCompile Include="RenderCLL.cpp" />
     <ClCompile Include="RenderDLL.cpp" />
     <ClCompile Include="RenderSLL.cpp" />
+    <ClCompile Include="RenderStack.cpp" />
     <ClCompile Include="SinglyLinkedListScreen.cpp" />
+    <ClCompile Include="StackScreen.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="VisualgoVHAK.cpp" />
     <ClCompile Include="WelcomeScreen.cpp" />
@@ -154,12 +158,16 @@
   <ItemGroup>
     <ClInclude Include="Arrow.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="CircularlyLinkedListScreen.h" />
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="DoublyLinkedListScreen.h" />
     <ClInclude Include="MenuScreen.h" />
+    <ClInclude Include="RenderCLL.h" />
     <ClInclude Include="RenderDLL.h" />
     <ClInclude Include="RenderSLL.h" />
+    <ClInclude Include="RenderStack.h" />
     <ClInclude Include="SinglyLinkedListScreen.h" />
+    <ClInclude Include="StackScreen.h" />
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="WelcomeScreen.h" />
   </ItemGroup>

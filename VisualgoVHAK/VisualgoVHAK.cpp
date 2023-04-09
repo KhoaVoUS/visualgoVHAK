@@ -4,6 +4,8 @@
 #include "DoublyLinkedList.h"
 #include "DoublyLinkedListScreen.h"
 #include "SinglyLinkedListScreen.h"
+#include "CircularlyLinkedListScreen.h"
+#include "StackScreen.h"
 
 int main()
 {
@@ -22,7 +24,7 @@ int main()
 
     bool SLL = 0, DLL = 0, CLL = 0, SA = 0, DA = 0, S = 0, Q = 0;
 
-    doublyLinkedList dLinkedList, sLinkedList;
+    doublyLinkedList dLinkedList, sLinkedList, cLinkedList, stack;
 
     window.setFramerateLimit(30);
     while (window.isOpen()) {
@@ -54,6 +56,16 @@ int main()
         if (SLL)
         {
             SLLScreen(window, font, Menu, SLL, bg, darkMode, sLinkedList, fast);
+        }
+
+        if (CLL)
+        {
+            CLLScreen(window, font, Menu, CLL, bg, darkMode, cLinkedList, fast);
+        }
+
+        if (S)
+        {
+            StackScreen(window, font, Menu, S, bg, darkMode, stack, fast);
         }
 
     }

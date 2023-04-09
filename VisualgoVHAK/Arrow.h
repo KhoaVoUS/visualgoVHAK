@@ -9,7 +9,7 @@ struct Arrow {
 
 void drawArrowHorizontal(int x, int x1, int y1, sf::RenderWindow& window);
 
-void drawArrowVertical(int x, int x1, int y, sf::RenderWindow& window);
+void drawArrowVertical(int x, int y, int y1, sf::RenderWindow& window);
 
 void draw2headArrowHorizontal(int x, int x1, int y, sf::RenderWindow& window);
 

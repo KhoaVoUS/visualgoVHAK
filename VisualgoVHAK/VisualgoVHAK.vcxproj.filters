@@ -42,9 +42,6 @@
     <ClCompile Include="DoublyLinkedListScreen.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="TextBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RenderDLL.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -55,6 +52,21 @@
       <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="RenderSLL.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CircularlyLinkedListScreen.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderCLL.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="StackScreen.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStack.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -87,6 +99,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RenderSLL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularlyLinkedListScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderCLL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StackScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
