@@ -117,7 +117,7 @@ void AddTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (fast) RenderAddTailCLL(value, list, ButtonBg, font, window);
+    if (fast) RenderAddTailCLL(value, list, ButtonBg, font, window, bg);
     else RenderAddTailCLLStep(value, list, ButtonBg, font, window, bg);
     // Add the value to the linked list
     list.addTail(create(value));
