@@ -221,7 +221,14 @@ void RenderAddHeadCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
     }
-    Button tmp(500.f, 500.f, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
+    x = 500, y = 500;
+
+    if (visualizer.size())
+    {
+        x = visualizer[0].posX;
+        y = visualizer[0].posY + height * 2;
+    }
+    Button tmp(x, y, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
 
     Button* Previous = new Button(900, 700, 200, 50, font, "Previous",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -231,13 +238,9 @@ void RenderAddHeadCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
 
     int currentStep = 0;
 
-    while (currentStep < 4)
+    while (currentStep < visualizer.size() + 5)
     {
         window.clear(bg);
-        Previous->render(window);
-        Next->render(window);
-        Previous->update(window);
-        Next->update(window);
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -258,102 +261,161 @@ void RenderAddHeadCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
                 currentStep++;
             }
         }
+        if (currentStep < visualizer.size())
+        {
+            window.clear(bg);;
+            Previous->render(window);
+            Next->render(window);
+            Previous->update(window);
+            Next->update(window);
+            for (int i = 0; i < visualizer.size(); i++)
+                visualizer[i].shape.setFillColor(visualizer[i].idleColor);
+            visualizer[currentStep].shape.setFillColor(sf::Color::Yellow);
 
+            for (int i = 0; i < visualizer.size(); i++)
+                visualizer[i].render(window);
+            for (int i = 1; i < visualizer.size(); i++)
+            {
 
-        if (currentStep == 0)
+                int arrowX = visualizer[i].posX;
+                int arrowY = visualizer[i].posY + height / 2;
+                int prevArrowX = visualizer[i - 1].posX + width;
+                draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            }
+
+        }
+
+        if (currentStep == visualizer.size())
         {
             window.clear(bg);
             Previous->render(window);
             Next->render(window);
             Previous->update(window);
             Next->update(window);
+            tmp.render(window);
+            for (int i = 0; i < visualizer.size(); i++)
+                visualizer[i].render(window);
+            for (int i = 1; i < visualizer.size(); i++)
+            {
+
+                int arrowX = visualizer[i].posX;
+                int arrowY = visualizer[i].posY + height / 2;
+                int prevArrowX = visualizer[i - 1].posX + width;
+                draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            }
+        }
+
+        if (currentStep == visualizer.size() + 1)
+        {
+            window.clear(bg);
+            Previous->render(window);
+            Next->render(window);
+            Previous->update(window);
+            Next->update(window);
+            tmp.render(window);
+            if (visualizer.size())
+            {
+                drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 4, window);
+                draw1headArrowVertical(visualizer[0].posX, visualizer.back().posY + height * 4, visualizer[0].posY + height * 3, window);
+                drawArrowHorizontal(visualizer[0].posX, visualizer.back().posX + width + 20, visualizer[0].posY + height * 4, window);
+            }
+            for (int i = 0; i < visualizer.size(); i++)
+                visualizer[i].render(window);
+            for (int i = 1; i < visualizer.size(); i++)
+            {
+
+                int arrowX = visualizer[i].posX;
+                int arrowY = visualizer[i].posY + height / 2;
+                int prevArrowX = visualizer[i - 1].posX + width;
+                draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            }
+        }
+
+        if (currentStep == visualizer.size() + 2)
+        {
+            window.clear(bg);
+            Previous->render(window);
+            Next->render(window);
+            Previous->update(window);
+            Next->update(window);
+
+            tmp.render(window);
+            if (visualizer.size())
+            {
+                drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 4, window);
+                draw1headArrowVertical(visualizer[0].posX, visualizer.back().posY + height * 4, visualizer[0].posY + height * 3, window);
+                drawArrowHorizontal(visualizer[0].posX, visualizer.back().posX + width + 20, visualizer[0].posY + height * 4, window);
+            }
             if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
             for (int i = 0; i < visualizer.size(); i++)
-            {
                 visualizer[i].render(window);
-                if (i > 0)
-                {
-                    int arrowX = visualizer[i].posX;
-                    int arrowY = visualizer[i].posY + nodeHeight / 2;
-                    int prevArrowX = visualizer[i - 1].posX + nodeWidth;
-                    draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
-                }
+            for (int i = 1; i < visualizer.size(); i++)
+            {
+
+                int arrowX = visualizer[i].posX;
+                int arrowY = visualizer[i].posY + height / 2;
+                int prevArrowX = visualizer[i - 1].posX + width;
+                draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
             }
-            window.display();
         }
 
-        if (currentStep == 1)
+        if (currentStep == visualizer.size() + 3)
         {
             window.clear(bg);
             Previous->render(window);
             Next->render(window);
             Previous->update(window);
             Next->update(window);
-            for (int i = 0; i < visualizer.size(); i++)
-            {
-                visualizer[i].render(window);
-                if (i > 0)
-                {
-                    int arrowX = visualizer[i].posX;
-                    int arrowY = visualizer[i].posY + nodeHeight / 2;
-                    int prevArrowX = visualizer[i - 1].posX + nodeWidth;
-                    draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
-                }
-            }
             tmp.render(window);
-            window.display();
+            draw1headArrowVertical(tmp.posX + width / 2, tmp.posY, visualizer[0].posY + height, window);
+            if (visualizer.size())
+            {
+                drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 4, window);
+                draw1headArrowVertical(visualizer[0].posX, visualizer.back().posY + height * 4, visualizer[0].posY + height * 3, window);
+                drawArrowHorizontal(visualizer[0].posX, visualizer.back().posX + width + 20, visualizer[0].posY + height * 4, window);
+            }
+            for (int i = 0; i < visualizer.size(); i++)
+                visualizer[i].render(window);
+            for (int i = 1; i < visualizer.size(); i++)
+            {
+
+                int arrowX = visualizer[i].posX;
+                int arrowY = visualizer[i].posY + height / 2;
+                int prevArrowX = visualizer[i - 1].posX + width;
+                draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            }
         }
-        if (currentStep == 2)
+
+        if (currentStep == visualizer.size() + 4)
         {
             window.clear(bg);
             Previous->render(window);
             Next->render(window);
             Previous->update(window);
             Next->update(window);
-            if (visualizer.size()) visualizer[0].shape.setFillColor(visualizer[0].idleColor);
+
             tmp.shape.setFillColor(sf::Color::Red);
-
-            for (int i = 0; i < visualizer.size(); i++)
-            {
-                visualizer[i].render(window);
-                if (i > 0)
-                {
-                    int arrowX = visualizer[i].posX;
-                    int arrowY = visualizer[i].posY + height / 2;
-                    int prevArrowX = visualizer[i - 1].posX + width;
-                    draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
-                }
-            }
             tmp.render(window);
-            window.display();
-        }
-
-        if (currentStep == 3)
-        {
-            window.clear(bg);
-            Previous->render(window);
-            Next->render(window);
-            Previous->update(window);
-            Next->update(window);
+            draw1headArrowVertical(tmp.posX + width / 2, tmp.posY, visualizer[0].posY + height, window);
+            if (visualizer.size())
+            {
+                drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 4, window);
+                draw1headArrowVertical(visualizer[0].posX, visualizer.back().posY + height * 4, visualizer[0].posY + height * 3, window);
+                drawArrowHorizontal(visualizer[0].posX, visualizer.back().posX + width + 20, visualizer[0].posY + height * 4, window);
+            }
             if (visualizer.size()) visualizer[0].shape.setFillColor(visualizer[0].idleColor);
-            tmp.shape.setFillColor(sf::Color::Red);
-
             for (int i = 0; i < visualizer.size(); i++)
-            {
                 visualizer[i].render(window);
-                if (i > 0)
-                {
-                    int arrowX = visualizer[i].posX;
-                    int arrowY = visualizer[i].posY + height / 2;
-                    int prevArrowX = visualizer[i - 1].posX + width;
-                    draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
-                }
-            }
-            tmp.render(window);
-            if (visualizer.size()) draw1headArrowVertical(tmp.posX + width / 2, tmp.posY, visualizer[0].posY + height, window);
-            window.display();
-        }
+            for (int i = 1; i < visualizer.size(); i++)
+            {
 
+                int arrowX = visualizer[i].posX;
+                int arrowY = visualizer[i].posY + height / 2;
+                int prevArrowX = visualizer[i - 1].posX + width;
+                draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            }
+        }
+        window.display();
     }
     delete Previous, Next;
 }
