@@ -48,9 +48,9 @@ void renderCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::R
     }
 }
 
-void RenderAddHeadCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void RenderAddHeadCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
 {
-    sf::Time sleepTime = sf::seconds(0.5f);
+    sf::Time sleepTime = sf::seconds(0.3f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -72,29 +72,51 @@ void RenderAddHeadCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
         cur = cur->Next;
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
-    for (int i = 0; i < visualizer.size(); i++)
+    //step 1
+    for (int i = 1; i < visualizer.size(); i++)
     {
-        visualizer[i].render(window);
-        if (i > 0)
+        window.clear(bg);
+        for (int j = 1; j < visualizer.size(); j++)
+            visualizer[j].shape.setFillColor(visualizer[j].idleColor);
+
+        visualizer[i].shape.setFillColor(sf::Color::Yellow);
+
+        for (int j = 0; j < visualizer.size(); j++)
+            visualizer[j].render(window);
+
+        for (int j = 0; j < visualizer.size(); j++)
         {
-            int arrowX = visualizer[i].posX;
-            int arrowY = visualizer[i].posY + height / 2;
-            int prevArrowX = visualizer[i - 1].posX + width;
-            draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            visualizer[i].render(window);
+            if (j > 0)
+            {
+                int arrowX = visualizer[j].posX;
+                int arrowY = visualizer[j].posY + height / 2;
+                int prevArrowX = visualizer[j - 1].posX + width;
+                draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            }
         }
+        if (visualizer.size())
+        {
+            drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 4, window);
+            draw1headArrowVertical(visualizer[0].posX, visualizer.back().posY + height * 4, visualizer[0].posY + height * 3, window);
+            drawArrowHorizontal(visualizer[0].posX, visualizer.back().posX + width + 20, visualizer[0].posY + height * 4, window);
+        }
+
+        window.display();
+        sf::sleep(sleepTime);
     }
+
+    //step 2
+    x = 500, y = 500;
+
     if (visualizer.size())
     {
-        drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 2, window);
-        draw1headArrowVertical(visualizer[0].posX, visualizer.back().posY + height * 2, visualizer[0].posY + height, window);
-        drawArrowHorizontal(visualizer[0].posX, visualizer.back().posX + width + 20, visualizer[0].posY + height * 2, window);
+        x = visualizer[0].posX;
+        y = visualizer[0].posY + height*2;
     }
+    Button tmp(x, y, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
 
-    window.display();
-
-    sf::sleep(sleepTime);
-
-    Button tmp(500.f, 500.f, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
+    if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
 
     for (int i = 0; i < visualizer.size(); i++)
     {
@@ -106,12 +128,48 @@ void RenderAddHeadCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
             int prevArrowX = visualizer[i - 1].posX + width;
             draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
         }
+    }
+
+    if (visualizer.size())
+    {
+        drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 4, window);
+        draw1headArrowVertical(visualizer[0].posX, visualizer.back().posY + height * 4, visualizer[0].posY + height * 3, window);
+        drawArrowHorizontal(visualizer[0].posX, visualizer.back().posX + width + 20, visualizer[0].posY + height * 4, window);
     }
     tmp.render(window);
 
     window.display();
     sf::sleep(sleepTime);
 
+    //step 3
+    window.clear(bg);
+    if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
+
+    for (int i = 0; i < visualizer.size(); i++)
+    {
+        visualizer[i].render(window);
+        if (i > 0)
+        {
+            int arrowX = visualizer[i].posX;
+            int arrowY = visualizer[i].posY + height / 2;
+            int prevArrowX = visualizer[i - 1].posX + width;
+            draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+        }
+    }
+
+    if (visualizer.size())
+    {
+        drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 4, window);
+        draw1headArrowVertical(visualizer[0].posX, visualizer.back().posY + height * 4, visualizer[0].posY + height * 3, window);
+        drawArrowHorizontal(visualizer[0].posX, visualizer.back().posX + width + 20, visualizer[0].posY + height * 4, window);
+    }
+    draw1headArrowVertical(tmp.posX + width/2, tmp.posY, visualizer[0].posY + height, window);
+    tmp.render(window);
+
+    window.display();
+    sf::sleep(sleepTime);
+    //step 4
+    window.clear(bg);
     if (visualizer.size()) visualizer[0].shape.setFillColor(visualizer[0].idleColor);
     tmp.shape.setFillColor(sf::Color::Red);
 
@@ -126,11 +184,18 @@ void RenderAddHeadCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
             draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
         }
     }
+
+    if (visualizer.size())
+    {
+        drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 4, window);
+        draw1headArrowVertical(visualizer[0].posX, visualizer.back().posY + height * 4, visualizer[0].posY + height * 3, window);
+        drawArrowHorizontal(visualizer[0].posX, visualizer.back().posX + width + 20, visualizer[0].posY + height * 4, window);
+    }
+    draw1headArrowVertical(tmp.posX + width / 2, tmp.posY, visualizer[0].posY + height, window);
     tmp.render(window);
-    if (visualizer.size()) draw1headArrowVertical(tmp.posX + width / 2, tmp.posY, visualizer[0].posY + height, window);
+
     window.display();
     sf::sleep(sleepTime);
-
 }
 
 void RenderAddHeadCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)

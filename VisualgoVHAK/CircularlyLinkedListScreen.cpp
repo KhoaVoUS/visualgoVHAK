@@ -92,7 +92,7 @@ void AddHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window);
+    if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window, bg);
     else RenderAddHeadCLLStep(value, list, ButtonBg, font, window, bg);
     // Add the value to the linked list
     list.addHead(create(value));
@@ -150,7 +150,7 @@ void AddPositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color 
     int value = std::stoi(str);
 
     if (index == 0) {
-        if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window);
+        if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window, bg);
         else RenderAddHeadCLLStep(value, list, ButtonBg, font, window, bg);
     }
     else {
