@@ -1009,7 +1009,7 @@ void RenderAddIndexCLLStep(int index, int value, doublyLinkedList& list, sf::Col
 
 void RenderDeleteHeadCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
 {
-    sf::Time sleepTime = sf::seconds(0.5f);
+    sf::Time sleepTime = sf::seconds(0.3f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -1044,8 +1044,67 @@ void RenderDeleteHeadCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
     }
 
     window.display();
+    //step 1
+    for (int i = 1; i < visualizer.size(); i++)
+    {
+        window.clear(bg);
+        for (int j = 1; j < visualizer.size(); j++)
+            visualizer[j].shape.setFillColor(visualizer[j].idleColor);
 
+        visualizer[i].shape.setFillColor(sf::Color::Yellow);
+
+        for (int j = 0; j < visualizer.size(); j++)
+            visualizer[j].render(window);
+
+        for (int j = 0; j < visualizer.size(); j++)
+        {
+            visualizer[i].render(window);
+            if (j > 0)
+            {
+                int arrowX = visualizer[j].posX;
+                int arrowY = visualizer[j].posY + height / 2;
+                int prevArrowX = visualizer[j - 1].posX + width;
+                draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            }
+        }
+
+        if (visualizer.size())
+        {
+            drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 2, window);
+            draw1headArrowVertical(visualizer[0].posX, visualizer.back().posY + height * 2, visualizer[0].posY + height, window);
+            drawArrowHorizontal(visualizer[0].posX, visualizer.back().posX + width + 20, visualizer[0].posY + height * 2, window);
+        }
+
+        window.display();
+        sf::sleep(sleepTime);
+    }
+    // step 2
+    window.clear(bg);
+    
+
+    for (int i = 0; i < visualizer.size(); i++)
+    {
+        visualizer[i].render(window);
+        if (i > 0)
+        {
+            int arrowX = visualizer[i].posX;
+            int arrowY = visualizer[i].posY + height / 2;
+            int prevArrowX = visualizer[i - 1].posX + width;
+            draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+        }
+    }
+
+    if (visualizer.size())
+    {
+        drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 2, window);
+        draw1headArrowVertical(visualizer[1].posX, visualizer.back().posY + height * 2, visualizer[1].posY + height, window);
+        drawArrowHorizontal(visualizer[1].posX, visualizer.back().posX + width + 20, visualizer[1].posY + height * 2, window);
+    }
+    window.display();
     sf::sleep(sleepTime);
+    //step 3
+    window.clear(bg);
+
     if (visualizer.size() > 1) {
         visualizer[1].shape.setFillColor(sf::Color::Red);
         visualizer[0].shape.setFillColor(visualizer[0].idleColor);
@@ -1063,6 +1122,12 @@ void RenderDeleteHeadCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
         }
     }
 
+    if (visualizer.size())
+    {
+        drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 2, window);
+        draw1headArrowVertical(visualizer[1].posX, visualizer.back().posY + height * 2, visualizer[1].posY + height, window);
+        drawArrowHorizontal(visualizer[1].posX, visualizer.back().posX + width + 20, visualizer[1].posY + height * 2, window);
+    }
     window.display();
     sf::sleep(sleepTime);
 
@@ -1090,8 +1155,18 @@ void RenderDeleteHeadCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
     }
-
-
+    if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
+    for (int i = 0; i < visualizer.size(); i++)
+    {
+        visualizer[i].render(window);
+        if (i > 0)
+        {
+            int arrowX = visualizer[i].posX;
+            int arrowY = visualizer[i].posY + height / 2;
+            int prevArrowX = visualizer[i - 1].posX + width;
+            draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+        }
+    }
 
     Button* Previous = new Button(900, 700, 200, 50, font, "Previous",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -1101,13 +1176,9 @@ void RenderDeleteHeadCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
 
     int currentStep = 0;
 
-    while (currentStep < 3)
+    while (currentStep < visualizer.size() + 2)
     {
         window.clear(bg);
-        Previous->render(window);
-        Next->render(window);
-        Previous->update(window);
-        Next->update(window);
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -1128,15 +1199,44 @@ void RenderDeleteHeadCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
                 currentStep++;
             }
         }
+        if (currentStep < visualizer.size())
+        {
+            window.clear(bg);;
+            Previous->render(window);
+            Next->render(window);
+            Previous->update(window);
+            Next->update(window);
+            for (int i = 0; i < visualizer.size(); i++)
+                visualizer[i].shape.setFillColor(visualizer[i].idleColor);
+            visualizer[currentStep].shape.setFillColor(sf::Color::Yellow);
 
-        if (currentStep == 0)
+            for (int i = 0; i < visualizer.size(); i++)
+                visualizer[i].render(window);
+            for (int i = 1; i < visualizer.size(); i++)
+            {
+
+                int arrowX = visualizer[i].posX;
+                int arrowY = visualizer[i].posY + height / 2;
+                int prevArrowX = visualizer[i - 1].posX + width;
+                draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            }
+
+            if (visualizer.size())
+            {
+                drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 2, window);
+                draw1headArrowVertical(visualizer[0].posX, visualizer.back().posY + height * 2, visualizer[0].posY + height, window);
+                drawArrowHorizontal(visualizer[0].posX, visualizer.back().posX + width + 20, visualizer[0].posY + height * 2, window);
+            }
+        }
+
+        if (currentStep == visualizer.size())
         {
             window.clear(bg);
             Previous->render(window);
             Next->render(window);
             Previous->update(window);
             Next->update(window);
-            for (int i = 0; i < visualizer.size(); i++) visualizer[i].shape.setFillColor(visualizer[i].idleColor);
+
             if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
             for (int i = 0; i < visualizer.size(); i++)
             {
@@ -1149,9 +1249,17 @@ void RenderDeleteHeadCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
                     draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
                 }
             }
+
+            if (visualizer.size())
+            {
+                drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 2, window);
+                draw1headArrowVertical(visualizer[1].posX, visualizer.back().posY + height * 2, visualizer[1].posY + height, window);
+                drawArrowHorizontal(visualizer[1].posX, visualizer.back().posX + width + 20, visualizer[1].posY + height * 2, window);
+            }
+
         }
 
-        if (currentStep == 1)
+        if (currentStep == visualizer.size() + 1)
         {
             window.clear(bg);
             Previous->render(window);
@@ -1162,6 +1270,7 @@ void RenderDeleteHeadCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
                 visualizer[1].shape.setFillColor(sf::Color::Red);
                 visualizer[0].shape.setFillColor(visualizer[0].idleColor);
             }
+
             for (int i = 0; i < visualizer.size(); i++)
             {
                 visualizer[i].render(window);
@@ -1173,31 +1282,16 @@ void RenderDeleteHeadCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
                     draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
                 }
             }
+
+            if (visualizer.size())
+            {
+                drawArrowVertical(visualizer.back().posX + width, visualizer.back().posY + height, visualizer.back().posY + height * 2, window);
+                draw1headArrowVertical(visualizer[1].posX, visualizer.back().posY + height * 2, visualizer[1].posY + height, window);
+                drawArrowHorizontal(visualizer[1].posX, visualizer.back().posX + width + 20, visualizer[1].posY + height * 2, window);
+            }
+
         }
 
-        if (currentStep == 2)
-        {
-            window.clear(bg);
-            Previous->render(window);
-            Next->render(window);
-            Previous->update(window);
-            Next->update(window);
-            if (visualizer.size() > 1) {
-                visualizer[1].shape.setFillColor(sf::Color::Red);
-                visualizer[0].shape.setFillColor(visualizer[0].idleColor);
-            }
-            for (int i = 1; i < visualizer.size(); i++)
-            {
-                visualizer[i].render(window);
-                if (i > 1)
-                {
-                    int arrowX = visualizer[i].posX;
-                    int arrowY = visualizer[i].posY + height / 2;
-                    int prevArrowX = visualizer[i - 1].posX + width;
-                    draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
-                }
-            }
-        }
         window.display();
     }
     delete Previous, Next;
