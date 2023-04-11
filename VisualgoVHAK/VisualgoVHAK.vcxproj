@@ -151,8 +151,10 @@
     <ClCompile Include="RenderQueue.cpp" />
     <ClCompile Include="RenderSLL.cpp" />
     <ClCompile Include="RenderStack.cpp" />
+    <ClCompile Include="RenderStaticArray.cpp" />
     <ClCompile Include="SinglyLinkedListScreen.cpp" />
     <ClCompile Include="StackScreen.cpp" />
+    <ClCompile Include="StaticArrayScreen.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="VisualgoVHAK.cpp" />
     <ClCompile Include="WelcomeScreen.cpp" />
@@ -170,8 +172,10 @@
     <ClInclude Include="RenderQueue.h" />
     <ClInclude Include="RenderSLL.h" />
     <ClInclude Include="RenderStack.h" />
+    <ClInclude Include="RenderStaticArray.h" />
     <ClInclude Include="SinglyLinkedListScreen.h" />
     <ClInclude Include="StackScreen.h" />
+    <ClInclude Include="StaticArrayScreen.h" />
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="WelcomeScreen.h" />
   </ItemGroup>

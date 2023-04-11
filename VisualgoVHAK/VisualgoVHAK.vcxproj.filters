@@ -22,6 +22,9 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{38e9a1f6-470e-4a51-ad3a-5d24bec3a937}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RenderScene">
+      <UniqueIdentifier>{da877099-57a6-43c4-8c83-ef78d003cb12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VisualgoVHAK.cpp">
@@ -42,17 +45,11 @@
     <ClCompile Include="DoublyLinkedListScreen.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="RenderDLL.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="SinglyLinkedListScreen.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Arrow.cpp">
       <Filter>GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderSLL.cpp">
-      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="CircularlyLinkedListScreen.cpp">
       <Filter>Scene</Filter>
@@ -60,20 +57,32 @@
     <ClCompile Include="TextBox.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
-    <ClCompile Include="RenderCLL.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="StackScreen.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderStack.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="QueueScreen.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="RenderQueue.cpp">
+    <ClCompile Include="StaticArrayScreen.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderCLL.cpp">
+      <Filter>RenderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderDLL.cpp">
+      <Filter>RenderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSLL.cpp">
+      <Filter>RenderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderQueue.cpp">
+      <Filter>RenderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStack.cpp">
+      <Filter>RenderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStaticArray.cpp">
+      <Filter>RenderScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +132,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RenderQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticArrayScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStaticArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

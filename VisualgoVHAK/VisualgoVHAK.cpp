@@ -7,6 +7,7 @@
 #include "CircularlyLinkedListScreen.h"
 #include "StackScreen.h"
 #include "QueueScreen.h"
+#include "StaticArrayScreen.h"
 
 int main()
 {
@@ -24,8 +25,11 @@ int main()
     bool Welcome = 1, Menu = 0, fast = 1, darkMode = 0;
 
     bool SLL = 0, DLL = 0, CLL = 0, SA = 0, DA = 0, S = 0, Q = 0;
+    const int array_size = 8;
 
     doublyLinkedList dLinkedList, sLinkedList, cLinkedList, stack, queue;
+
+    int sArray[array_size];
 
     window.setFramerateLimit(30);
     while (window.isOpen()) {
@@ -74,7 +78,10 @@ int main()
             QueueScreen(window, font, Menu, Q, bg, darkMode, queue, fast);
         }
         
-
+        if (SA)
+        {
+            StaticArrayScreen(window, font, Menu, SA, bg, darkMode, sArray, array_size, fast);
+        }
     }
 
     return 0;
