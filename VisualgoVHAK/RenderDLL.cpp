@@ -42,9 +42,9 @@ void renderDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::R
 
 }
  
-void RenderAddHeadDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void RenderAddHeadDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
 {
-    sf::Time sleepTime = sf::seconds(0.5f);
+    sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -281,9 +281,9 @@ void RenderAddHeadDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
     delete Previous, Next;
 }
 
-void RenderAddTailDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void RenderAddTailDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
 {
-    sf::Time sleepTime = sf::seconds(0.5f);
+    sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -488,9 +488,9 @@ void RenderAddTailDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
     delete Previous, Next;
 }
 
-void RenderAddIndexDLL(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
+void RenderAddIndexDLL(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
 {
-    sf::Time sleepTime = sf::seconds(0.7f);
+    sf::Time sleepTime = sf::seconds(0.5f)/ speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -533,8 +533,6 @@ void RenderAddIndexDLL(int index, int value, doublyLinkedList& list, sf::Color B
     y = visualizer[index].posY - 100;
 
     Button tmp(x, y, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
-
-    sleepTime = sf::seconds(0.3f);
     for (int i = 1; i < index; i++)
     {
         for (int j = 1; j < visualizer.size(); j++)
@@ -726,9 +724,9 @@ void RenderAddIndexDLLStep(int index, int value, doublyLinkedList& list, sf::Col
     delete Previous, Next;
 }
 
-void RenderDeleteHeadDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
+void RenderDeleteHeadDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed)
 {
-    sf::Time sleepTime = sf::seconds(0.5f);
+    sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -923,9 +921,9 @@ void RenderDeleteHeadDLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
 
 }
 
-void RenderDeleteTailDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
+void RenderDeleteTailDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed)
 {
-    sf::Time sleepTime = sf::seconds(0.5f);
+    sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -967,7 +965,6 @@ void RenderDeleteTailDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
 
     if (visualizer.size()) x = visualizer.back().posX, y = visualizer.back().posY - 100;
 
-    sleepTime = sf::seconds(0.3f);
     for (int i = 1; i < visualizer.size(); i++)
     {
         window.clear(bg);
@@ -1149,8 +1146,8 @@ void RenderDeleteTailDLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
 
 }
 
-void RenderDeletePositionDLL(int index, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
-    sf::Time sleepTime = sf::seconds(0.7f);
+void RenderDeletePositionDLL(int index, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed) {
+    sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -1192,7 +1189,6 @@ void RenderDeletePositionDLL(int index, doublyLinkedList& list, sf::Color Button
     x = visualizer[index].posX;
     y = visualizer[index].posY - 100;
 
-    sleepTime = sf::seconds(0.5f);
     for (int i = 1; i < index; i++)
     {
         for (int j = 1; j < visualizer.size(); j++)
@@ -1392,9 +1388,9 @@ void RenderDeletePositionDLLStep(int index, doublyLinkedList& list, sf::Color Bu
     delete Previous, Next;
 }
 
-void RenderSearchDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void RenderSearchDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
 {
-    sf::Time sleepTime = sf::seconds(0.5f);
+    sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -1436,7 +1432,6 @@ void RenderSearchDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::
 
     if (visualizer.size()) x = visualizer.back().posX, y = visualizer.back().posY - 100;
 
-    sleepTime = sf::seconds(0.3f);
     for (int i = 1; i < visualizer.size(); i++)
     {
         for (int j = 1; j < visualizer.size(); j++)

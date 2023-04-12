@@ -76,7 +76,7 @@ void InitProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf:
 
 
 
-void AddHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void AddHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -92,8 +92,8 @@ void AddHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window, bg);
-    else RenderAddHeadCLLStep(value, list, ButtonBg, font, window, bg);
+    if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window, bg, speed);
+    else RenderAddHeadCLLStep(value, list, ButtonBg, font, window, bg, speed);
     // Add the value to the linked list
     list.addHead(create(value));
 
@@ -102,7 +102,7 @@ void AddHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     delete TextBox1;
 }
 
-void AddTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void AddTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -117,7 +117,7 @@ void AddTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (fast) RenderAddTailCLL(value, list, ButtonBg, font, window, bg);
+    if (fast) RenderAddTailCLL(value, list, ButtonBg, font, window, bg, speed);
     else RenderAddTailCLLStep(value, list, ButtonBg, font, window, bg);
     // Add the value to the linked list
     list.addTail(create(value));
@@ -127,7 +127,7 @@ void AddTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     delete TextBox1;
 }
 
-void AddPositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void AddPositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -150,11 +150,11 @@ void AddPositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color 
     int value = std::stoi(str);
 
     if (index == 0) {
-        if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window, bg);
-        else RenderAddHeadCLLStep(value, list, ButtonBg, font, window, bg);
+        if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window, bg, speed);
+        else RenderAddHeadCLLStep(value, list, ButtonBg, font, window, bg, speed);
     }
     else {
-        if (fast) RenderAddIndexCLL(index, value, list, ButtonBg, font, window, bg);
+        if (fast) RenderAddIndexCLL(index, value, list, ButtonBg, font, window, bg, speed);
         else RenderAddIndexCLLStep(index, value, list, ButtonBg, font, window, bg);
     }
     list.insertIndexK(index, value);
@@ -163,21 +163,21 @@ void AddPositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color 
     delete TextBox1;
 }
 
-void DeleteHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void DeleteHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
-    if (fast) RenderDeleteHeadCLL(list, ButtonBg, font, window, bg);
+    if (fast) RenderDeleteHeadCLL(list, ButtonBg, font, window, bg, speed);
     else RenderDeleteHeadCLLStep(list, ButtonBg, font, window, bg);
     list.deleteHead();
 }
 
-void DeleteTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void DeleteTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
-    if (fast) RenderDeleteTailCLL(list, ButtonBg, font, window, bg);
+    if (fast) RenderDeleteTailCLL(list, ButtonBg, font, window, bg, speed);
     else RenderDeleteTailCLLStep(list, ButtonBg, font, window, bg);
     list.deleteTail();
 }
 
-void DeletePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void DeletePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -193,12 +193,12 @@ void DeletePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Col
     int index = std::stoi(str);
 
     if (index == 0) {
-        if (fast) RenderDeleteHeadCLL(list, ButtonBg, font, window, bg);
+        if (fast) RenderDeleteHeadCLL(list, ButtonBg, font, window, bg, speed);
         else RenderDeleteHeadCLLStep(list, ButtonBg, font, window, bg);
 
     }
     else {
-        if (fast) RenderDeletePositionCLL(index, list, ButtonBg, font, window, bg); else
+        if (fast) RenderDeletePositionCLL(index, list, ButtonBg, font, window, bg, speed); else
             RenderDeletePositionCLLStep(index, list, ButtonBg, font, window, bg);
     }
     list.deleteIndexK(index);
@@ -207,7 +207,7 @@ void DeletePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Col
     delete TextBox1;
 }
 
-void SearchProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void SearchProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -222,14 +222,14 @@ void SearchProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, s
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (fast) RenderSearchCLL(value, list, ButtonBg, font, window); else
+    if (fast) RenderSearchCLL(value, list, ButtonBg, font, window, speed); else
         RenderSearchCLLStep(value, list, ButtonBg, font, window, bg);
 
     //std::cout << str << "\n";
     delete EnterButton;
     delete TextBox1;
 }
-void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, sf::Color bg, bool& darkMode, doublyLinkedList& list, bool& fast)
+void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, sf::Color bg, bool& darkMode, doublyLinkedList& list, bool& fast, float speed)
 {
     window.clear(bg);
     sf::Color ButtonBg;
@@ -286,7 +286,7 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
     AddHeadButton->render(window);
     if (AddHeadButton->isClicked(window))
     {
-        AddHeadProgressCLL(window, font, bg, ButtonBg, list, fast);
+        AddHeadProgressCLL(window, font, bg, ButtonBg, list, fast, speed);
     }
 
     // Add Tail button
@@ -297,7 +297,7 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
 
     if (AddTailButton->isClicked(window))
     {
-        AddTailProgressCLL(window, font, bg, ButtonBg, list, fast);
+        AddTailProgressCLL(window, font, bg, ButtonBg, list, fast, speed);
     }
 
     // Add Position button
@@ -308,7 +308,7 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
 
     if (AddPositionButton->isClicked(window))
     {
-        AddPositionProgressCLL(window, font, bg, ButtonBg, list, fast);
+        AddPositionProgressCLL(window, font, bg, ButtonBg, list, fast, speed);
     }
 
     // Delete Head button
@@ -319,7 +319,7 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
 
     if (DeleteHeadButton->isClicked(window))
     {
-        DeleteHeadProgressCLL(window, font, bg, ButtonBg, list, fast);
+        DeleteHeadProgressCLL(window, font, bg, ButtonBg, list, fast, speed);
     }
 
     // Delete Tail button
@@ -330,7 +330,7 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
 
     if (DeleteTailButton->isClicked(window))
     {
-        DeleteTailProgressCLL(window, font, bg, ButtonBg, list, fast);
+        DeleteTailProgressCLL(window, font, bg, ButtonBg, list, fast, speed);
     }
 
     // Delete Position button
@@ -341,7 +341,7 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
 
     if (DeletePositionButton->isClicked(window))
     {
-        DeletePositionProgressCLL(window, font, bg, ButtonBg, list, fast);;
+        DeletePositionProgressCLL(window, font, bg, ButtonBg, list, fast, speed);;
     }
     // Search button
     Button* SearchButton = new Button(50, 660, 200, 50, font, "Search",
@@ -350,7 +350,7 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
     SearchButton->render(window);
     if (SearchButton->isClicked(window))
     {
-        SearchProgressCLL(window, font, bg, ButtonBg, list, fast);
+        SearchProgressCLL(window, font, bg, ButtonBg, list, fast, speed);
     }
 
     // Handle button clicks

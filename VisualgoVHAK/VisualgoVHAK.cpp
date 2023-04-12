@@ -26,6 +26,7 @@ int main()
 
     bool SLL = 0, DLL = 0, CLL = 0, SA = 0, DA = 0, S = 0, Q = 0;
     const int array_size = 8;
+    float speed = 1.0;
 
     doublyLinkedList dLinkedList, sLinkedList, cLinkedList, stack, queue;
 
@@ -46,7 +47,7 @@ int main()
 
 
         if (Welcome) {
-            WelcomeScreen(window, font, Welcome, Menu, fast, bg, darkMode);
+            WelcomeScreen(window, font, Welcome, Menu, fast, bg, darkMode, speed);
         }
 
         if (Menu) {
@@ -55,32 +56,32 @@ int main()
 
         if (DLL)
         {
-            DLLScreen(window, font, Menu, DLL, bg, darkMode, dLinkedList, fast);
+            DLLScreen(window, font, Menu, DLL, bg, darkMode, dLinkedList, fast, speed);
         }
 
         if (SLL)
         {
-            SLLScreen(window, font, Menu, SLL, bg, darkMode, sLinkedList, fast);
+            SLLScreen(window, font, Menu, SLL, bg, darkMode, sLinkedList, fast, speed);
         }
 
         if (CLL)
         {
-            CLLScreen(window, font, Menu, CLL, bg, darkMode, cLinkedList, fast);
+            CLLScreen(window, font, Menu, CLL, bg, darkMode, cLinkedList, fast, speed);
         }
 
         if (S)
         {
-            StackScreen(window, font, Menu, S, bg, darkMode, stack, fast);
+            StackScreen(window, font, Menu, S, bg, darkMode, stack, fast, speed);
         }
 
         if (Q)
         {
-            QueueScreen(window, font, Menu, Q, bg, darkMode, queue, fast);
+            QueueScreen(window, font, Menu, Q, bg, darkMode, queue, fast, speed);
         }
         
         if (SA)
         {
-            StaticArrayScreen(window, font, Menu, SA, bg, darkMode, sArray, array_size, fast);
+            StaticArrayScreen(window, font, Menu, SA, bg, darkMode, sArray, array_size, fast, speed);
         }
     }
 

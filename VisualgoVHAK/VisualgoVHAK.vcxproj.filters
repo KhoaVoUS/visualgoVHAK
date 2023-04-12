@@ -25,6 +25,12 @@
     <Filter Include="RenderScene">
       <UniqueIdentifier>{da877099-57a6-43c4-8c83-ef78d003cb12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SceneHeaders">
+      <UniqueIdentifier>{297c51c8-d5d3-454b-9581-df3d772fd024}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RenderHeaders">
+      <UniqueIdentifier>{cfe21eaf-dc7d-4f83-b958-de25d67abe22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VisualgoVHAK.cpp">
@@ -92,53 +98,53 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WelcomeScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DoublyLinkedListScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderDLL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TextBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Arrow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SinglyLinkedListScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderSLL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CircularlyLinkedListScreen.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\SceneHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="RenderCLL.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DoublyLinkedListScreen.h">
+      <Filter>Header Files\SceneHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="StackScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RenderStack.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MenuScreen.h">
+      <Filter>Header Files\SceneHeaders</Filter>
     </ClInclude>
     <ClInclude Include="QueueScreen.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\SceneHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="RenderQueue.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SinglyLinkedListScreen.h">
+      <Filter>Header Files\SceneHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="StackScreen.h">
+      <Filter>Header Files\SceneHeaders</Filter>
     </ClInclude>
     <ClInclude Include="StaticArrayScreen.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\SceneHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="WelcomeScreen.h">
+      <Filter>Header Files\SceneHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderCLL.h">
+      <Filter>Header Files\RenderHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderDLL.h">
+      <Filter>Header Files\RenderHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderQueue.h">
+      <Filter>Header Files\RenderHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderSLL.h">
+      <Filter>Header Files\RenderHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStack.h">
+      <Filter>Header Files\RenderHeaders</Filter>
     </ClInclude>
     <ClInclude Include="RenderStaticArray.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RenderHeaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

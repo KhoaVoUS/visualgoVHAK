@@ -31,7 +31,7 @@ void renderStaticArray(int* a, int array_size, sf::Color ButtonBg, sf::Font& fon
     }
 }
 
-void RenderSearchStaticArray(int value, int* a, int array_size, sf::Color ButtonBg, sf::Font font, sf::RenderWindow& window)
+void RenderSearchStaticArray(int value, int* a, int array_size, sf::Color ButtonBg, sf::Font font, sf::RenderWindow& window, float speed)
 {
     vector<Button> visualizer;
     float x = 500.f; // Starting position of the first node
@@ -58,7 +58,7 @@ void RenderSearchStaticArray(int value, int* a, int array_size, sf::Color Button
         visualizer[i].render(window);
 
     }
-    sf::Time sleepTime = sf::seconds(0.3f);
+    sf::Time sleepTime = sf::seconds(0.5f)/speed;
     for (int i = 1; i < visualizer.size(); i++)
     {
         for (int j = 1; j < visualizer.size(); j++)
@@ -178,7 +178,7 @@ void RenderSearchStaticArrayStep(int value, int* a, int array_size, sf::Color Bu
     delete Previous, Next;
 }
 
-void RenderUpdateStaticArray(int value, int index, int* a, int array_size, sf::Color ButtonBg, sf::Font font, sf::RenderWindow& window)
+void RenderUpdateStaticArray(int value, int index, int* a, int array_size, sf::Color ButtonBg, sf::Font font, sf::RenderWindow& window, float speed)
 {
     vector<Button> visualizer;
     float x = 500.f; // Starting position of the first node
@@ -190,7 +190,7 @@ void RenderUpdateStaticArray(int value, int index, int* a, int array_size, sf::C
     int height = (int)nodeHeight;
 
     std::string buttonText;
-    sf::Time sleepTime = sf::seconds(0.3f);
+    sf::Time sleepTime = sf::seconds(0.5f)/speed;
     for (int i = 0; i < array_size; i++)
     {
         int values = a[i];

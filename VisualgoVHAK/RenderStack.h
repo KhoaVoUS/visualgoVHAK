@@ -6,7 +6,7 @@
 
 void renderStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window);
 
-void RenderAddHeadStack(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window);
+void RenderAddHeadStack(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed);
 
 void RenderAddHeadStackStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg);
 
@@ -18,7 +18,7 @@ void RenderAddIndexStack(int index, int value, doublyLinkedList& list, sf::Color
 
 void RenderAddIndexStackStep(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg);
 
-void RenderDeleteHeadStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg);
+void RenderDeleteHeadStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed);
 
 void RenderDeleteHeadStackStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg);
 

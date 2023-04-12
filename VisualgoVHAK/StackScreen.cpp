@@ -75,7 +75,7 @@ void InitProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, s
 
 
 
-void AddHeadProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void AddHeadProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -91,7 +91,7 @@ void AddHeadProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (fast) RenderAddHeadStack(value, list, ButtonBg, font, window);
+    if (fast) RenderAddHeadStack(value, list, ButtonBg, font, window, speed);
     else RenderAddHeadStackStep(value, list, ButtonBg, font, window, bg);
     // Add the value to the linked list
     list.addHead(create(value));
@@ -126,7 +126,7 @@ void AddTailProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg
     delete TextBox1;
 }
 
-void AddPositionProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void AddPositionProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -149,7 +149,7 @@ void AddPositionProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Colo
     int value = std::stoi(str);
 
     if (index == 0) {
-        if (fast) RenderAddHeadStack(value, list, ButtonBg, font, window);
+        if (fast) RenderAddHeadStack(value, list, ButtonBg, font, window, speed);
         else RenderAddHeadStackStep(value, list, ButtonBg, font, window, bg);
     }
     else {
@@ -162,9 +162,9 @@ void AddPositionProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Colo
     delete TextBox1;
 }
 
-void DeleteHeadProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void DeleteHeadProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
-    if (fast) RenderDeleteHeadStack(list, ButtonBg, font, window, bg);
+    if (fast) RenderDeleteHeadStack(list, ButtonBg, font, window, bg, speed);
     else RenderDeleteHeadStackStep(list, ButtonBg, font, window, bg);
     list.deleteHead();
 }
@@ -176,7 +176,7 @@ void DeleteTailProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color
     list.deleteTail();
 }
 
-void DeletePositionProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void DeletePositionProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -192,7 +192,7 @@ void DeletePositionProgressStack(sf::RenderWindow& window, sf::Font& font, sf::C
     int index = std::stoi(str);
 
     if (index == 0) {
-        if (fast) RenderDeleteHeadStack(list, ButtonBg, font, window, bg);
+        if (fast) RenderDeleteHeadStack(list, ButtonBg, font, window, bg, speed);
         else RenderDeleteHeadStackStep(list, ButtonBg, font, window, bg);
 
     }
@@ -228,7 +228,7 @@ void SearchProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg,
     delete EnterButton;
     delete TextBox1;
 }
-void StackScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Stack, sf::Color bg, bool& darkMode, doublyLinkedList& list, bool& fast)
+void StackScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Stack, sf::Color bg, bool& darkMode, doublyLinkedList& list, bool& fast, float speed)
 {
     window.clear(bg);
     sf::Color ButtonBg;
@@ -285,7 +285,7 @@ void StackScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Sta
     AddHeadButton->render(window);
     if (AddHeadButton->isClicked(window))
     {
-        AddHeadProgressStack(window, font, bg, ButtonBg, list, fast);
+        AddHeadProgressStack(window, font, bg, ButtonBg, list, fast, speed);
     }
 
     // Delete Head button
@@ -296,7 +296,7 @@ void StackScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Sta
 
     if (DeleteHeadButton->isClicked(window))
     {
-        DeleteHeadProgressStack(window, font, bg, ButtonBg, list, fast);
+        DeleteHeadProgressStack(window, font, bg, ButtonBg, list, fast, speed);
     }
 
     // Handle button clicks

@@ -10,7 +10,7 @@ void RenderAddHeadQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, s
 
 void RenderAddHeadQueueStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg);
 
-void RenderAddTailQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window);
+void RenderAddTailQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed);
 
 void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg);
 
@@ -18,7 +18,7 @@ void RenderAddIndexQueue(int index, int value, doublyLinkedList& list, sf::Color
 
 void RenderAddIndexQueueStep(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg);
 
-void RenderDeleteHeadQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg);
+void RenderDeleteHeadQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed);
 
 void RenderDeleteHeadQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg);
 

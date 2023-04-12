@@ -42,9 +42,9 @@ void renderStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf:
 
 }
 
-void RenderAddHeadStack(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void RenderAddHeadStack(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
 {
-    sf::Time sleepTime = sf::seconds(0.5f);
+    sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -726,9 +726,9 @@ void RenderAddIndexStackStep(int index, int value, doublyLinkedList& list, sf::C
     delete Previous, Next;
 }
 
-void RenderDeleteHeadStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
+void RenderDeleteHeadStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg ,float speed)
 {
-    sf::Time sleepTime = sf::seconds(0.5f);
+    sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node

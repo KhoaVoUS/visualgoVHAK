@@ -69,7 +69,7 @@ void InitProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg, s
     delete EnterButton;
     delete TextBox1;
 }
-void UpdateProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast)
+void UpdateProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -91,14 +91,14 @@ void UpdateProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::
     str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (fast) RenderUpdateStaticArray(value, index, a, array_size, ButtonBg, font, window);
+    if (fast) RenderUpdateStaticArray(value, index, a, array_size, ButtonBg, font, window, speed);
     else RenderUpdateStaticArrayStep(value, index, a, array_size, ButtonBg, font, window, bg);
 
     a[index] = value;
     delete EnterButton;
     delete TextBox1;
 }
-void SearchProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast)
+void SearchProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -113,14 +113,14 @@ void SearchProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg,
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (fast) RenderSearchStaticArray(value, a, array_size, ButtonBg, font, window); 
+    if (fast) RenderSearchStaticArray(value, a, array_size, ButtonBg, font, window, speed); 
     else RenderSearchStaticArrayStep(value, a, array_size, ButtonBg, font, window, bg);
 
     //std::cout << str << "\n";
     delete EnterButton;
     delete TextBox1;
 }
-void StaticArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& SA, sf::Color bg, bool& darkMode, int* a, int array_size, bool& fast)
+void StaticArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& SA, sf::Color bg, bool& darkMode, int* a, int array_size, bool& fast, float speed)
 {
     window.clear(bg);
     sf::Color ButtonBg;
@@ -180,7 +180,7 @@ void StaticArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, boo
     SearchButton->render(window);
     if (SearchButton->isClicked(window))
     {
-        SearchProgressArray(window, font, bg, ButtonBg, a, array_size, fast);
+        SearchProgressArray(window, font, bg, ButtonBg, a, array_size, fast, speed);
     }
 
     Button* UpdateButton = new Button(50, 300, 200, 50, font, "Update",
@@ -189,7 +189,7 @@ void StaticArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, boo
     UpdateButton->render(window);
     if (UpdateButton->isClicked(window))
     {
-        UpdateProgress(window, font, bg, ButtonBg, a, array_size, fast);
+        UpdateProgress(window, font, bg, ButtonBg, a, array_size, fast, speed);
     }
 
     Button* Reset = new Button(50, 740, 200, 50, font, "Reset",

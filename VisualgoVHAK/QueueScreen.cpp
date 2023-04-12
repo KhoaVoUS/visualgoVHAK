@@ -101,7 +101,7 @@ void AddHeadProgressQueue(sf::RenderWindow& window, sf::Font& font, sf::Color bg
     delete TextBox1;
 }
 
-void AddTailProgressQueue(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void AddTailProgressQueue(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -116,7 +116,7 @@ void AddTailProgressQueue(sf::RenderWindow& window, sf::Font& font, sf::Color bg
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (fast) RenderAddTailQueue(value, list, ButtonBg, font, window);
+    if (fast) RenderAddTailQueue(value, list, ButtonBg, font, window, speed);
     else RenderAddTailQueueStep(value, list, ButtonBg, font, window, bg);
     // Add the value to the linked list
     list.addTail(create(value));
@@ -162,9 +162,9 @@ void AddPositionProgressQueue(sf::RenderWindow& window, sf::Font& font, sf::Colo
     delete TextBox1;
 }
 
-void DeleteHeadProgressQueue(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
+void DeleteHeadProgressQueue(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
-    if (fast) RenderDeleteHeadQueue(list, ButtonBg, font, window, bg);
+    if (fast) RenderDeleteHeadQueue(list, ButtonBg, font, window, bg, speed);
     else RenderDeleteHeadQueueStep(list, ButtonBg, font, window, bg);
     list.deleteHead();
 }
@@ -176,35 +176,7 @@ void DeleteTailProgressQueue(sf::RenderWindow& window, sf::Font& font, sf::Color
     list.deleteTail();
 }
 
-void DeletePositionProgressQueue(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
-{
-    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
-        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
-    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
-
-    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
-
-    bool finished = false;
-    std::string tmp = "Input index";
-    InputHandleQueue(finished, TextBox1, EnterButton, window, bg, font, tmp);
-    std::string str = TextBox1->text.getString();
-    int index = std::stoi(str);
-
-    if (index == 0) {
-        if (fast) RenderDeleteHeadQueue(list, ButtonBg, font, window, bg);
-        else RenderDeleteHeadQueueStep(list, ButtonBg, font, window, bg);
-
-    }
-    else {
-        if (fast) RenderDeletePositionQueue(index, list, ButtonBg, font, window, bg); else
-            RenderDeletePositionQueueStep(index, list, ButtonBg, font, window, bg);
-    }
-    list.deleteIndexK(index);
-    //std::cout << str << "\n";
-    delete EnterButton;
-    delete TextBox1;
-}
 
 void SearchProgressQueue(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
 {
@@ -228,7 +200,7 @@ void SearchProgressQueue(sf::RenderWindow& window, sf::Font& font, sf::Color bg,
     delete EnterButton;
     delete TextBox1;
 }
-void QueueScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Queue, sf::Color bg, bool& darkMode, doublyLinkedList& list, bool& fast)
+void QueueScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Queue, sf::Color bg, bool& darkMode, doublyLinkedList& list, bool& fast, float speed)
 {
     window.clear(bg);
     sf::Color ButtonBg;
@@ -286,7 +258,7 @@ void QueueScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Que
 
     if (AddTailButton->isClicked(window))
     {
-        AddTailProgressQueue(window, font, bg, ButtonBg, list, fast);
+        AddTailProgressQueue(window, font, bg, ButtonBg, list, fast, speed);
     }
 
 
@@ -298,7 +270,7 @@ void QueueScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Que
 
     if (DeleteHeadButton->isClicked(window))
     {
-        DeleteHeadProgressQueue(window, font, bg, ButtonBg, list, fast);
+        DeleteHeadProgressQueue(window, font, bg, ButtonBg, list, fast, speed);
     }
 
 
