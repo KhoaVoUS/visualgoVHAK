@@ -4,7 +4,7 @@
 #include <sstream>
 #include "RenderStaticArray.h"
 
-void InputHandleArray(bool& finished, TextBox* TextBox1, Button* EnterButton, sf::RenderWindow& window, sf::Color bg, sf::Font& font, std::string tmp)
+void InputHandleStaticArray(bool& finished, TextBox* TextBox1, Button* EnterButton, sf::RenderWindow& window, sf::Color bg, sf::Font& font, std::string tmp)
 {
     sf::Text txt(tmp, font, 20);
     while (!finished)
@@ -37,21 +37,37 @@ void InputHandleArray(bool& finished, TextBox* TextBox1, Button* EnterButton, sf
         window.display();
     }
 }
-void InitArray(std::string str, doublyLinkedList& list)
+void InitStaticArray(std::string str, int* a, int array_size)
 {
-    while (list.pHead != nullptr) list.deleteHead();
     // Create a stringstream object from the string
     std::stringstream ss(str);
 
     int value;
     // Iterate through each number in the stringstream
-    while (ss >> value) {
-        // Create a new node with the value
-        Node* newNode = create(value);
-        // Add the node to the linked list
-        list.addTail(newNode);
+    int i = 0;
+    while (ss >> value)
+    {
+        a[i] = value;
+        i++;
     }
-    list.loadList();
+}
+void InitProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size)
+{
+    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+    std::string tmp = "Input value";
+    InputHandleStaticArray(finished, TextBox1, EnterButton, window, bg, font, tmp);
+    std::string str = TextBox1->text.getString();
+    InitStaticArray(str, a, array_size);
+    //std::cout << str << "\n";
+    delete EnterButton;
+    delete TextBox1;
 }
 
 void SearchProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast)
@@ -65,7 +81,7 @@ void SearchProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg,
 
     bool finished = false;
     std::string tmp = "Input value";
-    InputHandleArray(finished, TextBox1, EnterButton, window, bg, font, tmp);
+    InputHandleStaticArray(finished, TextBox1, EnterButton, window, bg, font, tmp);
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
@@ -111,7 +127,10 @@ void StaticArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, boo
 
     InitButton->update(window);
     InitButton->render(window);
-
+    if (InitButton->isClicked(window))
+    {
+        InitProgressArray(window, font, bg, ButtonBg, a, array_size);
+    }
     //random
     std::srand(std::time(nullptr));
     Button* InitRandomButton = new Button(280, 100, 200, 50, font, "Init Randomly",
