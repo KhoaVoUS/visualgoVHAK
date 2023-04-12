@@ -69,7 +69,35 @@ void InitProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg, s
     delete EnterButton;
     delete TextBox1;
 }
+void UpdateProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast)
+{
+    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+    std::string tmp = "Input index";
+    InputHandleStaticArray(finished, TextBox1, EnterButton, window, bg, font, tmp);
+    std::string str = TextBox1->text.getString();
+    int index = std::stoi(str);
+    TextBox1->text.setString("");
+    finished = false;
+    tmp = "Input value";
+    InputHandleStaticArray(finished, TextBox1, EnterButton, window, bg, font, tmp);
+
+    str = TextBox1->text.getString();
+    int value = std::stoi(str);
+
+    if (fast) RenderUpdateStaticArray(value, index, a, array_size, ButtonBg, font, window);
+    else RenderUpdateStaticArrayStep(value, index, a, array_size, ButtonBg, font, window, bg);
+
+    a[index] = value;
+    delete EnterButton;
+    delete TextBox1;
+}
 void SearchProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
@@ -155,6 +183,14 @@ void StaticArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, boo
         SearchProgressArray(window, font, bg, ButtonBg, a, array_size, fast);
     }
 
+    Button* UpdateButton = new Button(50, 300, 200, 50, font, "Update",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    UpdateButton->update(window);
+    UpdateButton->render(window);
+    if (UpdateButton->isClicked(window))
+    {
+        UpdateProgress(window, font, bg, ButtonBg, a, array_size, fast);
+    }
 
     Button* Reset = new Button(50, 740, 200, 50, font, "Reset",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);

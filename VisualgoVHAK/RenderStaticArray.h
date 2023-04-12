@@ -10,3 +10,7 @@ void RenderSearchStaticArray(int value, int* a, int array_size, sf::Color Button
 
 void RenderSearchStaticArrayStep(int value, int* a, int array_size, sf::Color ButtonBg, sf::Font font, sf::RenderWindow& window, sf::Color bg);
 
+void RenderUpdateStaticArray(int value, int index, int* a, int array_size, sf::Color ButtonBg, sf::Font font, sf::RenderWindow& window);
+
+void RenderUpdateStaticArrayStep(int value, int index, int* a, int array_size, sf::Color ButtonBg, sf::Font font, sf::RenderWindow& window, sf::Color bg);
+
