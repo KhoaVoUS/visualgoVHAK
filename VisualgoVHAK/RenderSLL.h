@@ -18,6 +18,10 @@ void RenderAddIndexSLL(int index, int value, doublyLinkedList& list, sf::Color B
 
 void RenderAddIndexSLLStep(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg);
 
+void RenderUpdateIndexSLL(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed);
+
+void RenderUpdateIndexSLLStep(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg);
+
 void RenderDeleteHeadSLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed);
 
 void RenderDeleteHeadSLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg);

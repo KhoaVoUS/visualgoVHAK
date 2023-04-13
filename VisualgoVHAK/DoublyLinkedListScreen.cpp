@@ -162,6 +162,35 @@ void AddPositionProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg,
     delete TextBox1;
 }
 
+void UpdatePositionProgressDLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+{
+    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+    std::string tmp = "Input index";
+    InputHandle(finished, TextBox1, EnterButton, window, bg, font, tmp);
+    std::string str = TextBox1->text.getString();
+    int index = std::stoi(str);
+    TextBox1->text.setString("");
+    finished = false;
+    tmp = "Input value";
+    InputHandle(finished, TextBox1, EnterButton, window, bg, font, tmp);
+
+    str = TextBox1->text.getString();
+    int value = std::stoi(str);
+    if (index >= list.getSize()) return;
+    if (fast) RenderUpdateIndexDLL(index, value, list, ButtonBg, font, window, bg, speed);
+    else RenderUpdateIndexDLLStep(index, value, list, ButtonBg, font, window, bg);
+    list.updateIndexK(index, value);
+    //std::cout << str << "\n";
+    delete EnterButton;
+    delete TextBox1;
+}
 void DeleteHeadProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
     if (fast) RenderDeleteHeadDLL(list, ButtonBg, font, window, bg, speed);
@@ -310,6 +339,17 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
         AddPositionProgress(window, font, bg, ButtonBg, list, fast, speed);
     }
 
+    //Update Position button
+    Button* UpdatePositionButton = new Button(50, 740, 200, 50, font, "Update Position",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    UpdatePositionButton->update(window);
+    UpdatePositionButton->render(window);
+
+    if (UpdatePositionButton->isClicked(window))
+    {
+        UpdatePositionProgressDLL(window, font, bg, ButtonBg, list, fast, speed);
+    }
+
     // Delete Head button
     Button* DeleteHeadButton = new Button(50, 420, 200, 50, font, "Delete Head",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -359,7 +399,7 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
         DLL = false;
     }
 
-    Button* Reset = new Button(50, 740, 200, 50, font, "Reset",
+    Button* Reset = new Button(50, 820, 200, 50, font, "Reset",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     Reset->update(window);
     Reset->render(window);
