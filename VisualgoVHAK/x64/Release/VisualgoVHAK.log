@@ -1,9 +1,8 @@
-﻿  RenderStaticArray.cpp
-  StaticArrayScreen.cpp
-D:\VisualgoVHAK\VisualgoVHAK\StaticArrayScreen.cpp(163,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  DynamicArrayScreen.cpp
+D:\Visualgo\VisualgoVHAK\DynamicArrayScreen.cpp(159,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating code
-  6 of 357 functions ( 1.7%) were compiled, the rest were copied from previous compilation.
-    4 functions were new in current compilation
-    11 functions had inline decision re-evaluated but remain unchanged
+  3 of 416 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    12 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  VisualgoVHAK.vcxproj -> D:\VisualgoVHAK\x64\Release\VisualgoVHAK.exe
+  VisualgoVHAK.vcxproj -> D:\Visualgo\x64\Release\VisualgoVHAK.exe

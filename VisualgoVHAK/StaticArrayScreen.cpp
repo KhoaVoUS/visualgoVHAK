@@ -113,7 +113,7 @@ void SearchProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg,
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (fast) RenderSearchStaticArray(value, a, array_size, ButtonBg, font, window, speed); 
+    if (fast) RenderSearchStaticArray(value, a, array_size, ButtonBg, font, window, speed);
     else RenderSearchStaticArrayStep(value, a, array_size, ButtonBg, font, window, bg);
 
     //std::cout << str << "\n";
@@ -172,7 +172,7 @@ void StaticArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, boo
             int value = std::rand() % 10 + 1;
             a[i] = value;
         }
-        
+
     }
     Button* SearchButton = new Button(50, 660, 200, 50, font, "Search",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -207,5 +207,4 @@ void StaticArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, boo
 
     delete BackButton, Reset, InitRandomButton, SearchButton;
 }
-
 

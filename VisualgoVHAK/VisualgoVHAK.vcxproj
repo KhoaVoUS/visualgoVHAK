@@ -144,10 +144,12 @@
     <ClCompile Include="CircularlyLinkedListScreen.cpp" />
     <ClCompile Include="DoublyLinkedList.cpp" />
     <ClCompile Include="DoublyLinkedListScreen.cpp" />
+    <ClCompile Include="DynamicArrayScreen.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="QueueScreen.cpp" />
     <ClCompile Include="RenderCLL.cpp" />
     <ClCompile Include="RenderDLL.cpp" />
+    <ClCompile Include="RenderDynamicArray.cpp" />
     <ClCompile Include="RenderQueue.cpp" />
     <ClCompile Include="RenderSLL.cpp" />
     <ClCompile Include="RenderStack.cpp" />
@@ -165,10 +167,12 @@
     <ClInclude Include="CircularlyLinkedListScreen.h" />
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="DoublyLinkedListScreen.h" />
+    <ClInclude Include="DynamicArrayScreen.h" />
     <ClInclude Include="MenuScreen.h" />
     <ClInclude Include="QueueScreen.h" />
     <ClInclude Include="RenderCLL.h" />
     <ClInclude Include="RenderDLL.h" />
+    <ClInclude Include="RenderDynamicArray.h" />
     <ClInclude Include="RenderQueue.h" />
     <ClInclude Include="RenderSLL.h" />
     <ClInclude Include="RenderStack.h" />

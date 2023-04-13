@@ -90,6 +90,12 @@
     <ClCompile Include="RenderStaticArray.cpp">
       <Filter>RenderScene</Filter>
     </ClCompile>
+    <ClCompile Include="DynamicArrayScreen.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderDynamicArray.cpp">
+      <Filter>RenderScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DoublyLinkedList.h">
@@ -145,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="RenderStaticArray.h">
       <Filter>Header Files\RenderHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicArrayScreen.h">
+      <Filter>Header Files\SceneHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderDynamicArray.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

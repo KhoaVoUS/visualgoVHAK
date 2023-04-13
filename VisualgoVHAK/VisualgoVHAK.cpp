@@ -8,6 +8,7 @@
 #include "StackScreen.h"
 #include "QueueScreen.h"
 #include "StaticArrayScreen.h"
+#include "DynamicArrayScreen.h"
 
 int main()
 {
@@ -31,6 +32,7 @@ int main()
     doublyLinkedList dLinkedList, sLinkedList, cLinkedList, stack, queue;
 
     int sArray[array_size];
+    std::vector<int> dArray;
 
     window.setFramerateLimit(30);
     while (window.isOpen()) {
@@ -82,6 +84,11 @@ int main()
         if (SA)
         {
             StaticArrayScreen(window, font, Menu, SA, bg, darkMode, sArray, array_size, fast, speed);
+        }
+
+        if (DA)
+        {
+            DynamicArrayScreen(window, font, Menu, DA, bg, darkMode, dArray, fast, speed);
         }
     }
 
