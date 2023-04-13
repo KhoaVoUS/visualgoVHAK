@@ -92,8 +92,11 @@ void AddHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window, bg, speed);
-    else RenderAddHeadCLLStep(value, list, ButtonBg, font, window, bg, speed);
+    if (list.getSize())
+    {
+        if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window, bg, speed);
+        else RenderAddHeadCLLStep(value, list, ButtonBg, font, window, bg, speed);
+    }
     // Add the value to the linked list
     list.addHead(create(value));
 
@@ -116,9 +119,13 @@ void AddTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     InputHandleCLL(finished, TextBox1, EnterButton, window, bg, font, tmp);
     std::string str = TextBox1->text.getString();
     int value = std::stoi(str);
+    
+    if (list.getSize())
+    {
 
-    if (fast) RenderAddTailCLL(value, list, ButtonBg, font, window, bg, speed);
-    else RenderAddTailCLLStep(value, list, ButtonBg, font, window, bg);
+        if (fast) RenderAddTailCLL(value, list, ButtonBg, font, window, bg, speed);
+        else RenderAddTailCLLStep(value, list, ButtonBg, font, window, bg);
+    }
     // Add the value to the linked list
     list.addTail(create(value));
 
@@ -149,6 +156,7 @@ void AddPositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color 
     str = TextBox1->text.getString();
     int value = std::stoi(str);
 
+    if (index >= list.getSize()) return;
     if (index == 0) {
         if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window, bg, speed);
         else RenderAddHeadCLLStep(value, list, ButtonBg, font, window, bg, speed);
@@ -163,8 +171,38 @@ void AddPositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color 
     delete TextBox1;
 }
 
+void UpdatePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+{
+    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+    std::string tmp = "Input index";
+    InputHandleCLL(finished, TextBox1, EnterButton, window, bg, font, tmp);
+    std::string str = TextBox1->text.getString();
+    int index = std::stoi(str);
+    TextBox1->text.setString("");
+    finished = false;
+    tmp = "Input value";
+    InputHandleCLL(finished, TextBox1, EnterButton, window, bg, font, tmp);
+
+    str = TextBox1->text.getString();
+    int value = std::stoi(str);
+    if (index >= list.getSize()) return;
+    if (fast) RenderUpdateIndexCLL(index, value, list, ButtonBg, font, window, bg, speed);
+    else RenderUpdateIndexCLLStep(index, value, list, ButtonBg, font, window, bg);
+    list.updateIndexK(index, value);
+    //std::cout << str << "\n";
+    delete EnterButton;
+    delete TextBox1;
+}
 void DeleteHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
+    if (!list.getSize()) return;
     if (fast) RenderDeleteHeadCLL(list, ButtonBg, font, window, bg, speed);
     else RenderDeleteHeadCLLStep(list, ButtonBg, font, window, bg);
     list.deleteHead();
@@ -172,6 +210,7 @@ void DeleteHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color b
 
 void DeleteTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
+    if (!list.getSize()) return;
     if (fast) RenderDeleteTailCLL(list, ButtonBg, font, window, bg, speed);
     else RenderDeleteTailCLLStep(list, ButtonBg, font, window, bg);
     list.deleteTail();
@@ -192,6 +231,7 @@ void DeletePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Col
     std::string str = TextBox1->text.getString();
     int index = std::stoi(str);
 
+    if (index >= list.getSize()) return;
     if (index == 0) {
         if (fast) RenderDeleteHeadCLL(list, ButtonBg, font, window, bg, speed);
         else RenderDeleteHeadCLLStep(list, ButtonBg, font, window, bg);
@@ -311,6 +351,16 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
         AddPositionProgressCLL(window, font, bg, ButtonBg, list, fast, speed);
     }
 
+    //Update Position button
+    Button* UpdatePositionButton = new Button(50, 740, 200, 50, font, "Update Position",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    UpdatePositionButton->update(window);
+    UpdatePositionButton->render(window);
+
+    if (UpdatePositionButton->isClicked(window))
+    {
+        UpdatePositionProgressCLL(window, font, bg, ButtonBg, list, fast, speed);
+    }
     // Delete Head button
     Button* DeleteHeadButton = new Button(50, 420, 200, 50, font, "Delete Head",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -360,7 +410,7 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
         CLL = false;
     }
 
-    Button* Reset = new Button(50, 740, 200, 50, font, "Reset",
+    Button* Reset = new Button(50, 820, 200, 50, font, "Reset",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     Reset->update(window);
     Reset->render(window);
@@ -372,6 +422,6 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
     renderCLL(list, ButtonBg, font, window);
     window.display();
 
-    delete InitButton, InitRandomButton, AddHeadButton, AddTailButton, AddPositionButton, DeleteHeadButton, DeleteTailButton, DeletePositionButton, SearchButton, BackButton, Reset;
+    delete InitButton, InitRandomButton, AddHeadButton, AddTailButton, AddPositionButton, UpdatePositionButton, DeleteHeadButton, DeleteTailButton, DeletePositionButton, SearchButton, BackButton, Reset;
 }
 

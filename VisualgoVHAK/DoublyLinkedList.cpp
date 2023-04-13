@@ -153,3 +153,15 @@ void doublyLinkedList::loadList()
 		cur = cur->Next;
 	}
 }
+
+int doublyLinkedList::getSize()
+{
+	int ret = 0;
+	Node* cur = pHead;
+	while (cur != nullptr)
+	{
+		ret++;
+		cur = cur->Next;
+	}
+	return ret;
+}

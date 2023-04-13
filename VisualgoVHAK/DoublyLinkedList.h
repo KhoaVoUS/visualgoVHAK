@@ -25,6 +25,8 @@ struct doublyLinkedList
 	void updateIndexK(int k, int data);
 
 	void loadList();
+
+	int getSize();
 };
 
 
