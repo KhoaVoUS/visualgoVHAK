@@ -2,6 +2,7 @@
 #include "TextBox.h"
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include "RenderDynamicArray.h"
 
 void InputHandleDynamicArray(bool& finished, TextBox* TextBox1, Button* EnterButton, sf::RenderWindow& window, sf::Color bg, sf::Font& font, std::string tmp)
@@ -171,6 +172,34 @@ void DynamicArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bo
             a.push_back(value);
         }
     }
+
+    Button* LoadButton = new Button(510, 100, 200, 50, font, "Load From File",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    LoadButton->update(window);
+    LoadButton->render(window);
+    if (LoadButton->isClicked(window))
+    {
+        std::ifstream inputFile("input.inp");
+
+        // Check if the file is open
+        if (inputFile.is_open())
+        {
+            std::string line;
+            // Read the first line of the file
+            std::getline(inputFile, line);
+
+            // Do something with the line
+            std::cout << "First line of the file: " << line << std::endl;
+
+            InitDynamicArray(line, a);
+            // Close the file
+            inputFile.close();
+        }
+        else
+        {
+            std::cout << "Unable to open file" << std::endl;
+        }
+    }
     Button* SearchButton = new Button(50, 660, 200, 50, font, "Search",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     SearchButton->update(window);
@@ -201,5 +230,5 @@ void DynamicArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bo
     renderDynamicArray(a, ButtonBg, font, window);
     window.display();
 
-    delete BackButton, Reset, InitRandomButton, SearchButton, InitButton;
+    delete BackButton, Reset, InitRandomButton, SearchButton, InitButton, LoadButton;
 }

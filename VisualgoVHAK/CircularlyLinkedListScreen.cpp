@@ -3,6 +3,7 @@
 #include "TextBox.h"
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include "RenderCLL.h"
 
 void InitCircularLinkedList(std::string str, doublyLinkedList& list)
@@ -311,6 +312,34 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
         }
     }
 
+    Button* LoadButton = new Button(510, 100, 200, 50, font, "Load From File",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    LoadButton->update(window);
+    LoadButton->render(window);
+    if (LoadButton->isClicked(window))
+    {
+        std::ifstream inputFile("input.inp");
+
+        // Check if the file is open
+        if (inputFile.is_open())
+        {
+            std::string line;
+            // Read the first line of the file
+            std::getline(inputFile, line);
+
+            // Do something with the line
+            std::cout << "First line of the file: " << line << std::endl;
+
+            InitCircularLinkedList(line, list);
+            // Close the file
+            inputFile.close();
+        }
+        else
+        {
+            std::cout << "Unable to open file" << std::endl;
+        }
+    }
+
     Button* SpeedButton = new Button(1200, 100, 200, 50, font, "Auto",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     if (fast) SpeedButton->text.setString("Auto"); else
@@ -422,6 +451,6 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
     renderCLL(list, ButtonBg, font, window);
     window.display();
 
-    delete InitButton, InitRandomButton, AddHeadButton, AddTailButton, AddPositionButton, UpdatePositionButton, DeleteHeadButton, DeleteTailButton, DeletePositionButton, SearchButton, BackButton, Reset;
+    delete InitButton, InitRandomButton, LoadButton, AddHeadButton, AddTailButton, AddPositionButton, UpdatePositionButton, DeleteHeadButton, DeleteTailButton, DeletePositionButton, SearchButton, BackButton, Reset;
 }
 

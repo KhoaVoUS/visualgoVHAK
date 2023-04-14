@@ -2,6 +2,7 @@
 #include "TextBox.h"
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include "RenderDLL.h"
 
 void InitDoublyLinkedList(std::string str, doublyLinkedList& list)
@@ -283,6 +284,36 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
     {
         InitProgress(window, font, bg, ButtonBg, list);
     }
+
+    // Init button
+    Button* LoadButton = new Button(510, 100, 200, 50, font, "Load From File",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    LoadButton->update(window);
+    LoadButton->render(window);
+    if (LoadButton->isClicked(window))
+    {
+        std::ifstream inputFile("input.inp");
+
+        // Check if the file is open
+        if (inputFile.is_open())
+        {
+            std::string line;
+            // Read the first line of the file
+            std::getline(inputFile, line);
+
+            // Do something with the line
+            std::cout << "First line of the file: " << line << std::endl;
+
+            InitDoublyLinkedList(line, list);
+            // Close the file
+            inputFile.close();
+        }
+        else
+        {
+            std::cout << "Unable to open file" << std::endl;
+        }
+    }
+
     std::srand(std::time(nullptr));
     Button* InitRandomButton = new Button(280, 100, 200, 50, font, "Init Randomly",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -411,6 +442,6 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
     renderDLL(list, ButtonBg, font, window);
     window.display();
 
-    delete InitButton, InitRandomButton, AddHeadButton, AddTailButton, AddPositionButton, DeleteHeadButton, DeleteTailButton, DeletePositionButton, SearchButton, BackButton, Reset;
+    delete InitButton, InitRandomButton, AddHeadButton, AddTailButton, AddPositionButton, DeleteHeadButton, DeleteTailButton, DeletePositionButton, SearchButton, BackButton, Reset, LoadButton;
 }
 
