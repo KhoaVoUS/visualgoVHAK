@@ -146,6 +146,7 @@
     <ClCompile Include="DoublyLinkedListScreen.cpp" />
     <ClCompile Include="DynamicArrayScreen.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
+    <ClCompile Include="PseudoCodeBlock.cpp" />
     <ClCompile Include="QueueScreen.cpp" />
     <ClCompile Include="RenderCLL.cpp" />
     <ClCompile Include="RenderDLL.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="DoublyLinkedListScreen.h" />
     <ClInclude Include="DynamicArrayScreen.h" />
     <ClInclude Include="MenuScreen.h" />
+    <ClInclude Include="PseudoCodeBlock.h" />
     <ClInclude Include="QueueScreen.h" />
     <ClInclude Include="RenderCLL.h" />
     <ClInclude Include="RenderDLL.h" />

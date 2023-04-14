@@ -1,4 +1,5 @@
 #include "RenderCLL.h"
+#include "PseudoCodeBlock.h"
 #include <iostream>
 
 using namespace std;
@@ -73,6 +74,7 @@ void RenderAddHeadCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
     //step 1
+
     for (int i = 1; i < visualizer.size(); i++)
     {
         window.clear(bg);

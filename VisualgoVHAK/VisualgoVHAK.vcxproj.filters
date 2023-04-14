@@ -96,18 +96,12 @@
     <ClCompile Include="RenderDynamicArray.cpp">
       <Filter>RenderScene</Filter>
     </ClCompile>
+    <ClCompile Include="PseudoCodeBlock.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DoublyLinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Arrow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CircularlyLinkedListScreen.h">
@@ -155,8 +149,20 @@
     <ClInclude Include="DynamicArrayScreen.h">
       <Filter>Header Files\SceneHeaders</Filter>
     </ClInclude>
+    <ClInclude Include="Arrow.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBox.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
     <ClInclude Include="RenderDynamicArray.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RenderHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PseudoCodeBlock.h">
+      <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
