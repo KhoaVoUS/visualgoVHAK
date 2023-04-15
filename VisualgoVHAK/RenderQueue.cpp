@@ -1,4 +1,5 @@
 #include "RenderQueue.h"
+#include "PseudoCodeBlock.h"
 #include <iostream>
 
 using namespace std;
@@ -286,7 +287,7 @@ void RenderAddHeadQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
 
 void RenderAddTailQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
 {
-    sf::Time sleepTime = sf::seconds(0.5f)/ speed;
+    sf::Time sleepTime = sf::seconds(0.5f) / speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -296,7 +297,12 @@ void RenderAddTailQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, s
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
+    PseudoCodeBlock a(font, 0.f, 0.f, 200.f, 200.f, sf::Color::White);
 
+    // Add the desired lines to the PseudoCodeBlock
+    a.addLine("Vertex vtx = new Vertex(v)", font, 16, sf::Color::Black);
+    a.addLine("tail.next = vtx", font, 16, sf::Color::Black);
+    a.addLine("tail = vtx", font, 16, sf::Color::Black);
     std::string buttonText;
     while (cur != nullptr)
     {
@@ -307,33 +313,10 @@ void RenderAddTailQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, s
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
     }
-
-
-    sf::sleep(sleepTime);
-    x = 500.f; // Starting position of the first node
-    y = 500.f;
-
-    if (visualizer.size()) x = visualizer.back().posX, y = visualizer.back().posY - 100;
-
-    Button tmp(x, y, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
-
-    renderQueue(list, ButtonBg, font, window);
-
-    tmp.render(window);
-    if (visualizer.size()) draw1headArrowVertical(visualizer.back().posX + width / 2, visualizer.back().posY, tmp.posY + height / 2, window);
-
-    window.display();
-    sf::sleep(sleepTime);
-
-    renderQueue(list, ButtonBg, font, window);
-    tmp.shape.setFillColor(sf::Color::Red);
-    tmp.render(window);
-
     if (visualizer.size()) {
         visualizer[0].shape.setFillColor(sf::Color::Red);
-        visualizer.back().shape.setFillColor(visualizer.back().idleColor);
+        visualizer.back().shape.setFillColor(sf::Color::Red);
     }
-
     for (int i = 0; i < visualizer.size(); i++)
     {
         visualizer[i].render(window);
@@ -345,9 +328,63 @@ void RenderAddTailQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, s
             draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
         }
     }
-    
-    if (visualizer.size()) draw1headArrowVertical(visualizer.back().posX + width / 2, visualizer.back().posY, tmp.posY + height / 2, window);
 
+    window.display();
+
+    sf::sleep(sleepTime);
+    x = 500.f; // Starting position of the first node
+    y = 500.f;
+
+    if (visualizer.size()) x = visualizer.back().posX, y = visualizer.back().posY - 100;
+
+    Button tmp(x, y, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
+
+    sleepTime = sf::seconds(0.3f);
+    for (int i = 0; i < visualizer.size(); i++)
+    {
+        visualizer[i].render(window);
+        if (i > 0)
+        {
+            int arrowX = visualizer[i].posX;
+            int arrowY = visualizer[i].posY + height / 2;
+            int prevArrowX = visualizer[i - 1].posX + width;
+            draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+        }
+    }
+    tmp.render(window);
+    if (visualizer.size()) draw1headArrowVertical(visualizer.back().posX + width / 2, visualizer.back().posY, tmp.posY + height / 2, window);
+    a.changeLineColor(0, sf::Color::Red);
+    a.draw(window);
+    a.changeLineColor(0, sf::Color::Black);
+    window.display();
+    sf::sleep(sleepTime);
+    //step 2
+    if (visualizer.size()) draw1headArrowVertical(visualizer.back().posX + width / 2, visualizer.back().posY, tmp.posY + height / 2, window);
+    a.changeLineColor(1, sf::Color::Red);
+    a.draw(window);
+    a.changeLineColor(1, sf::Color::Black);
+    tmp.render(window);
+    window.display();
+    sf::sleep(sleepTime);
+    //step 3
+    if (visualizer.size()) visualizer.back().shape.setFillColor(ButtonBg);
+    for (int i = 0; i < visualizer.size(); i++)
+    {
+        visualizer[i].render(window);
+        if (i > 0)
+        {
+            int arrowX = visualizer[i].posX;
+            int arrowY = visualizer[i].posY + height / 2;
+            int prevArrowX = visualizer[i - 1].posX + width;
+            draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+        }
+    }
+    if (visualizer.size()) draw1headArrowVertical(visualizer.back().posX + width / 2, visualizer.back().posY, tmp.posY + height / 2, window);
+    a.changeLineColor(2, sf::Color::Red);
+    a.draw(window);
+    a.changeLineColor(2, sf::Color::Black);
+    tmp.shape.setFillColor(sf::Color::Red);
+    tmp.render(window);
     window.display();
     sf::sleep(sleepTime);
 }
@@ -364,7 +401,12 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
+    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 200.f, sf::Color::White);
 
+    // Add the desired lines to the PseudoCodeBlock
+    a.addLine("Vertex vtx = new Vertex(v)", font, 16, sf::Color::Black);
+    a.addLine("tail.next = vtx, vtx.prev = tail", font, 16, sf::Color::Black);
+    a.addLine("tail = vtx", font, 16, sf::Color::Black);
     std::string buttonText;
     while (cur != nullptr)
     {
@@ -409,6 +451,7 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
                 currentStep++;
             }
         }
+
         if (currentStep == 0)
         {
             window.clear(bg);
@@ -416,9 +459,13 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
             Next->render(window);
             Previous->update(window);
             Next->update(window);
+            tmp.shape.setFillColor(ButtonBg);
             tmp.render(window);
-            if (visualizer.size()) visualizer.back().shape.setFillColor(sf::Color::Red);
-            if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
+            if (visualizer.size())
+            {
+                visualizer[0].shape.setFillColor(sf::Color::Red);
+                visualizer.back().shape.setFillColor(sf::Color::Red);
+            }
             for (int i = 0; i < visualizer.size(); i++)
                 visualizer[i].render(window);
             for (int i = 1; i < visualizer.size(); i++)
@@ -429,6 +476,9 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
                 int prevArrowX = visualizer[i - 1].posX + width;
                 draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
             }
+            a.changeLineColor(0, sf::Color::Red);
+            a.draw(window);
+            a.changeLineColor(0, sf::Color::Black);
         }
 
         if (currentStep == 1)
@@ -438,10 +488,14 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
             Next->render(window);
             Previous->update(window);
             Next->update(window);
+            tmp.shape.setFillColor(ButtonBg);
             tmp.render(window);
             if (visualizer.size()) draw1headArrowVertical(visualizer.back().posX + width / 2, visualizer.back().posY, tmp.posY + height / 2, window);
-            if (visualizer.size()) visualizer.back().shape.setFillColor(sf::Color::Red);
-            if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
+            if (visualizer.size())
+            {
+                visualizer[0].shape.setFillColor(sf::Color::Red);
+                visualizer.back().shape.setFillColor(sf::Color::Red);
+            }
             for (int i = 0; i < visualizer.size(); i++)
                 visualizer[i].render(window);
             for (int i = 1; i < visualizer.size(); i++)
@@ -452,6 +506,9 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
                 int prevArrowX = visualizer[i - 1].posX + width;
                 draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
             }
+            a.changeLineColor(1, sf::Color::Red);
+            a.draw(window);
+            a.changeLineColor(1, sf::Color::Black);
         }
 
         if (currentStep == 2)
@@ -461,11 +518,14 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
             Next->render(window);
             Previous->update(window);
             Next->update(window);
-
             tmp.shape.setFillColor(sf::Color::Red);
             tmp.render(window);
             if (visualizer.size()) draw1headArrowVertical(visualizer.back().posX + width / 2, visualizer.back().posY, tmp.posY + height / 2, window);
-            if (visualizer.size()) visualizer.back().shape.setFillColor(visualizer[0].idleColor);
+            if (visualizer.size())
+            {
+                visualizer[0].shape.setFillColor(sf::Color::Red);
+                visualizer.back().shape.setFillColor(ButtonBg);
+            }
             for (int i = 0; i < visualizer.size(); i++)
                 visualizer[i].render(window);
             for (int i = 1; i < visualizer.size(); i++)
@@ -476,6 +536,9 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
                 int prevArrowX = visualizer[i - 1].posX + width;
                 draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
             }
+            a.changeLineColor(2, sf::Color::Red);
+            a.draw(window);
+            a.changeLineColor(2, sf::Color::Black);
         }
 
         window.display();
@@ -723,7 +786,7 @@ void RenderAddIndexQueueStep(int index, int value, doublyLinkedList& list, sf::C
 
 void RenderDeleteHeadQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed)
 {
-    sf::Time sleepTime = sf::seconds(0.5f)/speed;
+    sf::Time sleepTime = sf::seconds(0.5f) / speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
@@ -733,7 +796,13 @@ void RenderDeleteHeadQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font&
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
+    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 400.f, sf::Color::White);
 
+    // Add the desired lines to the PseudoCodeBlock
+    a.addLine("if empty, do nothing", font, 16, sf::Color::Black);
+    a.addLine("temp = head", font, 16, sf::Color::Black);
+    a.addLine("head = head.next", font, 16, sf::Color::Black);
+    a.addLine("delete temp", font, 16, sf::Color::Black);
     std::string buttonText;
     while (cur != nullptr)
     {
@@ -744,8 +813,13 @@ void RenderDeleteHeadQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font&
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
     }
-    if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
-    if (visualizer.size()) visualizer.back().shape.setFillColor(sf::Color::Red);
+    a.changeLineColor(1, sf::Color::Red);
+    a.draw(window);
+    a.changeLineColor(1, sf::Color::Black);
+    if (visualizer.size()) {
+        visualizer[0].shape.setFillColor(sf::Color::Red);
+        visualizer.back().shape.setFillColor(sf::Color::Red);
+    }
     for (int i = 0; i < visualizer.size(); i++)
     {
         visualizer[i].render(window);
@@ -759,13 +833,15 @@ void RenderDeleteHeadQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font&
     }
 
     window.display();
-
     sf::sleep(sleepTime);
+
     if (visualizer.size() > 1) {
         visualizer[1].shape.setFillColor(sf::Color::Red);
         visualizer[0].shape.setFillColor(visualizer[0].idleColor);
     }
-
+    a.changeLineColor(2, sf::Color::Red);
+    a.draw(window);
+    a.changeLineColor(2, sf::Color::Black);
     for (int i = 0; i < visualizer.size(); i++)
     {
         visualizer[i].render(window);
@@ -780,6 +856,31 @@ void RenderDeleteHeadQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font&
 
     window.display();
     sf::sleep(sleepTime);
+
+    window.clear(bg);
+    if (visualizer.size() > 1) {
+        visualizer[1].shape.setFillColor(sf::Color::Red);
+        visualizer[0].shape.setFillColor(visualizer[0].idleColor);
+    }
+    a.changeLineColor(3, sf::Color::Red);
+    a.draw(window);
+    a.changeLineColor(3, sf::Color::Black);
+    for (int i = 1; i < visualizer.size(); i++)
+    {
+        visualizer[i].render(window);
+        if (i > 0)
+        {
+            int arrowX = visualizer[i].posX;
+            int arrowY = visualizer[i].posY + height / 2;
+            int prevArrowX = visualizer[i - 1].posX + width;
+            draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+        }
+    }
+
+    window.display();
+    sf::sleep(sleepTime);
+
+
 
 }
 
@@ -794,7 +895,13 @@ void RenderDeleteHeadQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
+    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 400.f, sf::Color::White);
 
+    // Add the desired lines to the PseudoCodeBlock
+    a.addLine("if empty, do nothing", font, 16, sf::Color::Black);
+    a.addLine("temp = head", font, 16, sf::Color::Black);
+    a.addLine("head = head.next", font, 16, sf::Color::Black);
+    a.addLine("delete temp", font, 16, sf::Color::Black);
     std::string buttonText;
     while (cur != nullptr)
     {
@@ -847,13 +954,19 @@ void RenderDeleteHeadQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
         if (currentStep == 0)
         {
             window.clear(bg);
+            a.changeLineColor(0, sf::Color::Red);
+            a.draw(window);
+            a.changeLineColor(0, sf::Color::Black);
             Previous->render(window);
             Next->render(window);
             Previous->update(window);
             Next->update(window);
             for (int i = 0; i < visualizer.size(); i++) visualizer[i].shape.setFillColor(visualizer[i].idleColor);
-            if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
-            if (visualizer.size()) visualizer.back().shape.setFillColor(sf::Color::Red);
+            if (visualizer.size())
+            {
+                visualizer[0].shape.setFillColor(sf::Color::Red);
+                visualizer.back().shape.setFillColor(sf::Color::Red);
+            }
             for (int i = 0; i < visualizer.size(); i++)
             {
                 visualizer[i].render(window);
@@ -870,12 +983,13 @@ void RenderDeleteHeadQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
         if (currentStep == 1)
         {
             window.clear(bg);
+            a.changeLineColor(2, sf::Color::Red);
+            a.draw(window);
+            a.changeLineColor(2, sf::Color::Black);
             Previous->render(window);
             Next->render(window);
             Previous->update(window);
             Next->update(window);
-            if (visualizer.size()) visualizer.back().shape.setFillColor(sf::Color::Red);
-            if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
             if (visualizer.size() > 1) {
                 visualizer[1].shape.setFillColor(sf::Color::Red);
                 visualizer[0].shape.setFillColor(visualizer[0].idleColor);
@@ -896,6 +1010,9 @@ void RenderDeleteHeadQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
         if (currentStep == 2)
         {
             window.clear(bg);
+            a.changeLineColor(3, sf::Color::Red);
+            a.draw(window);
+            a.changeLineColor(3, sf::Color::Black);
             Previous->render(window);
             Next->render(window);
             Previous->update(window);
