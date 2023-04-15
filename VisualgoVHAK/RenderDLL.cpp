@@ -1655,7 +1655,7 @@ void RenderDeletePositionDLL(int index, doublyLinkedList& list, sf::Color Button
             int arrowX = visualizer[i].posX;
             int arrowY = visualizer[i].posY + height / 2;
             int prevArrowX = visualizer[i - 1].posX + width;
-            draw2headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
         }
     }
     a.changeLineColor(0, sf::Color::Red);
@@ -1697,7 +1697,7 @@ void RenderDeletePositionDLL(int index, doublyLinkedList& list, sf::Color Button
                 int arrowX = visualizer[j].posX;
                 int arrowY = visualizer[j].posY + height / 2;
                 int prevArrowX = visualizer[j - 1].posX + width;
-                draw2headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+                draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
             }
         }
 
@@ -1717,7 +1717,7 @@ void RenderDeletePositionDLL(int index, doublyLinkedList& list, sf::Color Button
             int arrowX = visualizer[j].posX;
             int arrowY = visualizer[j].posY + height / 2;
             int prevArrowX = visualizer[j - 1].posX + width;
-            draw2headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
         }
     }
     a.changeLineColor(4, sf::Color::Red);
@@ -1742,7 +1742,7 @@ void RenderDeletePositionDLL(int index, doublyLinkedList& list, sf::Color Button
             int arrowY = visualizer[j].posY + height / 2;
             int prevArrowX = visualizer[j - 1].posX + width;
             if (j == index + 1) prevArrowX = visualizer[j - 2].posX + width;
-            draw2headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
+            draw1headArrowHorizontal(prevArrowX, arrowX, arrowY, window);
         }
     }
     a.changeLineColor(6, sf::Color::Red);
