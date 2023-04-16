@@ -1703,7 +1703,7 @@ void RenderDeletePositionSLL(int index, doublyLinkedList& list, sf::Color Button
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
-    PseudoCodeBlock a(font, 0.f, 0.f, 200.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 500.f, 500.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("if empty, do nothing", font, 16, sf::Color::Black);
@@ -1840,7 +1840,7 @@ void RenderDeletePositionSLLStep(int index, doublyLinkedList& list, sf::Color Bu
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
-    PseudoCodeBlock a(font, 0.f, 0.f, 200.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 500.f, 500.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("if empty, do nothing", font, 16, sf::Color::Black);

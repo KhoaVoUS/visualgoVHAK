@@ -8,7 +8,7 @@ void renderDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::R
 {
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -51,7 +51,7 @@ void RenderAddHeadDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
     sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -93,7 +93,7 @@ void RenderAddHeadDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
     
     sf::sleep(sleepTime);
 
-    Button tmp(500.f, 500.f, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
+    Button tmp(400.f, 400.f, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
     a.changeLineColor(0, sf::Color::Red);
     a.draw(window);
     a.changeLineColor(0, sf::Color::Black);
@@ -141,14 +141,14 @@ void RenderAddHeadDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
-    PseudoCodeBlock a(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 200.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("Vertex vtx = new Vertex(v)", font, 16, sf::Color::Black);
@@ -164,7 +164,7 @@ void RenderAddHeadDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
     }
-    Button tmp(500.f, 500.f, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
+    Button tmp(400.f, 400.f, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
 
     Button* Previous = new Button(900, 700, 200, 50, font, "Previous",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -318,7 +318,7 @@ void RenderAddTailDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
     sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -360,8 +360,8 @@ void RenderAddTailDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
     window.display();
 
     sf::sleep(sleepTime);
-    x = 500.f; // Starting position of the first node
-    y = 500.f;
+    x = 400.f; // Starting position of the first node
+    y = 400.f;
 
     if (visualizer.size()) x = visualizer.back().posX, y = visualizer.back().posY - 100;
 
@@ -423,7 +423,7 @@ void RenderAddTailDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -580,7 +580,7 @@ void RenderAddIndexDLL(int index, int value, doublyLinkedList& list, sf::Color B
     sf::Time sleepTime = sf::seconds(0.5f)/ speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -715,7 +715,7 @@ void RenderAddIndexDLLStep(int index, int value, doublyLinkedList& list, sf::Col
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -876,7 +876,7 @@ void RenderUpdateIndexDLL(int index, int value, doublyLinkedList& list, sf::Colo
     sf::Time sleepTime = sf::seconds(0.3f) / speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -979,7 +979,7 @@ void RenderUpdateIndexDLLStep(int index, int value, doublyLinkedList& list, sf::
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -1104,7 +1104,7 @@ void RenderDeleteHeadDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
     sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -1202,7 +1202,7 @@ void RenderDeleteHeadDLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -1359,7 +1359,7 @@ void RenderDeleteTailDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
     sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -1382,7 +1382,7 @@ void RenderDeleteTailDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
         visualizer[0].shape.setFillColor(sf::Color::Red);
         visualizer.back().shape.setFillColor(sf::Color::Red);
     }
-    PseudoCodeBlock a(font, 0.f, 0.f, 200.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 400.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("if empty, do nothing", font, 16, sf::Color::Black);
@@ -1407,8 +1407,8 @@ void RenderDeleteTailDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
     a.changeLineColor(0, sf::Color::Black);
     window.display();
     sf::sleep(sleepTime);
-    x = 500.f; // Starting position of the first node
-    y = 500.f;
+    x = 400.f; // Starting position of the first node
+    y = 400.f;
 
     visualizer.back().shape.setFillColor(ButtonBg);
     if (visualizer.size() - 2 >= 0) visualizer[visualizer.size() - 2].shape.setFillColor(sf::Color::Red);
@@ -1459,14 +1459,14 @@ void RenderDeleteTailDLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
-    PseudoCodeBlock a(font, 0.f, 0.f, 200.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 400.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("if empty, do nothing", font, 16, sf::Color::Black);
@@ -1619,14 +1619,14 @@ void RenderDeletePositionDLL(int index, doublyLinkedList& list, sf::Color Button
     sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
-    PseudoCodeBlock a(font, 0.f, 0.f, 200.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 400.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("if empty, do nothing", font, 16, sf::Color::Black);
@@ -1756,7 +1756,7 @@ void RenderDeletePositionDLLStep(int index, doublyLinkedList& list, sf::Color Bu
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -1909,7 +1909,7 @@ void RenderSearchDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::
     sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
@@ -1918,7 +1918,7 @@ void RenderSearchDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::
     int height = (int)nodeHeight;
 
     // Add the desired lines to the PseudoCodeBlock
-    PseudoCodeBlock a(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 200.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("temp = head", font, 16, sf::Color::Black);
@@ -1952,8 +1952,8 @@ void RenderSearchDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::
     window.display();
 
     sf::sleep(sleepTime);
-    x = 500.f; // Starting position of the first node
-    y = 500.f;
+    x = 400.f; // Starting position of the first node
+    y = 400.f;
 
     if (visualizer.size()) x = visualizer.back().posX, y = visualizer.back().posY - 100;
 
@@ -2006,14 +2006,14 @@ void RenderSearchDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, 
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
-    float x = 500.f; // Starting position of the first node
+    float x = 400.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
     float nodeHeight = 50.f;
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
-    PseudoCodeBlock a(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 200.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("temp = head", font, 16, sf::Color::Black);
