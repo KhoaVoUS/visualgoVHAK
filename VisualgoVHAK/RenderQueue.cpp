@@ -30,6 +30,17 @@ void renderQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf:
     if (visualizer.size()) {
         visualizer[0].shape.setFillColor(sf::Color::Red);
         visualizer.back().shape.setFillColor(sf::Color::Red);
+        sf::Text txt;
+        txt.setFont(font);
+        txt.setPosition(visualizer[0].posX, visualizer[0].posY - 50);
+        sf::Color lightBlue(173, 216, 230);
+        txt.setString("pHead");
+        txt.setFillColor(lightBlue);
+        window.draw(txt);
+
+        txt.setPosition(visualizer.back().posX + width, visualizer[0].posY - 50);
+        txt.setString("pTail");
+        window.draw(txt);
     }
 
     for (int i = 0; i < visualizer.size(); i++)
@@ -297,7 +308,7 @@ void RenderAddTailQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, s
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
-    PseudoCodeBlock a(font, 0.f, 0.f, 200.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 200.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("Vertex vtx = new Vertex(v)", font, 16, sf::Color::Black);
@@ -426,6 +437,8 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     int currentStep = 0;
 
     while (currentStep < 3)
@@ -449,6 +462,10 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
             else if (Next->isClicked(window))
             {
                 currentStep++;
+            }
+            else if (Last->isClicked(window))
+            {
+                currentStep = 3;
             }
         }
 
@@ -540,10 +557,11 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
             a.draw(window);
             a.changeLineColor(2, sf::Color::Black);
         }
-
+        Last->update(window);
+        Last->render(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
 
 void RenderAddIndexQueue(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
@@ -921,6 +939,9 @@ void RenderDeleteHeadQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
     int currentStep = 0;
 
     while (currentStep < 3)
@@ -948,6 +969,10 @@ void RenderDeleteHeadQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
             else if (Next->isClicked(window))
             {
                 currentStep++;
+            }
+            else if (Last->isClicked(window))
+            {
+                currentStep = 3;
             }
         }
 
@@ -1033,9 +1058,11 @@ void RenderDeleteHeadQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
                 }
             }
         }
+        Last->update(window);
+        Last->render(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 
 }
 

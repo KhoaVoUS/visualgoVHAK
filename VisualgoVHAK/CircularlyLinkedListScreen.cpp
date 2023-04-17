@@ -157,10 +157,15 @@ void AddPositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color 
     str = TextBox1->text.getString();
     int value = std::stoi(str);
 
-    if (index >= list.getSize()) return;
+    if (index >= list.getSize() || index < 0) return;
     if (index == 0) {
         if (fast) RenderAddHeadCLL(value, list, ButtonBg, font, window, bg, speed);
         else RenderAddHeadCLLStep(value, list, ButtonBg, font, window, bg, speed);
+    }
+    else if (index == list.getSize() - 1)
+    {
+        if (fast) RenderAddTailCLL(value, list, ButtonBg, font, window, bg, speed);
+        else RenderAddTailCLLStep(value, list, ButtonBg, font, window, bg);
     }
     else {
         if (fast) RenderAddIndexCLL(index, value, list, ButtonBg, font, window, bg, speed);
@@ -232,11 +237,16 @@ void DeletePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Col
     std::string str = TextBox1->text.getString();
     int index = std::stoi(str);
 
-    if (index >= list.getSize()) return;
+    if (index >= list.getSize() || index < 0) return;
     if (index == 0) {
         if (fast) RenderDeleteHeadCLL(list, ButtonBg, font, window, bg, speed);
         else RenderDeleteHeadCLLStep(list, ButtonBg, font, window, bg);
 
+    }
+    else if (index == list.getSize() - 1)
+    {
+        if (fast) RenderDeleteTailCLL(list, ButtonBg, font, window, bg, speed);
+        else RenderDeleteTailCLLStep(list, ButtonBg, font, window, bg);
     }
     else {
         if (fast) RenderDeletePositionCLL(index, list, ButtonBg, font, window, bg, speed); else

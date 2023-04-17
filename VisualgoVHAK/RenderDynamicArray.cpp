@@ -1,4 +1,5 @@
 #include "RenderDynamicArray.h"
+#include "PseudoCodeBlock.h"
 
 void renderDynamicArray(std::vector<int>& a, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
 {
@@ -40,6 +41,12 @@ void RenderSearchDynamicArray(int value, std::vector<int> &a, sf::Color ButtonBg
     int height = (int)nodeHeight;
 
     std::string buttonText;
+    PseudoCodeBlock b(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
+
+    b.addLine("for (int i = 0 ; (a + i) != null ; i++)", font, 16, sf::Color::Red);
+    b.addLine(" if (*(a+i) == value))", font, 16, sf::Color::Red);
+    b.addLine("  (a+i)->highlight = true", font, 16, sf::Color::Red);
+
     for (int i = 0; i < a.size(); i++)
     {
         int value = a[i];
@@ -58,6 +65,7 @@ void RenderSearchDynamicArray(int value, std::vector<int> &a, sf::Color ButtonBg
     sf::Time sleepTime = sf::seconds(0.5f) / speed;
     for (int i = 1; i < visualizer.size(); i++)
     {
+        b.draw(window);
         for (int j = 1; j < visualizer.size(); j++)
         {
             visualizer[j].shape.setFillColor(visualizer[j].idleColor);
@@ -96,7 +104,11 @@ void RenderSearchDynamicArrayStep(int value, std::vector<int> &a, sf::Color Butt
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
+    PseudoCodeBlock b(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
 
+    b.addLine("for (int i = 0 ; (a + i) != null ; i++)", font, 16, sf::Color::Red);
+    b.addLine(" if (*(a+i) == value))", font, 16, sf::Color::Red);
+    b.addLine("  (a+i)->highlight = true", font, 16, sf::Color::Red);
     std::string buttonText;
     for (int i = 0; i < a.size(); i++)
     {
@@ -117,6 +129,9 @@ void RenderSearchDynamicArrayStep(int value, std::vector<int> &a, sf::Color Butt
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
     int currentStep = 0;
@@ -143,10 +158,15 @@ void RenderSearchDynamicArrayStep(int value, std::vector<int> &a, sf::Color Butt
             {
                 currentStep++;
             }
+            else if (Last->isClicked(window))
+            {
+                currentStep = visualizer.size() - 1;
+            }
         }
         if (currentStep < visualizer.size())
         {
-            window.clear(bg);;
+            window.clear(bg);
+            b.draw(window);
             Previous->render(window);
             Next->render(window);
             Previous->update(window);
@@ -169,10 +189,11 @@ void RenderSearchDynamicArrayStep(int value, std::vector<int> &a, sf::Color Butt
 
         }
 
-
+        Last->update(window);
+        Last->render(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
 
 void RenderUpdateDynamicArray(int value, int index, std::vector<int> &a, sf::Color ButtonBg, sf::Font font, sf::RenderWindow& window, float speed)
@@ -185,9 +206,12 @@ void RenderUpdateDynamicArray(int value, int index, std::vector<int> &a, sf::Col
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
+    PseudoCodeBlock b(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
 
+    b.addLine("(a + i)->value = value", font, 16, sf::Color::Red);
     std::string buttonText;
     sf::Time sleepTime = sf::seconds(0.5f)/speed;
+
     for (int i = 0; i < a.size(); i++)
     {
         int values = a[i];
@@ -203,6 +227,7 @@ void RenderUpdateDynamicArray(int value, int index, std::vector<int> &a, sf::Col
         visualizer[i].render(window);
 
     }
+    b.draw(window);
     window.display();
     sf::sleep(sleepTime);
 
@@ -212,6 +237,7 @@ void RenderUpdateDynamicArray(int value, int index, std::vector<int> &a, sf::Col
         visualizer[i].render(window);
 
     }
+    b.draw(window);
     window.display();
     sf::sleep(sleepTime);
 
@@ -220,6 +246,7 @@ void RenderUpdateDynamicArray(int value, int index, std::vector<int> &a, sf::Col
         visualizer[i].render(window);
 
     }
+    b.draw(window);
     window.display();
     x = visualizer[index].posX;
     y = visualizer[index].posY;
@@ -228,6 +255,7 @@ void RenderUpdateDynamicArray(int value, int index, std::vector<int> &a, sf::Col
     tmp.shape.setFillColor(sf::Color::Yellow);
     tmp.text.setFillColor(sf::Color::Black);
     tmp.render(window);
+    b.draw(window);
     window.display();
     sf::sleep(sleepTime);
 }
@@ -243,6 +271,10 @@ void RenderUpdateDynamicArrayStep(int value, int index, std::vector<int> &a, sf:
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
 
+    PseudoCodeBlock b(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
+
+    b.addLine("(a + i)->value = value", font, 16, sf::Color::Red);
+
     std::string buttonText;
     sf::Time sleepTime = sf::seconds(0.3f);
     for (int i = 0; i < a.size(); i++)
@@ -257,6 +289,9 @@ void RenderUpdateDynamicArrayStep(int value, int index, std::vector<int> &a, sf:
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
     int currentStep = 0;
@@ -283,6 +318,10 @@ void RenderUpdateDynamicArrayStep(int value, int index, std::vector<int> &a, sf:
             {
                 currentStep++;
             }
+            else if (Last->isClicked(window))
+            {
+                currentStep = 3;
+            }
         }
         if (currentStep == 0)
         {
@@ -295,8 +334,9 @@ void RenderUpdateDynamicArrayStep(int value, int index, std::vector<int> &a, sf:
             for (int i = 0; i < visualizer.size(); i++)
             {
                 visualizer[i].render(window);
-
+                
             }
+            b.draw(window);
         }
 
         if (currentStep == 1)
@@ -312,6 +352,7 @@ void RenderUpdateDynamicArrayStep(int value, int index, std::vector<int> &a, sf:
                 visualizer[i].render(window);
 
             }
+            b.draw(window);
         }
 
         if (currentStep == 2)
@@ -326,7 +367,6 @@ void RenderUpdateDynamicArrayStep(int value, int index, std::vector<int> &a, sf:
                 visualizer[i].render(window);
 
             }
-            window.display();
             x = visualizer[index].posX;
             y = visualizer[index].posY;
             buttonText = std::to_string(value);
@@ -334,10 +374,12 @@ void RenderUpdateDynamicArrayStep(int value, int index, std::vector<int> &a, sf:
             tmp.shape.setFillColor(sf::Color::Yellow);
             tmp.text.setFillColor(sf::Color::Black);
             tmp.render(window);
+            b.draw(window);
         }
-
+        Last->update(window);
+        Last->render(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
 

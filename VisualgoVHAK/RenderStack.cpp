@@ -27,7 +27,16 @@ void renderStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf:
         cur = cur->Next;
     }
 
-    if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
+    if (visualizer.size()) {
+        visualizer[0].shape.setFillColor(sf::Color::Red);
+        sf::Text txt;
+        txt.setFont(font);
+        txt.setPosition(visualizer[0].posX, visualizer[0].posY - 50);
+        sf::Color lightBlue(173, 216, 230);
+        txt.setString("pHead");
+        txt.setFillColor(lightBlue);
+        window.draw(txt);
+    }
 
     for (int i = 0; i < visualizer.size(); i++)
     {
@@ -55,7 +64,7 @@ void RenderAddHeadStack(int value, doublyLinkedList& list, sf::Color ButtonBg, s
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
-    PseudoCodeBlock a(font, 0.f, 0.f, 200.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 200.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("Vertex vtx = new Vertex(v)", font, 16, sf::Color::Black);
@@ -168,6 +177,9 @@ void RenderAddHeadStackStep(int value, doublyLinkedList& list, sf::Color ButtonB
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
     int currentStep = 0;
 
     while (currentStep < 4)
@@ -196,6 +208,10 @@ void RenderAddHeadStackStep(int value, doublyLinkedList& list, sf::Color ButtonB
             {
                 currentStep++;
             }
+            else if (Last->isClicked(window))
+            {
+                currentStep = 4;
+            }
         }
 
 
@@ -219,7 +235,6 @@ void RenderAddHeadStackStep(int value, doublyLinkedList& list, sf::Color ButtonB
                 }
             }
             a.draw(window);
-            window.display();
         }
 
         if (currentStep == 1)
@@ -245,7 +260,6 @@ void RenderAddHeadStackStep(int value, doublyLinkedList& list, sf::Color ButtonB
             a.draw(window);
             tmp.render(window);
             a.changeLineColor(0, sf::Color::Black);
-            window.display();
         }
         if (currentStep == 2)
         {
@@ -273,7 +287,6 @@ void RenderAddHeadStackStep(int value, doublyLinkedList& list, sf::Color ButtonB
             tmp.render(window);
             a.changeLineColor(1, sf::Color::Black);
             if (visualizer.size()) draw2headArrowVertical(tmp.posX + width / 2, tmp.posY, visualizer[0].posY + height, window);
-            window.display();
         }
 
         if (currentStep == 3)
@@ -302,11 +315,13 @@ void RenderAddHeadStackStep(int value, doublyLinkedList& list, sf::Color ButtonB
             tmp.render(window);
             a.changeLineColor(2, sf::Color::Black);
             if (visualizer.size()) draw1headArrowVertical(tmp.posX + width / 2, tmp.posY, visualizer[0].posY + height, window);
-            window.display();
+            
         }
-
+        Last->update(window);
+        Last->render(window);
+        window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
 
 void RenderAddTailStack(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
@@ -788,7 +803,6 @@ void RenderDeleteHeadStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font&
     a.changeLineColor(1, sf::Color::Black);
     if (visualizer.size()) {
         visualizer[0].shape.setFillColor(sf::Color::Red);
-        visualizer.back().shape.setFillColor(sf::Color::Red);
     }
     for (int i = 0; i < visualizer.size(); i++)
     {
@@ -889,6 +903,9 @@ void RenderDeleteHeadStackStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
     int currentStep = 0;
 
     while (currentStep < 3)
@@ -917,6 +934,10 @@ void RenderDeleteHeadStackStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
             {
                 currentStep++;
             }
+            else if (Last->isClicked(window))
+            {
+                currentStep = 3;
+            }
         }
 
         if (currentStep == 0)
@@ -933,7 +954,6 @@ void RenderDeleteHeadStackStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
             if (visualizer.size())
             {
                 visualizer[0].shape.setFillColor(sf::Color::Red);
-                visualizer.back().shape.setFillColor(sf::Color::Red);
             }
             for (int i = 0; i < visualizer.size(); i++)
             {
@@ -1001,9 +1021,11 @@ void RenderDeleteHeadStackStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
                 }
             }
         }
+        Last->update(window);
+        Last->render(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 
 }
 

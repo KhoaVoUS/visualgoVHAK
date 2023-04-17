@@ -148,10 +148,15 @@ void AddPositionProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg,
 
     str = TextBox1->text.getString();
     int value = std::stoi(str);
-
+    if (index >= list.getSize() || index < 0) return;
     if (index == 0) {
         if (fast) RenderAddHeadDLL(value, list, ButtonBg, font, window, speed);
         else RenderAddHeadDLLStep(value, list, ButtonBg, font, window, bg);
+    }
+    else if (index == list.getSize() - 1)
+    {
+        if (fast) RenderAddTailDLL(value, list, ButtonBg, font, window, speed);
+        else RenderAddTailDLLStep(value, list, ButtonBg, font, window, bg);
     }
     else {
         if (fast) RenderAddIndexDLL(index, value, list, ButtonBg, font, window, bg, speed);
@@ -194,6 +199,7 @@ void UpdatePositionProgressDLL(sf::RenderWindow& window, sf::Font& font, sf::Col
 }
 void DeleteHeadProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
+    if (!list.getSize()) return;
     if (fast) RenderDeleteHeadDLL(list, ButtonBg, font, window, bg, speed);
     else RenderDeleteHeadDLLStep(list, ButtonBg, font, window, bg);
     list.deleteHead();
@@ -201,6 +207,7 @@ void DeleteHeadProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
 
 void DeleteTailProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
 {
+    if (!list.getSize()) return;
     if (fast) RenderDeleteTailDLL(list, ButtonBg, font, window, bg, speed);
     else RenderDeleteTailDLLStep(list, ButtonBg, font, window, bg);
     list.deleteTail();
@@ -221,10 +228,16 @@ void DeletePositionProgress(sf::RenderWindow& window, sf::Font& font, sf::Color 
     std::string str = TextBox1->text.getString();
     int index = std::stoi(str);
 
+    if (index < 0 || index >= list.getSize()) return;
     if (index == 0) {
         if (fast) RenderDeleteHeadDLL(list, ButtonBg, font, window, bg, speed);
         else RenderDeleteHeadDLLStep(list, ButtonBg, font, window, bg);
         
+    }
+    else if (index == list.getSize() - 1)
+    {
+        if (fast) RenderDeleteTailDLL(list, ButtonBg, font, window, bg, speed);
+        else RenderDeleteTailDLLStep(list, ButtonBg, font, window, bg);
     }
     else {
         if (fast) RenderDeletePositionDLL(index, list, ButtonBg, font, window, bg, speed); else

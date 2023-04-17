@@ -160,6 +160,11 @@ void AddPositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color 
         if (fast) RenderAddHeadSLL(value, list, ButtonBg, font, window, speed);
         else RenderAddHeadSLLStep(value, list, ButtonBg, font, window, bg);
     }
+    else if (index == list.getSize() - 1)
+    {
+        if (fast) RenderAddTailSLL(value, list, ButtonBg, font, window, speed);
+        else RenderAddTailSLLStep(value, list, ButtonBg, font, window, bg);
+    }
     else {
         if (fast) RenderAddIndexSLL(index, value, list, ButtonBg, font, window, bg, speed);
         else RenderAddIndexSLLStep(index, value, list, ButtonBg, font, window, bg);
@@ -191,7 +196,7 @@ void UpdatePositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Col
 
     str = TextBox1->text.getString();
     int value = std::stoi(str);
-    if (index >= list.getSize()) return;
+    if (index >= list.getSize() || index < 0) return;
     if (fast) RenderUpdateIndexSLL(index, value, list, ButtonBg, font, window, bg, speed);
     else RenderUpdateIndexSLLStep(index, value, list, ButtonBg, font, window, bg);
     list.updateIndexK(index, value);
@@ -236,6 +241,11 @@ void DeletePositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Col
         if (fast) RenderDeleteHeadSLL(list, ButtonBg, font, window, bg, speed);
         else RenderDeleteHeadSLLStep(list, ButtonBg, font, window, bg);
 
+    }
+    else if (index == list.getSize() - 1)
+    {
+        if (fast) RenderDeleteTailSLL(list, ButtonBg, font, window, bg, speed);
+        else RenderDeleteTailSLLStep(list, ButtonBg, font, window, bg);
     }
     else {
         if (fast) RenderDeletePositionSLL(index, list, ButtonBg, font, window, bg, speed); else

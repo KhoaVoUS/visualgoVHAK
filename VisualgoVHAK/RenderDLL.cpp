@@ -30,6 +30,17 @@ void renderDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::R
     if (visualizer.size()) {
         visualizer[0].shape.setFillColor(sf::Color::Red);
         visualizer.back().shape.setFillColor(sf::Color::Red);
+        sf::Text txt;
+        txt.setFont(font);
+        txt.setPosition(visualizer[0].posX, visualizer[0].posY - 50);
+        sf::Color lightBlue(173, 216, 230);
+        txt.setString("pHead");
+        txt.setFillColor(lightBlue);
+        window.draw(txt);
+
+        txt.setPosition(visualizer.back().posX + width, visualizer[0].posY - 50);
+        txt.setString("pTail");
+        window.draw(txt);
     }
 
     for (int i = 0; i < visualizer.size(); i++)
@@ -172,6 +183,9 @@ void RenderAddHeadDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
     int currentStep = 0;
 
     while (currentStep < 4)
@@ -200,6 +214,10 @@ void RenderAddHeadDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
             {
                 currentStep++;
             }
+            else if (Last->isClicked(window))
+            {
+                currentStep = 4;
+            }
         }
 
 
@@ -223,7 +241,6 @@ void RenderAddHeadDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
                 }
             }
             a.draw(window);
-            window.display();
         }
             
         if (currentStep == 1)
@@ -249,7 +266,6 @@ void RenderAddHeadDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
             a.draw(window);
             tmp.render(window);
             a.changeLineColor(0, sf::Color::Black);
-            window.display();
         }
         if (currentStep == 2)
         {
@@ -277,7 +293,6 @@ void RenderAddHeadDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
             tmp.render(window);
             a.changeLineColor(1, sf::Color::Black);
             if (visualizer.size()) draw2headArrowVertical(tmp.posX + width / 2, tmp.posY, visualizer[0].posY + height, window);
-            window.display();
         }
 
         if (currentStep == 3)
@@ -306,11 +321,13 @@ void RenderAddHeadDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
             tmp.render(window);
             a.changeLineColor(2, sf::Color::Black);
             if (visualizer.size()) draw2headArrowVertical(tmp.posX + width / 2, tmp.posY, visualizer[0].posY + height, window);
-            window.display();
+            
         }
-
+        Last->update(window);
+        Last->render(window);
+        window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
 
 void RenderAddTailDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
@@ -455,6 +472,9 @@ void RenderAddTailDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
     int currentStep = 0;
 
     while (currentStep <  3)
@@ -478,6 +498,10 @@ void RenderAddTailDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
             else if (Next->isClicked(window))
             {
                 currentStep++;
+            }
+            else if (Last->isClicked(window))
+            {
+                currentStep = 3;
             }
         }
 
@@ -569,10 +593,11 @@ void RenderAddTailDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
             a.draw(window);
             a.changeLineColor(2, sf::Color::Black);
         }
-
+        Last->update(window);
+        Last->render(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
 
 void RenderAddIndexDLL(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
@@ -752,6 +777,9 @@ void RenderAddIndexDLLStep(int index, int value, doublyLinkedList& list, sf::Col
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
     int currentStep = 0;
 
     while (currentStep < index + 2)
@@ -775,6 +803,10 @@ void RenderAddIndexDLLStep(int index, int value, doublyLinkedList& list, sf::Col
             else if (Next->isClicked(window))
             {
                 currentStep++;
+            }
+            else if (Last->isClicked(window))
+            {
+                currentStep = index + 2;
             }
         }
         if (currentStep < index)
@@ -865,10 +897,11 @@ void RenderAddIndexDLLStep(int index, int value, doublyLinkedList& list, sf::Col
             draw1headArrowVertical(visualizer[index - 1].posX + width, tmp.posY + height / 2, visualizer[index - 1].posY, window);
             draw1headArrowHorizontal(visualizer[index - 1].posX + width, tmp.posX, tmp.posY + height / 2, window);
         }
-
+        Last->update(window);
+        Last->render(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
 
 void RenderUpdateIndexDLL(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
@@ -1013,6 +1046,9 @@ void RenderUpdateIndexDLLStep(int index, int value, doublyLinkedList& list, sf::
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
     int currentStep = 0;
 
     while (currentStep < index + 2)
@@ -1036,6 +1072,10 @@ void RenderUpdateIndexDLLStep(int index, int value, doublyLinkedList& list, sf::
             else if (Next->isClicked(window))
             {
                 currentStep++;
+            } 
+            else if (Last->isClicked(window))
+            {
+                currentStep = index + 2;
             }
         }
         if (currentStep <= index)
@@ -1093,10 +1133,11 @@ void RenderUpdateIndexDLLStep(int index, int value, doublyLinkedList& list, sf::
             tmp.shape.setFillColor(sf::Color::Cyan);
             tmp.render(window);
         }
-
+        Last->update(window);
+        Last->render(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
 
 void RenderDeleteHeadDLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed)
@@ -1236,6 +1277,9 @@ void RenderDeleteHeadDLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
     int currentStep = 0;
 
     while (currentStep < 3)
@@ -1263,6 +1307,10 @@ void RenderDeleteHeadDLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
             else if (Next->isClicked(window))
             {
                 currentStep++;
+            } 
+            else if (Last->isClicked(window))
+            {
+                currentStep = 3;
             }
         }
         
@@ -1348,9 +1396,11 @@ void RenderDeleteHeadDLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
                 }
             }
         }
+        Last->update(window);
+        Last->render(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 
 }
 
@@ -1503,6 +1553,9 @@ void RenderDeleteTailDLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
     int currentStep = 0;
 
     while (currentStep < 3)
@@ -1526,6 +1579,10 @@ void RenderDeleteTailDLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
             else if (Next->isClicked(window))
             {
                 currentStep++;
+            }
+            else if (Last->isClicked(window))
+            {
+                currentStep = 3;
             }
         }
 
@@ -1608,10 +1665,11 @@ void RenderDeleteTailDLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
             }
 
         }
-
+        Last->update(window);
+        Last->render(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 
 }
 
@@ -1763,7 +1821,7 @@ void RenderDeletePositionDLLStep(int index, doublyLinkedList& list, sf::Color Bu
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
-    PseudoCodeBlock a(font, 0.f, 0.f, 200.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("if empty, do nothing", font, 16, sf::Color::Black);
@@ -1792,6 +1850,9 @@ void RenderDeletePositionDLLStep(int index, doublyLinkedList& list, sf::Color Bu
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
     int currentStep = 0;
 
     while (currentStep < index + 2)
@@ -1815,6 +1876,10 @@ void RenderDeletePositionDLLStep(int index, doublyLinkedList& list, sf::Color Bu
             else if (Next->isClicked(window))
             {
                 currentStep++;
+            }
+            else if (Last->isClicked(window))
+            {
+                currentStep = index + 2;
             }
         }
         if (currentStep < index)
@@ -1898,10 +1963,11 @@ void RenderDeletePositionDLLStep(int index, doublyLinkedList& list, sf::Color Bu
             a.draw(window);
             a.changeLineColor(6, sf::Color::Black);
         }
-
+        Last->update(window);
+        Last->render(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
 
 void RenderSearchDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
@@ -1918,7 +1984,7 @@ void RenderSearchDLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::
     int height = (int)nodeHeight;
 
     // Add the desired lines to the PseudoCodeBlock
-    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("temp = head", font, 16, sf::Color::Black);
@@ -2013,7 +2079,7 @@ void RenderSearchDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, 
 
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
-    PseudoCodeBlock a(font, 0.f, 0.f, 400.f, 200.f, sf::Color::White);
+    PseudoCodeBlock a(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
 
     // Add the desired lines to the PseudoCodeBlock
     a.addLine("temp = head", font, 16, sf::Color::Black);
@@ -2039,6 +2105,9 @@ void RenderSearchDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, 
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
     int currentStep = 0;
 
     while (currentStep < visualizer.size())
@@ -2062,6 +2131,10 @@ void RenderSearchDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, 
             else if (Next->isClicked(window))
             {
                 currentStep++;
+            }
+            else if (Last->isClicked(window))
+            {
+                currentStep = visualizer.size() - 1;
             }
         }
         if (currentStep < visualizer.size())
@@ -2103,11 +2176,12 @@ void RenderSearchDLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, 
             }
 
         }
-   
+        Last->update(window);
+        Last->render(window);
 
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
 
 

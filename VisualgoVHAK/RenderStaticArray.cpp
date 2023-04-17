@@ -1,5 +1,5 @@
 #include "RenderStaticArray.h"
-
+#include "PseudoCodeBlock.h"
 using namespace std;
 
 void renderStaticArray(int* a, int array_size, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
@@ -52,7 +52,11 @@ void RenderSearchStaticArray(int value, int* a, int array_size, sf::Color Button
         x += nodeWidth * 2; // Increment the position for the next node
     }
 
+    PseudoCodeBlock b(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
 
+    b.addLine("for (int i = 0 ; i < arraySize ; i++)", font, 16, sf::Color::Red);
+    b.addLine(" if (a[i].value == value", font, 16, sf::Color::Red);
+    b.addLine("  a[i].highlight = true", font, 16, sf::Color::Red);
     for (int i = 0; i < visualizer.size(); i++)
     {
         visualizer[i].render(window);
@@ -83,6 +87,7 @@ void RenderSearchStaticArray(int value, int* a, int array_size, sf::Color Button
         {
             visualizer[i].render(window);
         }
+        b.draw(window);
         window.display();
         sf::sleep(sleepTime);
     }
@@ -109,7 +114,11 @@ void RenderSearchStaticArrayStep(int value, int* a, int array_size, sf::Color Bu
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
     }
+    PseudoCodeBlock b(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
 
+    b.addLine("for (int i = 0 ; i < arraySize ; i++)", font, 16, sf::Color::Red);
+    b.addLine(" if (a[i].value == value", font, 16, sf::Color::Red);
+    b.addLine("  a[i].highlight = true", font, 16, sf::Color::Red);
 
     for (int i = 0; i < visualizer.size(); i++)
     {
@@ -121,7 +130,9 @@ void RenderSearchStaticArrayStep(int value, int* a, int array_size, sf::Color Bu
 
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
-
+    
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     int currentStep = 0;
 
     while (currentStep < visualizer.size())
@@ -145,6 +156,10 @@ void RenderSearchStaticArrayStep(int value, int* a, int array_size, sf::Color Bu
             else if (Next->isClicked(window))
             {
                 currentStep++;
+            }
+            else if (Last->isClicked(window))
+            {
+                currentStep = visualizer.size() - 1;
             }
         }
         if (currentStep < visualizer.size())
@@ -171,11 +186,12 @@ void RenderSearchStaticArrayStep(int value, int* a, int array_size, sf::Color Bu
                 visualizer[i].render(window);
 
         }
-
-
+        Last->update(window);
+        Last->render(window);
+        b.draw(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
 
 void RenderUpdateStaticArray(int value, int index, int* a, int array_size, sf::Color ButtonBg, sf::Font font, sf::RenderWindow& window, float speed)
@@ -200,12 +216,15 @@ void RenderUpdateStaticArray(int value, int index, int* a, int array_size, sf::C
         x += nodeWidth * 2; // Increment the position for the next node
     }
 
+    PseudoCodeBlock b(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
 
+    b.addLine("a[i].value = value", font, 16, sf::Color::Red);
     for (int i = 0; i < visualizer.size(); i++)
     {
         visualizer[i].render(window);
 
     }
+    b.draw(window);
     window.display();
     sf::sleep(sleepTime);
 
@@ -215,6 +234,7 @@ void RenderUpdateStaticArray(int value, int index, int* a, int array_size, sf::C
         visualizer[i].render(window);
 
     }
+    b.draw(window);
     window.display();
     sf::sleep(sleepTime);
 
@@ -223,6 +243,7 @@ void RenderUpdateStaticArray(int value, int index, int* a, int array_size, sf::C
         visualizer[i].render(window);
 
     }
+    b.draw(window);
     window.display();
     x = visualizer[index].posX;
     y = visualizer[index].posY;
@@ -231,6 +252,7 @@ void RenderUpdateStaticArray(int value, int index, int* a, int array_size, sf::C
     tmp.shape.setFillColor(sf::Color::Yellow);
     tmp.text.setFillColor(sf::Color::Black);
     tmp.render(window);
+    b.draw(window);
     window.display();
     sf::sleep(sleepTime);
 }
@@ -261,6 +283,12 @@ void RenderUpdateStaticArrayStep(int value, int index, int* a, int array_size, s
     Button* Next = new Button(1200, 700, 200, 50, font, "Next",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
 
+    Button* Last = new Button(1050, 500, 200, 50, font, "Last",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    PseudoCodeBlock b(font, 0.f, 0.f, 500.f, 200.f, sf::Color::White);
+
+    b.addLine("a[i].value = value", font, 16, sf::Color::Red);
     int currentStep = 0;
 
     while (currentStep < 3)
@@ -284,6 +312,10 @@ void RenderUpdateStaticArrayStep(int value, int index, int* a, int array_size, s
             else if (Next->isClicked(window))
             {
                 currentStep++;
+            }
+            else if (Last->isClicked(window))
+            {
+                currentStep = 3;
             }
         }
         if (currentStep == 0)
@@ -337,8 +369,10 @@ void RenderUpdateStaticArrayStep(int value, int index, int* a, int array_size, s
             tmp.text.setFillColor(sf::Color::Black);
             tmp.render(window);
         }
-
+        Last->update(window);
+        Last->render(window);
+        b.draw(window);
         window.display();
     }
-    delete Previous, Next;
+    delete Previous, Next, Last;
 }
