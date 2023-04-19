@@ -45,5 +45,7 @@ void WelcomeScreen(sf::RenderWindow& window, sf::Font& font, bool& Welcome, bool
     SpeedButton->render(window);
     
     window.display();
-    delete StartButton, DarkMode, SpeedButton;
+    delete StartButton;
+    delete DarkMode;
+    delete SpeedButton;
 }

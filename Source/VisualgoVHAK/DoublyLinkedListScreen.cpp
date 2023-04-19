@@ -455,6 +455,20 @@ void DLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, 
     renderDLL(list, ButtonBg, font, window);
     window.display();
 
-    delete InitButton, InitRandomButton, AddHeadButton, AddTailButton, AddPositionButton, DeleteHeadButton, DeleteTailButton, DeletePositionButton, SearchButton, BackButton, Reset, LoadButton;
+    delete InitButton;
+    delete InitRandomButton;
+    delete AddHeadButton;
+    delete AddTailButton;
+    delete AddPositionButton;
+    delete DeleteHeadButton;
+    delete DeleteTailButton;
+    delete DeletePositionButton;
+    delete SearchButton;
+    delete BackButton;
+    delete Reset;
+    delete LoadButton;
+    delete SpeedButton;
+    delete UpdatePositionButton;
+
 }
 

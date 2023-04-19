@@ -460,6 +460,19 @@ void SLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& SLL, 
     renderSLL(list, ButtonBg, font, window);
     window.display();
 
-    delete InitButton, InitRandomButton, LoadButton, AddHeadButton, AddTailButton, AddPositionButton, DeleteHeadButton, DeleteTailButton, DeletePositionButton, SearchButton, BackButton, Reset, UpdatePositionButton;
+    delete InitButton;
+    delete InitRandomButton;
+    delete AddHeadButton;
+    delete AddTailButton;
+    delete AddPositionButton;
+    delete DeleteHeadButton;
+    delete DeleteTailButton;
+    delete DeletePositionButton;
+    delete SearchButton;
+    delete BackButton;
+    delete Reset;
+    delete LoadButton;
+    delete SpeedButton;
+    delete UpdatePositionButton;
 }
 

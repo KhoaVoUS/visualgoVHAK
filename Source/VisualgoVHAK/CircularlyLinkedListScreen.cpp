@@ -461,6 +461,19 @@ void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, 
     renderCLL(list, ButtonBg, font, window);
     window.display();
 
-    delete InitButton, InitRandomButton, LoadButton, AddHeadButton, AddTailButton, AddPositionButton, UpdatePositionButton, DeleteHeadButton, DeleteTailButton, DeletePositionButton, SearchButton, BackButton, Reset;
+    delete InitButton;
+    delete InitRandomButton;
+    delete AddHeadButton;
+    delete AddTailButton;
+    delete AddPositionButton;
+    delete DeleteHeadButton;
+    delete DeleteTailButton;
+    delete DeletePositionButton;
+    delete SearchButton;
+    delete BackButton;
+    delete Reset;
+    delete LoadButton;
+    delete SpeedButton;
+    delete UpdatePositionButton;
 }
 

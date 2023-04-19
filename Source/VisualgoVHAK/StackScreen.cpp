@@ -346,5 +346,12 @@ void StackScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Sta
     renderStack(list, ButtonBg, font, window);
     window.display();
 
-    delete InitButton, InitRandomButton, LoadButton, AddHeadButton, DeleteHeadButton, BackButton, Reset;
+    delete InitButton;
+    delete InitRandomButton;
+    delete AddHeadButton;
+    delete DeleteHeadButton;
+    delete BackButton;
+    delete Reset;
+    delete LoadButton;
+    delete SpeedButton;
 }

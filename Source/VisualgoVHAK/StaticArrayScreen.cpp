@@ -234,6 +234,13 @@ void StaticArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, boo
     renderStaticArray(a, array_size, ButtonBg, font, window);
     window.display();
 
-    delete BackButton, Reset, InitRandomButton, SearchButton, LoadButton;
+    delete InitButton;
+    delete BackButton;
+    delete Reset;
+    delete InitRandomButton;
+    delete SearchButton;
+    delete LoadButton;
+    delete UpdateButton;
+    delete SpeedButton;
 }
 

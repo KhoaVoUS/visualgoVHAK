@@ -230,5 +230,12 @@ void DynamicArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bo
     renderDynamicArray(a, ButtonBg, font, window);
     window.display();
 
-    delete BackButton, Reset, InitRandomButton, SearchButton, InitButton, LoadButton;
+    delete InitButton;
+    delete BackButton;
+    delete Reset;
+    delete InitRandomButton;
+    delete SearchButton;
+    delete LoadButton;
+    delete UpdateButton;
+    delete SpeedButton;
 }

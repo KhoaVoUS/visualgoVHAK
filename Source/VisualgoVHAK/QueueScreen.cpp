@@ -321,6 +321,13 @@ void QueueScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Que
     renderQueue(list, ButtonBg, font, window);
     window.display();
 
-    delete InitButton, InitRandomButton, AddTailButton, DeleteHeadButton, BackButton, Reset, LoadButton;
+    delete InitButton;
+    delete InitRandomButton;
+    delete AddTailButton;
+    delete DeleteHeadButton;
+    delete BackButton;
+    delete Reset;
+    delete LoadButton;
+    delete SpeedButton;
 }
 

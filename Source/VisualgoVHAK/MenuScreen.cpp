@@ -110,5 +110,13 @@ void MenuScreen(sf::RenderWindow& window, sf::Font& font, bool& Welcome, bool& M
     }
     window.display();
 
-    delete DLLButton, SLLButton, CLLButton, StaticArrayButton, DynamicArrayButton, StackButton, QueueButton;
+    delete DLLButton;
+    delete SLLButton;
+    delete CLLButton;
+    delete StaticArrayButton;
+    delete DynamicArrayButton;
+    delete StackButton;
+    delete QueueButton;
+    delete BackButton;
+
 }
