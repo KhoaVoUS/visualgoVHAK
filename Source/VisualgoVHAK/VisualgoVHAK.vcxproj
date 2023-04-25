@@ -158,6 +158,7 @@
     <ClCompile Include="RenderStaticArray.cpp" />
     <ClCompile Include="SinglyLinkedList.cpp" />
     <ClCompile Include="SinglyLinkedListScreen.cpp" />
+    <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StackScreen.cpp" />
     <ClCompile Include="StaticArrayScreen.cpp" />
     <ClCompile Include="TextBox.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="RenderStaticArray.h" />
     <ClInclude Include="SinglyLinkedList.h" />
     <ClInclude Include="SinglyLinkedListScreen.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="StackScreen.h" />
     <ClInclude Include="StaticArrayScreen.h" />
     <ClInclude Include="TextBox.h" />

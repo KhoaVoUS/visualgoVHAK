@@ -5,7 +5,7 @@
 #include <fstream>
 #include "RenderStack.h"
 
-void InitStack(std::string str, doublyLinkedList& list)
+void InitStack(std::string str, Stack& list)
 {
     while (list.pHead != nullptr) list.deleteHead();
     // Create a stringstream object from the string
@@ -17,9 +17,8 @@ void InitStack(std::string str, doublyLinkedList& list)
         // Create a new node with the value
         Node* newNode = create(value);
         // Add the node to the linked list
-        list.addTail(newNode);
+        list.addHead(newNode);
     }
-    list.loadList();
 }
 
 void InputHandleStack(bool& finished, TextBox* TextBox1, Button* EnterButton, sf::RenderWindow& window, sf::Color bg, sf::Font& font, std::string tmp)
@@ -55,7 +54,7 @@ void InputHandleStack(bool& finished, TextBox* TextBox1, Button* EnterButton, sf
         window.display();
     }
 }
-void InitProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list)
+void InitProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, Stack& list)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -76,7 +75,7 @@ void InitProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, s
 
 
 
-void AddHeadProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void AddHeadProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, Stack& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -102,134 +101,15 @@ void AddHeadProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg
     delete TextBox1;
 }
 
-void AddTailProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
-{
-    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
-        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
-
-    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
-
-    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
-
-    bool finished = false;
-    std::string tmp = "Input value";
-    InputHandleStack(finished, TextBox1, EnterButton, window, bg, font, tmp);
-    std::string str = TextBox1->text.getString();
-    int value = std::stoi(str);
-
-    if (fast) RenderAddTailStack(value, list, ButtonBg, font, window);
-    else RenderAddTailStackStep(value, list, ButtonBg, font, window, bg);
-    // Add the value to the linked list
-    list.addTail(create(value));
-
-    //std::cout << str << "\n";
-    delete EnterButton;
-    delete TextBox1;
-}
-
-void AddPositionProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
-{
-    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
-        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
-
-    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
-
-    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
-
-    bool finished = false;
-    std::string tmp = "Input index";
-    InputHandleStack(finished, TextBox1, EnterButton, window, bg, font, tmp);
-    std::string str = TextBox1->text.getString();
-    int index = std::stoi(str);
-    TextBox1->text.setString("");
-    finished = false;
-    tmp = "Input value";
-    InputHandleStack(finished, TextBox1, EnterButton, window, bg, font, tmp);
-
-    str = TextBox1->text.getString();
-    int value = std::stoi(str);
-
-    if (index == 0) {
-        if (fast) RenderAddHeadStack(value, list, ButtonBg, font, window, speed);
-        else RenderAddHeadStackStep(value, list, ButtonBg, font, window, bg);
-    }
-    else {
-        if (fast) RenderAddIndexStack(index, value, list, ButtonBg, font, window, bg);
-        else RenderAddIndexStackStep(index, value, list, ButtonBg, font, window, bg);
-    }
-    list.insertIndexK(index, value);
-    //std::cout << str << "\n";
-    delete EnterButton;
-    delete TextBox1;
-}
-
-void DeleteHeadProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void DeleteHeadProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, Stack& list, bool fast, float speed)
 {
     if (fast) RenderDeleteHeadStack(list, ButtonBg, font, window, bg, speed);
     else RenderDeleteHeadStackStep(list, ButtonBg, font, window, bg);
     list.deleteHead();
 }
 
-void DeleteTailProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
-{
-    if (fast) RenderDeleteTailStack(list, ButtonBg, font, window, bg);
-    else RenderDeleteTailStackStep(list, ButtonBg, font, window, bg);
-    list.deleteTail();
-}
 
-void DeletePositionProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
-{
-    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
-        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
-
-    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
-
-    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
-
-    bool finished = false;
-    std::string tmp = "Input index";
-    InputHandleStack(finished, TextBox1, EnterButton, window, bg, font, tmp);
-    std::string str = TextBox1->text.getString();
-    int index = std::stoi(str);
-
-    if (index == 0) {
-        if (fast) RenderDeleteHeadStack(list, ButtonBg, font, window, bg, speed);
-        else RenderDeleteHeadStackStep(list, ButtonBg, font, window, bg);
-
-    }
-    else {
-        if (fast) RenderDeletePositionStack(index, list, ButtonBg, font, window, bg); else
-            RenderDeletePositionStackStep(index, list, ButtonBg, font, window, bg);
-    }
-    list.deleteIndexK(index);
-    //std::cout << str << "\n";
-    delete EnterButton;
-    delete TextBox1;
-}
-
-void SearchProgressStack(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast)
-{
-    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
-        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
-
-    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
-
-    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
-
-    bool finished = false;
-    std::string tmp = "Input value";
-    InputHandleStack(finished, TextBox1, EnterButton, window, bg, font, tmp);
-    std::string str = TextBox1->text.getString();
-    int value = std::stoi(str);
-
-    if (fast) RenderSearchStack(value, list, ButtonBg, font, window); else
-        RenderSearchStackStep(value, list, ButtonBg, font, window, bg);
-
-    //std::cout << str << "\n";
-    delete EnterButton;
-    delete TextBox1;
-}
-void StackScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Stack, sf::Color bg, bool& darkMode, doublyLinkedList& list, bool& fast, float speed)
+void StackScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& sstack, sf::Color bg, bool& darkMode, Stack& list, bool& fast, float speed)
 {
     window.clear(bg);
     sf::Color ButtonBg;
@@ -267,7 +147,7 @@ void StackScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Sta
         while (sz--)
         {
             int val = std::rand() % 1000;
-            list.addTail(create(val));
+            list.addHead(create(val));
         }
     }
     Button* LoadButton = new Button(510, 100, 200, 50, font, "Load From File",
@@ -331,7 +211,7 @@ void StackScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& Sta
     if (BackButton->isClicked(window))
     {
         Menu = true;
-        Stack = false;
+        sstack = false;
     }
 
     Button* Reset = new Button(50, 740, 200, 50, font, "Reset",

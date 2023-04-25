@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void renderStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void renderStack(Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
 {
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -53,7 +53,7 @@ void renderStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf:
 
 }
 
-void RenderAddHeadStack(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
+void RenderAddHeadStack(int value, Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
 {
     sf::Time sleepTime = sf::seconds(0.5f) / speed;
     vector<Button> visualizer;
@@ -142,7 +142,7 @@ void RenderAddHeadStack(int value, doublyLinkedList& list, sf::Color ButtonBg, s
 
 }
 
-void RenderAddHeadStackStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
+void RenderAddHeadStackStep(int value, Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -325,7 +325,7 @@ void RenderAddHeadStackStep(int value, doublyLinkedList& list, sf::Color ButtonB
     delete Previous, Next, Last;
 }
 
-void RenderAddTailStack(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void RenderAddTailStack(int value, Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -405,7 +405,7 @@ void RenderAddTailStack(int value, doublyLinkedList& list, sf::Color ButtonBg, s
     sf::sleep(sleepTime);
 }
 
-void RenderAddTailStackStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
+void RenderAddTailStackStep(int value, Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -532,7 +532,7 @@ void RenderAddTailStackStep(int value, doublyLinkedList& list, sf::Color ButtonB
     delete Previous, Next;
 }
 
-void RenderAddIndexStack(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
+void RenderAddIndexStack(int index, int value, Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
 {
     sf::Time sleepTime = sf::seconds(0.7f);
     vector<Button> visualizer;
@@ -632,7 +632,7 @@ void RenderAddIndexStack(int index, int value, doublyLinkedList& list, sf::Color
     sf::sleep(sleepTime);
 }
 
-void RenderAddIndexStackStep(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
+void RenderAddIndexStackStep(int index, int value, Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -770,7 +770,7 @@ void RenderAddIndexStackStep(int index, int value, doublyLinkedList& list, sf::C
     delete Previous, Next;
 }
 
-void RenderDeleteHeadStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg ,float speed)
+void RenderDeleteHeadStack(Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg ,float speed)
 {
     sf::Time sleepTime = sf::seconds(0.5f) / speed;
     vector<Button> visualizer;
@@ -867,7 +867,7 @@ void RenderDeleteHeadStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font&
 
 }
 
-void RenderDeleteHeadStackStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
+void RenderDeleteHeadStackStep(Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -1030,7 +1030,7 @@ void RenderDeleteHeadStackStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
 
 }
 
-void RenderDeleteTailStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
+void RenderDeleteTailStack(Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -1120,7 +1120,7 @@ void RenderDeleteTailStack(doublyLinkedList& list, sf::Color ButtonBg, sf::Font&
 
 }
 
-void RenderDeleteTailStackStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
+void RenderDeleteTailStackStep(Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -1256,7 +1256,7 @@ void RenderDeleteTailStackStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
 
 }
 
-void RenderDeletePositionStack(int index, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
+void RenderDeletePositionStack(int index, Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
     sf::Time sleepTime = sf::seconds(0.7f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -1368,7 +1368,7 @@ void RenderDeletePositionStack(int index, doublyLinkedList& list, sf::Color Butt
     sf::sleep(sleepTime);
 };
 
-void RenderDeletePositionStackStep(int index, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
+void RenderDeletePositionStackStep(int index, Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -1499,7 +1499,7 @@ void RenderDeletePositionStackStep(int index, doublyLinkedList& list, sf::Color 
     delete Previous, Next;
 }
 
-void RenderSearchStack(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void RenderSearchStack(int value, Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -1582,7 +1582,7 @@ void RenderSearchStack(int value, doublyLinkedList& list, sf::Color ButtonBg, sf
     sf::sleep(sleepTime);
 }
 
-void RenderSearchStackStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
+void RenderSearchStackStep(int value, Stack& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;

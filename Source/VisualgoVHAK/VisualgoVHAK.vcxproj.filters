@@ -108,6 +108,9 @@
     <ClCompile Include="Node.cpp">
       <Filter>DataStructure</Filter>
     </ClCompile>
+    <ClCompile Include="Stack.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularlyLinkedListScreen.h">
@@ -177,6 +180,9 @@
       <Filter>Header Files\DataStructureHeaders</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
+      <Filter>Header Files\DataStructureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
       <Filter>Header Files\DataStructureHeaders</Filter>
     </ClInclude>
   </ItemGroup>
