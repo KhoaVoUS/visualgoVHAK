@@ -2,6 +2,7 @@
 #include "WelcomeScreen.h"
 #include "MenuScreen.h"
 #include "DoublyLinkedList.h"
+#include "SinglyLinkedList.h"
 #include "DoublyLinkedListScreen.h"
 #include "SinglyLinkedListScreen.h"
 #include "CircularlyLinkedListScreen.h"
@@ -29,7 +30,8 @@ int main()
     const int array_size = 8;
     float speed = 1.0;
 
-    doublyLinkedList dLinkedList, sLinkedList, cLinkedList, stack, queue;
+    doublyLinkedList dLinkedList, cLinkedList, stack, queue;
+    singlyLinkedList sLinkedList;
 
     int sArray[array_size];
     std::vector<int> dArray;

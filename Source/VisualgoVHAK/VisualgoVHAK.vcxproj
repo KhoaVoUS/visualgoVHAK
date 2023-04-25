@@ -146,6 +146,7 @@
     <ClCompile Include="DoublyLinkedListScreen.cpp" />
     <ClCompile Include="DynamicArrayScreen.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="PseudoCodeBlock.cpp" />
     <ClCompile Include="QueueScreen.cpp" />
     <ClCompile Include="RenderCLL.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="RenderSLL.cpp" />
     <ClCompile Include="RenderStack.cpp" />
     <ClCompile Include="RenderStaticArray.cpp" />
+    <ClCompile Include="SinglyLinkedList.cpp" />
     <ClCompile Include="SinglyLinkedListScreen.cpp" />
     <ClCompile Include="StackScreen.cpp" />
     <ClCompile Include="StaticArrayScreen.cpp" />
@@ -170,6 +172,7 @@
     <ClInclude Include="DoublyLinkedListScreen.h" />
     <ClInclude Include="DynamicArrayScreen.h" />
     <ClInclude Include="MenuScreen.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="PseudoCodeBlock.h" />
     <ClInclude Include="QueueScreen.h" />
     <ClInclude Include="RenderCLL.h" />
@@ -179,6 +182,7 @@
     <ClInclude Include="RenderSLL.h" />
     <ClInclude Include="RenderStack.h" />
     <ClInclude Include="RenderStaticArray.h" />
+    <ClInclude Include="SinglyLinkedList.h" />
     <ClInclude Include="SinglyLinkedListScreen.h" />
     <ClInclude Include="StackScreen.h" />
     <ClInclude Include="StaticArrayScreen.h" />

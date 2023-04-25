@@ -5,7 +5,7 @@
 #include "RenderSLL.h"
 #include <fstream>
 
-void InitSinglyLinkedList(std::string str, doublyLinkedList& list)
+void InitSinglyLinkedList(std::string str, singlyLinkedList& list)
 {
     while (list.pHead != nullptr) list.deleteHead();
     // Create a stringstream object from the string
@@ -55,7 +55,7 @@ void InputHandleSLL(bool& finished, TextBox* TextBox1, Button* EnterButton, sf::
         window.display();
     }
 }
-void InitProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list)
+void InitProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, singlyLinkedList& list)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -76,7 +76,7 @@ void InitProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf:
 
 
 
-void AddHeadProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void AddHeadProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, singlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -105,7 +105,7 @@ void AddHeadProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     delete TextBox1;
 }
 
-void AddTailProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void AddTailProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, singlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -133,7 +133,7 @@ void AddTailProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     delete TextBox1;
 }
 
-void AddPositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void AddPositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, singlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -175,7 +175,7 @@ void AddPositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color 
     delete TextBox1;
 }
 
-void UpdatePositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void UpdatePositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, singlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -205,7 +205,7 @@ void UpdatePositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Col
     delete TextBox1;
 }
 
-void DeleteHeadProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void DeleteHeadProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, singlyLinkedList& list, bool fast, float speed)
 {
     if (!list.getSize()) return;
     if (fast) RenderDeleteHeadSLL(list, ButtonBg, font, window, bg, speed);
@@ -213,7 +213,7 @@ void DeleteHeadProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color b
     list.deleteHead();
 }
 
-void DeleteTailProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void DeleteTailProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, singlyLinkedList& list, bool fast, float speed)
 {
     if (!list.getSize()) return;
     if (fast) RenderDeleteTailSLL(list, ButtonBg, font, window, bg, speed);
@@ -221,7 +221,7 @@ void DeleteTailProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color b
     list.deleteTail();
 }
 
-void DeletePositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void DeletePositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, singlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -257,7 +257,7 @@ void DeletePositionProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Col
     delete TextBox1;
 }
 
-void SearchProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void SearchProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, singlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -279,7 +279,7 @@ void SearchProgressSLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, s
     delete EnterButton;
     delete TextBox1;
 }
-void SLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& SLL, sf::Color bg, bool& darkMode, doublyLinkedList& list, bool& fast, float speed)
+void SLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& SLL, sf::Color bg, bool& darkMode, singlyLinkedList& list, bool& fast, float speed)
 {
     window.clear(bg);
     sf::Color ButtonBg;

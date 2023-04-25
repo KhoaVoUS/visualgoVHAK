@@ -31,6 +31,9 @@
     <Filter Include="Header Files\RenderHeaders">
       <UniqueIdentifier>{cfe21eaf-dc7d-4f83-b958-de25d67abe22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\DataStructureHeaders">
+      <UniqueIdentifier>{8af9578c-3c5d-49a5-9e0d-3658c945c702}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VisualgoVHAK.cpp">
@@ -99,11 +102,14 @@
     <ClCompile Include="PseudoCodeBlock.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="SinglyLinkedList.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DoublyLinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CircularlyLinkedListScreen.h">
       <Filter>Header Files\SceneHeaders</Filter>
     </ClInclude>
@@ -163,6 +169,15 @@
     </ClInclude>
     <ClInclude Include="PseudoCodeBlock.h">
       <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="DoublyLinkedList.h">
+      <Filter>Header Files\DataStructureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="SinglyLinkedList.h">
+      <Filter>Header Files\DataStructureHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files\DataStructureHeaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

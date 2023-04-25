@@ -1,10 +1,5 @@
 #pragma once
-struct Node {
-	int data = 0;
-	Node* Next = nullptr;
-	Node* Prev = nullptr;
-};
-
+#include "Node.h"
 struct doublyLinkedList
 {
 	Node* pHead = nullptr;
@@ -30,6 +25,4 @@ struct doublyLinkedList
 };
 
 
-
-Node* create(int data);
 
