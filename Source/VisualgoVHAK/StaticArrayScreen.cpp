@@ -70,6 +70,112 @@ void InitProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg, s
     delete EnterButton;
     delete TextBox1;
 }
+void AddHeadProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size,bool fast, float speed)
+{
+    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+    std::string tmp = "Input value";
+
+    InputHandleStaticArray(finished, TextBox1, EnterButton, window, bg, font, tmp);
+    std::string str = TextBox1->text.getString();
+    int value = std::stoi(str);
+    for (int i = array_size; i > 0; i--) a[i] = a[i - 1];
+    a[0] = value;
+
+    //std::cout << str << "\n";
+    delete EnterButton;
+    delete TextBox1;
+}
+
+void AddTailProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast, float speed)
+{
+    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+    std::string tmp = "Input value";
+    InputHandleStaticArray(finished, TextBox1, EnterButton, window, bg, font, tmp);
+    std::string str = TextBox1->text.getString();
+    int value = std::stoi(str);
+    a[array_size - 1] = value;
+    delete EnterButton;
+    delete TextBox1;
+}
+
+void AddPositionProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast, float speed)
+{
+    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+    std::string tmp = "Input index";
+    InputHandleStaticArray(finished, TextBox1, EnterButton, window, bg, font, tmp);
+    std::string str = TextBox1->text.getString();
+    int index = std::stoi(str);
+    TextBox1->text.setString("");
+    finished = false;
+    tmp = "Input value";
+    InputHandleStaticArray(finished, TextBox1, EnterButton, window, bg, font, tmp);
+
+    str = TextBox1->text.getString();
+    int value = std::stoi(str);
+    if (index >= array_size || index < 0) return;
+    for (int i = array_size - 1; i > index; i--) a[i] = a[i - 1];
+    a[index] = value;
+    //std::cout << str << "\n";
+    delete EnterButton;
+    delete TextBox1;
+}
+
+
+void DeleteHeadProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast, float speed)
+{
+    if (!array_size) return;
+    for (int i = 0; i < array_size - 1; i++)
+        a[i] = a[i + 1];
+    a[array_size - 1] = 0;
+}
+
+void DeleteTailProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast, float speed)
+{
+    if (!array_size) return;
+    a[array_size - 1] = 0;
+}
+
+void DeletePositionProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast, float speed)
+{
+    Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+
+    sf::Vector2f textBoxPos(EnterButton->shape.getPosition().x - 250, EnterButton->shape.getPosition().y);
+
+    TextBox* TextBox1 = new TextBox(sf::Vector2f(200.f, 50.f), textBoxPos, font);
+
+    bool finished = false;
+    std::string tmp = "Input index";
+    InputHandleStaticArray(finished, TextBox1, EnterButton, window, bg, font, tmp);
+    std::string str = TextBox1->text.getString();
+    int index = std::stoi(str);
+    //std::cout << str << "\n";
+    for (int i = index; i < array_size - 1; i++) a[i] = a[i + 1];
+    a[array_size - 1] = 0;
+    delete EnterButton;
+    delete TextBox1;
+}
 void UpdateProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
@@ -99,7 +205,7 @@ void UpdateProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::
     delete EnterButton;
     delete TextBox1;
 }
-void SearchProgressArray(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast, float speed)
+void SearchProgress(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, int* a, int array_size, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -203,22 +309,83 @@ void StaticArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, boo
         }
 
     }
-    Button* SearchButton = new Button(50, 660, 200, 50, font, "Search",
+    Button* AddHeadButton = new Button(50, 180, 200, 50, font, "Add Head",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
-    SearchButton->update(window);
-    SearchButton->render(window);
-    if (SearchButton->isClicked(window))
+    AddHeadButton->update(window);
+    AddHeadButton->render(window);
+    if (AddHeadButton->isClicked(window))
     {
-        SearchProgressArray(window, font, bg, ButtonBg, a, array_size, fast, speed);
+        AddHeadProgress(window, font, bg, ButtonBg, a, array_size, fast, speed);
     }
 
-    Button* UpdateButton = new Button(50, 300, 200, 50, font, "Update",
+    // Add Tail button
+    Button* AddTailButton = new Button(50, 260, 200, 50, font, "Add Tail",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    AddTailButton->update(window);
+    AddTailButton->render(window);
+
+    if (AddTailButton->isClicked(window))
+    {
+        AddTailProgress(window, font, bg, ButtonBg, a, array_size, fast, speed);
+    }
+
+    // Add Position button
+    Button* AddPositionButton = new Button(50, 340, 200, 50, font, "Add Position",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    AddPositionButton->update(window);
+    AddPositionButton->render(window);
+
+    if (AddPositionButton->isClicked(window))
+    {
+        AddPositionProgress(window, font, bg, ButtonBg, a, array_size, fast, speed);
+    }
+    Button* UpdateButton = new Button(50, 420, 200, 50, font, "Update",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
     UpdateButton->update(window);
     UpdateButton->render(window);
     if (UpdateButton->isClicked(window))
     {
         UpdateProgress(window, font, bg, ButtonBg, a, array_size, fast, speed);
+    }
+    // Delete Head button
+    Button* DeleteHeadButton = new Button(50, 500, 200, 50, font, "Delete Head",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    DeleteHeadButton->update(window);
+    DeleteHeadButton->render(window);
+
+    if (DeleteHeadButton->isClicked(window))
+    {
+        DeleteHeadProgress(window, font, bg, ButtonBg, a, array_size, fast, speed);
+    }
+
+    // Delete Tail button
+    Button* DeleteTailButton = new Button(280, 500, 200, 50, font, "Delete Tail",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    DeleteTailButton->update(window);
+    DeleteTailButton->render(window);
+
+    if (DeleteTailButton->isClicked(window))
+    {
+        DeleteTailProgress(window, font, bg, ButtonBg, a, array_size, fast, speed);
+    }
+
+    // Delete Position button
+    Button* DeletePositionButton = new Button(50, 580, 200, 50, font, "Delete Position",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    DeletePositionButton->update(window);
+    DeletePositionButton->render(window);
+
+    if (DeletePositionButton->isClicked(window))
+    {
+        DeletePositionProgress(window, font, bg, ButtonBg, a, array_size, fast, speed);;
+    }
+    Button* SearchButton = new Button(50, 660, 200, 50, font, "Search",
+        ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
+    SearchButton->update(window);
+    SearchButton->render(window);
+    if (SearchButton->isClicked(window))
+    {
+        SearchProgress(window, font, bg, ButtonBg, a, array_size, fast, speed);
     }
 
     Button* Reset = new Button(50, 740, 200, 50, font, "Reset",
