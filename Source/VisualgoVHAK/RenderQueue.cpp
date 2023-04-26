@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void renderQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void renderQueue(Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
 {
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -58,7 +58,7 @@ void renderQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf:
 
 }
 
-void RenderAddHeadQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void RenderAddHeadQueue(int value, Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -137,7 +137,7 @@ void RenderAddHeadQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, s
 
 }
 
-void RenderAddHeadQueueStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
+void RenderAddHeadQueueStep(int value, Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -297,7 +297,7 @@ void RenderAddHeadQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
     delete Previous, Next;
 }
 
-void RenderAddTailQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
+void RenderAddTailQueue(int value, Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
 {
     sf::Time sleepTime = sf::seconds(0.5f) / speed;
     vector<Button> visualizer;
@@ -401,7 +401,7 @@ void RenderAddTailQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, s
     sf::sleep(sleepTime);
 }
 
-void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
+void RenderAddTailQueueStep(int value, Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -565,7 +565,7 @@ void RenderAddTailQueueStep(int value, doublyLinkedList& list, sf::Color ButtonB
     delete Previous, Next, Last;
 }
 
-void RenderAddIndexQueue(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
+void RenderAddIndexQueue(int index, int value, Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
 {
     sf::Time sleepTime = sf::seconds(0.7f);
     vector<Button> visualizer;
@@ -665,7 +665,7 @@ void RenderAddIndexQueue(int index, int value, doublyLinkedList& list, sf::Color
     sf::sleep(sleepTime);
 }
 
-void RenderAddIndexQueueStep(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
+void RenderAddIndexQueueStep(int index, int value, Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -803,7 +803,7 @@ void RenderAddIndexQueueStep(int index, int value, doublyLinkedList& list, sf::C
     delete Previous, Next;
 }
 
-void RenderDeleteHeadQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed)
+void RenderDeleteHeadQueue(Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed)
 {
     sf::Time sleepTime = sf::seconds(0.5f) / speed;
     vector<Button> visualizer;
@@ -903,7 +903,7 @@ void RenderDeleteHeadQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font&
 
 }
 
-void RenderDeleteHeadQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
+void RenderDeleteHeadQueueStep(Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -1067,7 +1067,7 @@ void RenderDeleteHeadQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
 
 }
 
-void RenderDeleteTailQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
+void RenderDeleteTailQueue(Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -1157,7 +1157,7 @@ void RenderDeleteTailQueue(doublyLinkedList& list, sf::Color ButtonBg, sf::Font&
 
 }
 
-void RenderDeleteTailQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
+void RenderDeleteTailQueueStep(Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -1293,7 +1293,7 @@ void RenderDeleteTailQueueStep(doublyLinkedList& list, sf::Color ButtonBg, sf::F
 
 }
 
-void RenderDeletePositionQueue(int index, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
+void RenderDeletePositionQueue(int index, Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
     sf::Time sleepTime = sf::seconds(0.7f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -1405,7 +1405,7 @@ void RenderDeletePositionQueue(int index, doublyLinkedList& list, sf::Color Butt
     sf::sleep(sleepTime);
 };
 
-void RenderDeletePositionQueueStep(int index, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
+void RenderDeletePositionQueueStep(int index, Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -1536,7 +1536,7 @@ void RenderDeletePositionQueueStep(int index, doublyLinkedList& list, sf::Color 
     delete Previous, Next;
 }
 
-void RenderSearchQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void RenderSearchQueue(int value, Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -1619,7 +1619,7 @@ void RenderSearchQueue(int value, doublyLinkedList& list, sf::Color ButtonBg, sf
     sf::sleep(sleepTime);
 }
 
-void RenderSearchQueueStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
+void RenderSearchQueueStep(int value, Queue& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
