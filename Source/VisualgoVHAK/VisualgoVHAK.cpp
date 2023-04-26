@@ -3,6 +3,7 @@
 #include "MenuScreen.h"
 #include "DoublyLinkedList.h"
 #include "SinglyLinkedList.h"
+#include "CircularlyLinkedList.h"
 #include "Stack.h"
 #include "Queue.h"
 #include "DoublyLinkedListScreen.h"
@@ -32,8 +33,9 @@ int main()
     const int array_size = 8;
     float speed = 1.0;
 
-    doublyLinkedList dLinkedList, cLinkedList;
+    doublyLinkedList dLinkedList;
     singlyLinkedList sLinkedList;
+    circularlyLinkedList cLinkedList;
     Stack stack;
     Queue queue;
 

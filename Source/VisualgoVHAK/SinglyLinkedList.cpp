@@ -73,7 +73,7 @@ void singlyLinkedList::deleteIndexK(int k)
 {
 	int count = 0;
 	if (pHead == nullptr) return;
-
+	if (k > getSize()) return;
 	if (k == 0)
 	{
 		deleteHead();
@@ -113,7 +113,7 @@ void singlyLinkedList::insertIndexK(int k, int data)
 	int count = 0;
 	Node* cur = pHead;
 	Node* prev = nullptr;
-
+	if (k > getSize()) return;
 	if (k <= 0)
 	{
 		addHead(create(data));
@@ -150,6 +150,7 @@ void singlyLinkedList::insertIndexK(int k, int data)
 
 void singlyLinkedList::updateIndexK(int k, int data)
 {
+	if (k > getSize()) return;
 	insertIndexK(k, data);
 	deleteIndexK(k + 1);
 }

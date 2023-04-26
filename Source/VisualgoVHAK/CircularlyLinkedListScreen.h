@@ -1,7 +1,7 @@
 #pragma once
 #include "Button.h"
-#include "DoublyLinkedList.h"
+#include "CircularlyLinkedList.h"
 
-void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, sf::Color bg, bool& darkMode, doublyLinkedList& dLinkedList, bool& fast, float speed);
+void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& DLL, sf::Color bg, bool& darkMode, circularlyLinkedList& dLinkedList, bool& fast, float speed);
 
 

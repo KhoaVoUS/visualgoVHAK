@@ -114,6 +114,9 @@
     <ClCompile Include="Queue.cpp">
       <Filter>DataStructure</Filter>
     </ClCompile>
+    <ClCompile Include="CircularlyLinkedList.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularlyLinkedListScreen.h">
@@ -191,8 +194,13 @@
     <ClInclude Include="Queue.h">
       <Filter>Header Files\DataStructureHeaders</Filter>
     </ClInclude>
+    <ClInclude Include="CircularlyLinkedList.h">
+      <Filter>Header Files\DataStructureHeaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="input.inp" />
+    <None Include="input.inp">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

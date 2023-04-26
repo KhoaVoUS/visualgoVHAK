@@ -4,10 +4,9 @@
 
 using namespace std;
 
-void renderCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
+void renderCLL(circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window)
 {
     vector<Button> visualizer;
-    Node* cur = list.pHead;
     float x = 500.f; // Starting position of the first node
     float y = 300.f;
     float nodeWidth = 50.f; // Adjust this as needed
@@ -17,7 +16,10 @@ void renderCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::R
     int height = (int)nodeHeight;
 
     std::string buttonText;
-    while (cur != nullptr)
+    Node* cur = list.pHead;
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -25,7 +27,9 @@ void renderCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::R
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
+
 
     if (visualizer.size()) {
         visualizer[0].shape.setFillColor(sf::Color::Red);
@@ -59,7 +63,7 @@ void renderCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::R
     }
 }
 
-void RenderAddHeadCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
+void RenderAddHeadCLL(int value, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
 {
     sf::Time sleepTime = sf::seconds(0.3f) / speed;
     vector<Button> visualizer;
@@ -76,7 +80,9 @@ void RenderAddHeadCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
     // Add the desired lines to the PseudoCodeBlock
 
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -84,6 +90,7 @@ void RenderAddHeadCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
     a.addLine("Vertex pre = head", font, 16, sf::Color::Black);
@@ -234,7 +241,7 @@ void RenderAddHeadCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
     sf::sleep(sleepTime);
 }
 
-void RenderAddHeadCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
+void RenderAddHeadCLLStep(int value, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
 {
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -256,7 +263,9 @@ void RenderAddHeadCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
     a.addLine("pre.next = vtx", font, 16, sf::Color::Black);
     a.addLine("head = pre", font, 16, sf::Color::Black);
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -264,6 +273,7 @@ void RenderAddHeadCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     x = 500, y = 500;
 
@@ -496,7 +506,7 @@ void RenderAddHeadCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
     delete Previous, Next, Last;
 }
 
-void RenderAddTailCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
+void RenderAddTailCLL(int value, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
 {
     sf::Time sleepTime = sf::seconds(0.3f) / speed;
     vector<Button> visualizer;
@@ -513,7 +523,9 @@ void RenderAddTailCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
     // Add the desired lines to the PseudoCodeBlock
 
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -521,6 +533,7 @@ void RenderAddTailCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
     a.addLine("Vertex pre = head", font, 16, sf::Color::Black);
@@ -641,7 +654,7 @@ void RenderAddTailCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf:
 
 }
 
-void RenderAddTailCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
+void RenderAddTailCLLStep(int value, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg)
 {
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -662,7 +675,9 @@ void RenderAddTailCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
     a.addLine("vtx.next = aft", font, 16, sf::Color::Black);
     a.addLine("pre.next = vtx", font, 16, sf::Color::Black);
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -670,6 +685,7 @@ void RenderAddTailCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     x = 500, y = 500;
 
@@ -869,7 +885,7 @@ void RenderAddTailCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg,
     delete Previous, Next, Last;
 }
 
-void RenderAddIndexCLL(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
+void RenderAddIndexCLL(int index, int value, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
 {
     sf::Time sleepTime = sf::seconds(0.5f)/speed;
     vector<Button> visualizer;
@@ -891,7 +907,9 @@ void RenderAddIndexCLL(int index, int value, doublyLinkedList& list, sf::Color B
     a.addLine("vtx.next = aft", font, 16, sf::Color::Black);
     a.addLine("pre.next = vtx", font, 16, sf::Color::Black);
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -899,6 +917,7 @@ void RenderAddIndexCLL(int index, int value, doublyLinkedList& list, sf::Color B
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
     for (int i = 0; i < visualizer.size(); i++)
@@ -1001,7 +1020,7 @@ void RenderAddIndexCLL(int index, int value, doublyLinkedList& list, sf::Color B
     sf::sleep(sleepTime);
 }
 
-void RenderAddIndexCLLStep(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
+void RenderAddIndexCLLStep(int index, int value, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -1022,7 +1041,9 @@ void RenderAddIndexCLLStep(int index, int value, doublyLinkedList& list, sf::Col
     a.addLine("vtx.next = aft", font, 16, sf::Color::Black);
     a.addLine("pre.next = vtx", font, 16, sf::Color::Black);
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -1030,6 +1051,7 @@ void RenderAddIndexCLLStep(int index, int value, doublyLinkedList& list, sf::Col
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     x = visualizer[index].posX;
     y = visualizer[index].posY - 100;
@@ -1186,7 +1208,7 @@ void RenderAddIndexCLLStep(int index, int value, doublyLinkedList& list, sf::Col
     delete Previous, Next, Last;
 }
 
-void RenderUpdateIndexCLL(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
+void RenderUpdateIndexCLL(int index, int value, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed)
 {
     sf::Time sleepTime = sf::seconds(0.3f) / speed;
     vector<Button> visualizer;
@@ -1205,7 +1227,9 @@ void RenderUpdateIndexCLL(int index, int value, doublyLinkedList& list, sf::Colo
     a.addLine(" pre = pre.next", font, 16, sf::Color::Black);
     a.addLine("pre.item = value", font, 16, sf::Color::Black);
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -1213,6 +1237,7 @@ void RenderUpdateIndexCLL(int index, int value, doublyLinkedList& list, sf::Colo
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
     Button tmp(visualizer[index].posX, visualizer[index].posY, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);
@@ -1290,7 +1315,7 @@ void RenderUpdateIndexCLL(int index, int value, doublyLinkedList& list, sf::Colo
 
 }
 
-void RenderUpdateIndexCLLStep(int index, int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
+void RenderUpdateIndexCLLStep(int index, int value, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -1309,7 +1334,9 @@ void RenderUpdateIndexCLLStep(int index, int value, doublyLinkedList& list, sf::
     a.addLine("for (k = 0; k < i-1; k++)", font, 16, sf::Color::Black);
     a.addLine(" pre = pre.next", font, 16, sf::Color::Black);
     a.addLine("pre.item = value", font, 16, sf::Color::Black);
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -1317,6 +1344,7 @@ void RenderUpdateIndexCLLStep(int index, int value, doublyLinkedList& list, sf::
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     x = visualizer[index].posX;
     y = visualizer[index].posY;
@@ -1421,7 +1449,7 @@ void RenderUpdateIndexCLLStep(int index, int value, doublyLinkedList& list, sf::
     delete Previous, Next, Last;
 }
 
-void RenderDeleteHeadCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed)
+void RenderDeleteHeadCLL(circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed)
 {
     PseudoCodeBlock a(font, 0.f, 0.f, 300.f, 300.f, sf::Color::White);
     a.addLine("Vertex pre = head", font, 16, sf::Color::Black);
@@ -1440,7 +1468,9 @@ void RenderDeleteHeadCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
     int width = (int)nodeWidth;
     int height = (int)nodeHeight;
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -1448,6 +1478,7 @@ void RenderDeleteHeadCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
     for (int i = 0; i < visualizer.size(); i++)
@@ -1561,7 +1592,7 @@ void RenderDeleteHeadCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
 
 }
 
-void RenderDeleteHeadCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
+void RenderDeleteHeadCLLStep(circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -1579,7 +1610,9 @@ void RenderDeleteHeadCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
     int height = (int)nodeHeight;
 
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -1587,6 +1620,7 @@ void RenderDeleteHeadCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
     for (int i = 0; i < visualizer.size(); i++)
@@ -1749,7 +1783,7 @@ void RenderDeleteHeadCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
 
 }
 
-void RenderDeleteTailCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed)
+void RenderDeleteTailCLL(circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg, float speed)
 {
     sf::Time sleepTime = sf::seconds(0.3f)/speed;
     vector<Button> visualizer;
@@ -1771,7 +1805,9 @@ void RenderDeleteTailCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
     a.addLine("pre.next = aft, aft.prev = pre", font, 16, sf::Color::Black);
     a.addLine("delete del", font, 16, sf::Color::Black);
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -1779,6 +1815,7 @@ void RenderDeleteTailCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
     for (int i = 0; i < visualizer.size(); i++)
@@ -1874,7 +1911,7 @@ void RenderDeleteTailCLL(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& f
 
 }
 
-void RenderDeleteTailCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
+void RenderDeleteTailCLLStep(circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg)
 {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
@@ -1896,7 +1933,9 @@ void RenderDeleteTailCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
     a.addLine("pre.next = aft, aft.prev = pre", font, 16, sf::Color::Black);
     a.addLine("delete del", font, 16, sf::Color::Black);
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -1904,6 +1943,7 @@ void RenderDeleteTailCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
     for (int i = 0; i < visualizer.size(); i++)
@@ -2059,7 +2099,7 @@ void RenderDeleteTailCLLStep(doublyLinkedList& list, sf::Color ButtonBg, sf::Fon
 
 }
 
-void RenderDeletePositionCLL(int index, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed) {
+void RenderDeletePositionCLL(int index, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg, float speed) {
     sf::Time sleepTime = sf::seconds(0.5f) / speed;
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -2081,7 +2121,9 @@ void RenderDeletePositionCLL(int index, doublyLinkedList& list, sf::Color Button
     a.addLine("pre.next = aft, aft.prev = pre", font, 16, sf::Color::Black);
     a.addLine("delete del", font, 16, sf::Color::Black);
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -2089,6 +2131,7 @@ void RenderDeletePositionCLL(int index, doublyLinkedList& list, sf::Color Button
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
     for (int i = 0; i < visualizer.size(); i++)
@@ -2196,7 +2239,7 @@ void RenderDeletePositionCLL(int index, doublyLinkedList& list, sf::Color Button
     sf::sleep(sleepTime);
 };
 
-void RenderDeletePositionCLLStep(int index, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
+void RenderDeletePositionCLLStep(int index, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -2218,7 +2261,9 @@ void RenderDeletePositionCLLStep(int index, doublyLinkedList& list, sf::Color Bu
     a.addLine("pre.next = aft, aft.prev = pre", font, 16, sf::Color::Black);
     a.addLine("delete del", font, 16, sf::Color::Black);
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -2226,6 +2271,7 @@ void RenderDeletePositionCLLStep(int index, doublyLinkedList& list, sf::Color Bu
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     x = visualizer[index].posX;
     y = visualizer[index].posY - 100;
@@ -2356,7 +2402,7 @@ void RenderDeletePositionCLLStep(int index, doublyLinkedList& list, sf::Color Bu
     delete Previous, Next, Last;
 }
 
-void RenderSearchCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
+void RenderSearchCLL(int value, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, float speed)
 {
     sf::Time sleepTime = sf::seconds(0.5f) / speed;
     vector<Button> visualizer;
@@ -2379,7 +2425,9 @@ void RenderSearchCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::
     a.addLine("  temp = temp.next", font, 16, sf::Color::Black);
 
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -2387,6 +2435,7 @@ void RenderSearchCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     if (visualizer.size()) visualizer[0].shape.setFillColor(sf::Color::Red);
     for (int i = 0; i < visualizer.size(); i++)
@@ -2464,7 +2513,7 @@ void RenderSearchCLL(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::
     sf::sleep(sleepTime);
 }
 
-void RenderSearchCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
+void RenderSearchCLLStep(int value, circularlyLinkedList& list, sf::Color ButtonBg, sf::Font& font, sf::RenderWindow& window, sf::Color& bg) {
     sf::Time sleepTime = sf::seconds(0.5f);
     vector<Button> visualizer;
     Node* cur = list.pHead;
@@ -2483,7 +2532,9 @@ void RenderSearchCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, 
     a.addLine("  if temp.item == v, temp.highlight = true while temp != head", font, 16, sf::Color::Black);
     a.addLine("  temp = temp.next", font, 16, sf::Color::Black);
     std::string buttonText;
-    while (cur != nullptr)
+    bool firstNode = true;
+
+    while (cur != nullptr && (firstNode || cur != list.pHead))
     {
         int value = cur->data;
         buttonText = std::to_string(value);
@@ -2491,6 +2542,7 @@ void RenderSearchCLLStep(int value, doublyLinkedList& list, sf::Color ButtonBg, 
         visualizer.push_back(tmp);
         x += nodeWidth * 2; // Increment the position for the next node
         cur = cur->Next;
+        firstNode = false;
     }
     if (visualizer.size()) x = visualizer.back().posX, y = visualizer.back().posY - 100;
     Button tmp(x, y, nodeWidth, nodeHeight, font, to_string(value), ButtonBg, ButtonBg, ButtonBg, sf::Color::Black);

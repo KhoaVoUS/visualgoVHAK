@@ -67,7 +67,7 @@ void doublyLinkedList::deleteHead()
 void doublyLinkedList::deleteIndexK(int k)
 {
 	int count = 0;
-
+	if (k > getSize()) return;
 	if (k == 0)
 	{
 		deleteHead();
@@ -94,7 +94,7 @@ void doublyLinkedList::insertIndexK(int k, int data)
 {
 	int count = 0;
 	Node* cur = pHead;
-
+	if (k > getSize()) return;
 	if (k <= 0)
 	{
 		addHead(create(data));
@@ -132,6 +132,7 @@ void doublyLinkedList::insertIndexK(int k, int data)
 
 void doublyLinkedList::updateIndexK(int k, int data)
 {
+	if (k > getSize()) return;
 	insertIndexK(k, data);
 	deleteIndexK(k + 1);
 }

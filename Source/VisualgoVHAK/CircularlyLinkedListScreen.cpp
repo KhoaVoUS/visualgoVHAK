@@ -6,7 +6,7 @@
 #include <fstream>
 #include "RenderCLL.h"
 
-void InitCircularLinkedList(std::string str, doublyLinkedList& list)
+void InitCircularLinkedList(std::string str, circularlyLinkedList& list)
 {
     while (list.pHead != nullptr) list.deleteHead();
     // Create a stringstream object from the string
@@ -20,7 +20,6 @@ void InitCircularLinkedList(std::string str, doublyLinkedList& list)
         // Add the node to the linked list
         list.addTail(newNode);
     }
-    list.loadList();
 }
 
 void InputHandleCLL(bool& finished, TextBox* TextBox1, Button* EnterButton, sf::RenderWindow& window, sf::Color bg, sf::Font& font, std::string tmp)
@@ -56,7 +55,7 @@ void InputHandleCLL(bool& finished, TextBox* TextBox1, Button* EnterButton, sf::
         window.display();
     }
 }
-void InitProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list)
+void InitProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, circularlyLinkedList& list)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -77,7 +76,7 @@ void InitProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf:
 
 
 
-void AddHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void AddHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, circularlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -106,7 +105,7 @@ void AddHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     delete TextBox1;
 }
 
-void AddTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void AddTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, circularlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -135,7 +134,7 @@ void AddTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, 
     delete TextBox1;
 }
 
-void AddPositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void AddPositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, circularlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -177,7 +176,7 @@ void AddPositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color 
     delete TextBox1;
 }
 
-void UpdatePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void UpdatePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, circularlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -206,7 +205,7 @@ void UpdatePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Col
     delete EnterButton;
     delete TextBox1;
 }
-void DeleteHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void DeleteHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, circularlyLinkedList& list, bool fast, float speed)
 {
     if (!list.getSize()) return;
     if (fast) RenderDeleteHeadCLL(list, ButtonBg, font, window, bg, speed);
@@ -214,7 +213,7 @@ void DeleteHeadProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color b
     list.deleteHead();
 }
 
-void DeleteTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void DeleteTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, circularlyLinkedList& list, bool fast, float speed)
 {
     if (!list.getSize()) return;
     if (fast) RenderDeleteTailCLL(list, ButtonBg, font, window, bg, speed);
@@ -222,7 +221,7 @@ void DeleteTailProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color b
     list.deleteTail();
 }
 
-void DeletePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void DeletePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, circularlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -258,7 +257,7 @@ void DeletePositionProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Col
     delete TextBox1;
 }
 
-void SearchProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, doublyLinkedList& list, bool fast, float speed)
+void SearchProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, sf::Color& ButtonBg, circularlyLinkedList& list, bool fast, float speed)
 {
     Button* EnterButton = new Button(900, 700, 200, 50, font, "Enter",
         ButtonBg, sf::Color::Red, sf::Color::Blue, sf::Color::Black);
@@ -280,7 +279,7 @@ void SearchProgressCLL(sf::RenderWindow& window, sf::Font& font, sf::Color bg, s
     delete EnterButton;
     delete TextBox1;
 }
-void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, sf::Color bg, bool& darkMode, doublyLinkedList& list, bool& fast, float speed)
+void CLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& CLL, sf::Color bg, bool& darkMode, circularlyLinkedList& list, bool& fast, float speed)
 {
     window.clear(bg);
     sf::Color ButtonBg;
