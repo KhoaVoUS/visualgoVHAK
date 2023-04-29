@@ -327,7 +327,7 @@ void SLLScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bool& SLL, 
     LoadButton->render(window);
     if (LoadButton->isClicked(window))
     {
-        std::ifstream inputFile("input.inp");
+        std::ifstream inputFile("sll.inp");
 
         // Check if the file is open
         if (inputFile.is_open())

@@ -33,14 +33,17 @@ int main()
     const int array_size = 8;
     float speed = 1.0;
 
-    doublyLinkedList dLinkedList;
-    singlyLinkedList sLinkedList;
-    circularlyLinkedList cLinkedList;
-    Stack stack;
-    Queue queue;
+    doublyLinkedList dLinkedList; dLinkedList.addTail(create(1)); dLinkedList.addTail(create(3)); dLinkedList.addTail(create(5));
+    singlyLinkedList sLinkedList; sLinkedList.addTail(create(4)); sLinkedList.addTail(create(7)); sLinkedList.addTail(create(0));
+    circularlyLinkedList cLinkedList; cLinkedList.addTail(create(5)); cLinkedList.addTail(create(2)); cLinkedList.addTail(create(2));
+    Stack stack; stack.addHead(create(2)); stack.addHead(create(6));
+    Queue queue; queue.addTail(create(2)); queue.addTail(create(21));
 
-    int sArray[array_size];
+    int sArray[array_size] = { 0, 2, 6, 8 };
     std::vector<int> dArray;
+    dArray.push_back(1);
+    dArray.push_back(2);
+    dArray.push_back(3);
 
     window.setFramerateLimit(30);
     while (window.isOpen()) {

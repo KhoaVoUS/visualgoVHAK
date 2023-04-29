@@ -196,7 +196,13 @@
     <ClInclude Include="WelcomeScreen.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="input.inp" />
+    <None Include="array.inp" />
+    <None Include="cll.inp" />
+    <None Include="dll.inp" />
+    <None Include="dynamicarray.inp" />
+    <None Include="queue.inp" />
+    <None Include="sll.inp" />
+    <None Include="stack.inp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

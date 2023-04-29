@@ -1,8 +1,2 @@
-﻿  DynamicArrayScreen.cpp
-D:\Visualgo\Source\VisualgoVHAK\DynamicArrayScreen.cpp(89,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\Visualgo\Source\VisualgoVHAK\DynamicArrayScreen.cpp(139,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\Visualgo\Source\VisualgoVHAK\DynamicArrayScreen.cpp(287,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  StaticArrayScreen.cpp
-D:\Visualgo\Source\VisualgoVHAK\StaticArrayScreen.cpp(298,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
+﻿  VisualgoVHAK.cpp
   VisualgoVHAK.vcxproj -> D:\Visualgo\Source\x64\Debug\VisualgoVHAK.exe

@@ -306,7 +306,7 @@ void DynamicArrayScreen(sf::RenderWindow& window, sf::Font& font, bool& Menu, bo
     LoadButton->render(window);
     if (LoadButton->isClicked(window))
     {
-        std::ifstream inputFile("input.inp");
+        std::ifstream inputFile("dynamicarray.inp");
 
         // Check if the file is open
         if (inputFile.is_open())

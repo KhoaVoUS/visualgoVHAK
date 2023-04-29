@@ -34,6 +34,9 @@
     <Filter Include="Header Files\DataStructureHeaders">
       <UniqueIdentifier>{8af9578c-3c5d-49a5-9e0d-3658c945c702}</UniqueIdentifier>
     </Filter>
+    <Filter Include="InputSample">
+      <UniqueIdentifier>{bc4f621a-2ad8-4075-b15b-483b32269f1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VisualgoVHAK.cpp">
@@ -199,8 +202,26 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="input.inp">
-      <Filter>Resource Files</Filter>
+    <None Include="array.inp">
+      <Filter>InputSample</Filter>
+    </None>
+    <None Include="cll.inp">
+      <Filter>InputSample</Filter>
+    </None>
+    <None Include="dll.inp">
+      <Filter>InputSample</Filter>
+    </None>
+    <None Include="dynamicarray.inp">
+      <Filter>InputSample</Filter>
+    </None>
+    <None Include="queue.inp">
+      <Filter>InputSample</Filter>
+    </None>
+    <None Include="sll.inp">
+      <Filter>InputSample</Filter>
+    </None>
+    <None Include="stack.inp">
+      <Filter>InputSample</Filter>
     </None>
   </ItemGroup>
 </Project>
